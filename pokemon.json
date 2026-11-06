@@ -76,7 +76,7 @@
     "皮卡丘",
     "可達鴨",
     "狂歡浪舞鴨",
-    "雷丘",
+    "阿羅拉雷丘",
     "伽勒爾烈焰馬",
     "萊希拉姆",
     "勾魂眼",
@@ -180,7 +180,6 @@
     "皮卡丘": "Pikachu",
     "可達鴨": "Psyduck",
     "狂歡浪舞鴨": "Quaquaval",
-    "雷丘": "Raichu",
     "萊希拉姆": "Reshiram",
     "勾魂眼": "Sableye",
     "巨鉗螳螂": "Scizor",
@@ -209,9 +208,10 @@
     "捷拉奧拉": "Zeraora",
     "索羅亞克": "Zoroark",
     "阿羅拉九尾": "Alolan Ninetales",
-    "伽勒爾烈焰馬": "Galarian Rapidash"
+    "伽勒爾烈焰馬": "Galarian Rapidash",
+    "阿羅拉雷丘": "Raichu-Alola"
   },
-  "schemaVersion": 9,
+  "schemaVersion": 10,
   "movesets": {
     "夢幻": {
       "status": "tentative",
@@ -1573,7 +1573,7 @@
     "超級路卡利歐": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10059.png",
     "怪力": "https://www.pokemonunite.jp/wp-content/uploads/machamp.png",
     "象牙豬": "https://www.pokemonunite.jp/wp-content/uploads/mamoswine.png",
-    "大竺葵": "https://www.pokemonunite.jp/wp-content/uploads/meganium.png",
+    "大竺葵": "https://www.pokemonunite.jp/wp-content/uploads/sp_zh_meganium.png",
     "魔幻假面喵": "https://www.pokemonunite.jp/wp-content/uploads/meowscarada.png",
     "喵喵": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/52.png",
     "巨金怪": "https://www.pokemonunite.jp/wp-content/uploads/metagross.png",
@@ -1590,7 +1590,6 @@
     "皮卡丘": "https://www.pokemonunite.jp/wp-content/uploads/pikachu.png",
     "可達鴨": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png",
     "狂歡浪舞鴨": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/914.png",
-    "雷丘": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png",
     "萊希拉姆": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/643.png",
     "勾魂眼": "https://www.pokemonunite.jp/wp-content/uploads/sableye.png",
     "巨鉗螳螂": "https://www.pokemonunite.jp/wp-content/uploads/scizor.png",
@@ -1619,7 +1618,8 @@
     "捷拉奧拉": "https://www.pokemonunite.jp/wp-content/uploads/zeraora.png",
     "索羅亞克": "https://www.pokemonunite.jp/wp-content/uploads/zoroark.png",
     "阿羅拉九尾": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10104.png",
-    "伽勒爾烈焰馬": "https://www.pokemonunite.jp/wp-content/uploads/Galarian-Rapidash.png"
+    "伽勒爾烈焰馬": "https://www.pokemonunite.jp/wp-content/uploads/Galarian-Rapidash.png",
+    "阿羅拉雷丘": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10100.png"
   },
   "ruleNotes": {
     "postZapdosSinglePath": [
