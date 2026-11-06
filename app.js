@@ -1,5 +1,5 @@
-const STORAGE_KEY = "unite-all-moves-win-tracker-v8";
-const LEGACY_STORAGE_KEY = "unite-all-moves-win-tracker-v7";
+const STORAGE_KEY = "unite-all-moves-win-tracker-v9";
+const LEGACY_STORAGE_KEY = "unite-all-moves-win-tracker-v8";
 let roster=[], state={}, activeName=null, draftWins={}, nameMap={}, avatars={}, draftMove1=[], draftMove2=[];
 const $=id=>document.getElementById(id);
 const clean=s=>(s||"").split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
@@ -58,6 +58,6 @@ $("search").addEventListener("input",render);$("filter").addEventListener("chang
 $("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
 $("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
 $("resetPokemon").onclick=()=>{if(confirm("確定要清除此寶可夢的所有設定與勝利紀錄？")){draftWins={};draftMove1=[];draftMove2=[];$("countMode").value="unconfigured";syncModeUI();renderCombos();}};
-$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:8,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v8.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
-$("importBtn").onclick=()=>$("importFile").click();$("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前 V8 紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:9,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v9.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
+$("importBtn").onclick=()=>$("importFile").click();$("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前 V9 紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
 let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};load();render();}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
