@@ -31,3 +31,18 @@
 .collapsible-content{padding:0 20px 20px;animation:panelReveal .18s ease-out}
 @keyframes panelReveal{from{opacity:.35;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:560px){.collapsible-head{padding:15px}.collapsible-content{padding:0 15px 15px}.collapsible-head p{max-width:245px;line-height:1.5}.summary-tools{gap:6px}}
+
+/* V15：明確的按鈕式展開／收合控制 */
+.collapsible-panel{padding:0;overflow:hidden}
+.collapsible-head{width:100%;border:0;background:transparent;color:inherit;display:flex;align-items:center;justify-content:space-between;text-align:left;cursor:pointer;padding:18px 20px;gap:14px;font:inherit;user-select:none}
+.collapsible-head:hover{background:rgba(120,150,190,.08)}
+.collapsible-head:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+.collapsible-title{display:flex;flex-direction:column;gap:5px;min-width:0}
+.collapsible-title strong{font-size:19px}
+.collapsible-title small{font-size:12px;color:var(--muted);font-weight:400;line-height:1.5}
+.collapsible-content{padding:0 20px 20px}
+.collapsible-panel.is-collapsed .collapsible-content{display:none}
+.collapse-icon{width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--accent);font-size:19px;transition:transform .2s,background .2s;flex:0 0 auto}
+.collapsible-head[aria-expanded="false"] .collapse-icon{transform:rotate(-90deg)}
+.summary-tools{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+@media(max-width:560px){.collapsible-head{padding:15px}.collapsible-content{padding:0 15px 15px}.collapsible-title small{max-width:245px}.summary-tools{gap:6px}}

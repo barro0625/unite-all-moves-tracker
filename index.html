@@ -24,17 +24,23 @@
     <article><small>剩餘技能組</small><strong id="leftCount">0</strong><em>尚待取得勝利</em></article>
     <article><small>已完成寶可夢</small><strong id="donePokemon">0</strong><em id="rosterCount">共 0 隻角色</em></article>
   </section>
-  <details class="overview-panel collapsible-panel" id="overviewPanel" open>
-    <summary class="section-head collapsible-head"><div><h2>全角色挑戰總覽</h2><p>所有已設定技能組的完成進度與定位分布。</p></div><span class="summary-tools"><span class="count-pill" id="overallPct">0%</span><span class="collapse-icon" aria-hidden="true">⌄</span></span></summary>
-    <div class="collapsible-content">
+  <section class="overview-panel collapsible-panel" id="overviewPanel">
+    <button type="button" class="collapsible-head" data-panel-toggle="overviewPanel" aria-expanded="true" aria-controls="overviewContent">
+      <span class="collapsible-title"><strong>全角色挑戰總覽</strong><small>所有已設定技能組的完成進度與定位分布。</small></span>
+      <span class="summary-tools"><span class="count-pill" id="overallPct">0%</span><span class="collapse-icon" aria-hidden="true">⌄</span></span>
+    </button>
+    <div class="collapsible-content" id="overviewContent">
       <div class="overview-track"><span id="overallBar"></span></div>
       <div class="overview-grid" id="roleOverview"></div>
     </div>
-  </details>
-  <details class="unfinished-panel collapsible-panel" id="unfinishedPanel" open>
-    <summary class="section-head collapsible-head"><div><h2>尚未完成的技能組</h2><p>點選項目即可開啟角色紀錄，快速找到下一個目標。</p></div><span class="summary-tools"><span id="unfinishedCount" class="count-pill">0 組</span><span class="collapse-icon" aria-hidden="true">⌄</span></span></summary>
-    <div class="collapsible-content"><div id="unfinishedList" class="unfinished-list"></div></div>
-  </details>
+  </section>
+  <section class="unfinished-panel collapsible-panel" id="unfinishedPanel">
+    <button type="button" class="collapsible-head" data-panel-toggle="unfinishedPanel" aria-expanded="true" aria-controls="unfinishedContent">
+      <span class="collapsible-title"><strong>尚未完成的技能組</strong><small>點選項目即可開啟角色紀錄，快速找到下一個目標。</small></span>
+      <span class="summary-tools"><span id="unfinishedCount" class="count-pill">0 組</span><span class="collapse-icon" aria-hidden="true">⌄</span></span>
+    </button>
+    <div class="collapsible-content" id="unfinishedContent"><div id="unfinishedList" class="unfinished-list"></div></div>
+  </section>
   <section class="toolbar">
     <label class="search"><span>⌕</span><input id="search" type="search" placeholder="搜尋寶可夢名稱…"></label>
     <select id="roleFilter" aria-label="依角色定位篩選"><option value="all">全部定位</option><option value="攻擊型">攻擊型</option><option value="防禦型">防禦型</option><option value="敏捷型">敏捷型</option><option value="平衡型">平衡型</option><option value="輔助型">輔助型</option></select>

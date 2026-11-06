@@ -85,6 +85,17 @@ $("randomBtn").onclick=()=>{
  toast(`隨機挑戰：${pick.name}｜${pick.label}`);
 };
 
+// V15：以明確按鈕控制兩個面板，避免原生 details/summary 在部分樣式或瀏覽器下無法辨識。
+document.querySelectorAll("[data-panel-toggle]").forEach(button=>{
+ button.addEventListener("click",()=>{
+  const panel=document.getElementById(button.dataset.panelToggle);
+  if(!panel)return;
+  const expanded=button.getAttribute("aria-expanded")==="true";
+  button.setAttribute("aria-expanded",String(!expanded));
+  panel.classList.toggle("is-collapsed",expanded);
+ });
+});
+
 let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};load();if(!renderOverlay())render();}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
 
 window.addEventListener("storage",e=>{if(e.key===STORAGE_KEY){try{state=JSON.parse(e.newValue||"{}");if(new URLSearchParams(location.search).get("mode")==="overlay")renderOverlay();else render();}catch{}}});
