@@ -40,8 +40,11 @@
 - 保留 V16 的技能圖示與其他功能；自動遷移 V16 本機紀錄，並盡可能保留上述角色既有勝場。
 
 
-## V20 技能圖示修正
+## V21 技能圖示修正
 - 修正阿羅拉雷丘四個技能圖示的直接圖片網址。
 - 武道熊師四個技能圖示改用逐項明確對應網址，避免英文檔名拼接失敗。
 - 其他角色沿用原有 Bulbagarden Archives 圖示對應方式。
 - 本次只調整圖示來源，不更動技能組、勝場資料與本機儲存鍵。
+
+
+V21 restores manual skill-name editing and win-count mode selection in the Pokémon settings dialog.

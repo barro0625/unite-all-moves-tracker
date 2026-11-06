@@ -58,11 +58,23 @@
 <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
  <div class="modal-backdrop" data-close="1"></div>
  <div class="dialog">
-  <div class="dialog-head"><div class="modal-identity"><img id="modalAvatar" class="modal-avatar" alt=""><div><p class="eyebrow">POKÉMON CHALLENGE</p><h2 id="modalTitle">角色名稱</h2></div></div><button class="icon-btn" id="closeModal" aria-label="關閉">×</button></div>
-  <p class="hint">點擊技能組右側按鈕即可記錄勝利。技能名稱與勝利計算方式由網站資料統一管理。</p>
+  <div class="dialog-head"><div class="modal-identity"><img id="modalAvatar" class="modal-avatar" alt=""><div><p class="eyebrow">POKÉMON SETTINGS</p><h2 id="modalTitle">角色名稱</h2></div></div><button class="icon-btn" id="closeModal" aria-label="關閉">×</button></div>
+  <p class="hint">先確認該角色的技能機制，再選擇計算方式。尚未確認的角色不會被計入總組數，避免錯誤統計。每行輸入一個技能選項。</p>
+  <label class="mode-label">勝利計算方式
+   <select id="countMode" class="mode-select">
+    <option value="unconfigured">尚未設定（暫不計入統計）</option>
+    <option value="combination">自動組合（每種搭配各一勝）</option>
+    <option value="single">單一勝利（所有技能視為同一組）</option>
+    <option value="paths">固定流派（每個流派各一勝，不交叉混搭）</option>
+   </select>
+  </label>
+  <div class="move-edit" id="moveFields">
+   <label id="move1Label">技能一選項<textarea id="move1" rows="3" placeholder="每行一個選項"></textarea></label>
+   <label id="move2Label">技能二選項<textarea id="move2" rows="3" placeholder="每行一個選項"></textarea></label>
+  </div>
   <div class="combo-head"><div><h3>技能組勝利紀錄</h3><small id="comboSummary">0 組</small></div></div>
   <div id="comboList" class="combo-list"></div>
-  <div class="dialog-actions"><button class="secondary" id="cancelModal">關閉</button></div>
+  <div class="dialog-actions"><button class="secondary" id="cancelModal">取消</button><button class="primary" id="saveModal">儲存設定</button></div>
  </div>
 </div>
 <div id="toast" class="toast"></div>
