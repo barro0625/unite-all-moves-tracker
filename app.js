@@ -1,4 +1,5 @@
-const STORAGE_KEY = "unite-all-moves-win-tracker-v23";
+const STORAGE_KEY = "unite-all-moves-win-tracker-v25";
+const PREV_V23_KEY = "unite-all-moves-win-tracker-v23";
 const PREV_V22_KEY = "unite-all-moves-win-tracker-v22";
 const PREV_V21_KEY = "unite-all-moves-win-tracker-v21";
 const PREV_V20_KEY = "unite-all-moves-win-tracker-v20";
@@ -17,8 +18,8 @@ function defaults(){return {mode:"unconfigured",move1:[],move2:[],wins:{}};}
 function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
 function load(){
  try{
-   const v24=localStorage.getItem(STORAGE_KEY);
-   const v23=localStorage.getItem(PREV_V23_KEY);
+   const v25=localStorage.getItem(STORAGE_KEY);
+   const v23old=localStorage.getItem(PREV_V23_KEY);
    const v22=localStorage.getItem(PREV_V22_KEY);
     const v21=localStorage.getItem(PREV_V21_KEY);
    const v20=localStorage.getItem(PREV_V20_KEY);
@@ -29,7 +30,7 @@ function load(){
    const v7=localStorage.getItem(PREVIOUS_STORAGE_KEY);
    const v6=localStorage.getItem(LEGACY_STORAGE_KEY);
    const v5=localStorage.getItem(OLDER_STORAGE_KEY);
-   state=JSON.parse(v24 || v23 || v22 || v21 || v20 || v19 || v14 || v13 || v12 || v7 || v6 || v5 || "{}");
+   state=JSON.parse(v25 || v23old || v22 || v21 || v20 || v19 || v14 || v13 || v12 || v7 || v6 || v5 || "{}");
  }catch{state={};}
  Object.entries(nameMap).forEach(([zh,en])=>{if(state[en]&&!state[zh])state[zh]=state[en];if(state[en])delete state[en];});
  const presets=data.movesets||{};
@@ -89,56 +90,162 @@ function readDraft(){return {mode:$("countMode").value,move1:clean($("move1").va
 function syncModeUI(){const mode=$("countMode").value,single=mode==="single",paths=mode==="paths",unconfigured=mode==="unconfigured";$("move1Label").style.display=unconfigured?"none":"";$("move2Label").style.display=(single||paths||unconfigured)?"none":"";$("move1Label").firstChild.textContent=paths?"固定流派（每行一套完整技能搭配）":single?"技能名稱（僅供參考）":"技能一選項";$("move1").disabled=unconfigured;$("move2").disabled=single||paths||unconfigured;$("move1").value=draftMove1.join("\n");$("move2").value=draftMove2.join("\n");$("move1").placeholder=paths?"例如：一擊流：技能A＋技能B":single?"每行一個技能名稱":"每行一個技能選項";}
 function openModal(name){activeName=name;const c=getConfig(name);$("modalTitle").textContent=name;const avatar=$("modalAvatar");avatar.src=avatars[name]||"";avatar.alt=name;avatar.style.display=avatars[name]?"block":"none";avatar.onerror=()=>avatar.style.display="none";$("countMode").value=c.mode;draftMove1=[...c.move1];draftMove2=[...c.move2];draftWins={...c.wins};syncModeUI();renderCombos();$("modal").classList.remove("hidden");document.body.style.overflow="hidden";}
 function closeModal(){$("modal").classList.add("hidden");document.body.style.overflow="";}
-const directMoveIconUrls={
- "阿羅拉雷丘":{
-  "輔助力量":"https://archives.bulbagarden.net/media/upload/0/0c/UNITE_Alolan_Raichu_Stored_Power.png",
-  "電球":"https://archives.bulbagarden.net/media/upload/5/54/UNITE_Alolan_Raichu_Electro_Ball.png",
-  "十萬伏特":"https://archives.bulbagarden.net/media/upload/a/a1/UNITE_Alolan_Raichu_Thunderbolt.png",
-  "精神強念":"https://archives.bulbagarden.net/media/upload/3/31/UNITE_Alolan_Raichu_Psychic.png"
- },
- "武道熊師":{
-  "暗冥強擊":"https://www.pokemonunite.gg/res/img/pkmn/892_003.png",
-  "地獄突刺":"https://www.pokemonunite.gg/res/img/pkmn/892_005.png",
-  "水流連打":"https://www.pokemonunite.gg/res/img/pkmn/892_004.png",
-  "流水裂破":"https://www.pokemonunite.gg/res/img/pkmn/892_006.png"
- }
+// V25：固定技能圖示對照表。只使用已建立對照的精確網址，不再自動猜測角色資料夾或技能檔名。
+const skillIconUrls = {
+  "阿勃梭魯": {
+    "暗襲要害": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Absol/Night+Slash.png",
+    "追打": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Absol/Pursuit.png",
+    "精神利刃": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Absol/Psycho+Cut.png",
+    "突襲": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Absol/Sucker+Punch.png"
+  },
+  "阿羅拉雷丘": {
+    "輔助力量": "https://archives.bulbagarden.net/media/upload/0/0c/UNITE_Alolan_Raichu_Stored_Power.png",
+    "電球": "https://archives.bulbagarden.net/media/upload/5/54/UNITE_Alolan_Raichu_Electro_Ball.png",
+    "十萬伏特": "https://archives.bulbagarden.net/media/upload/a/a1/UNITE_Alolan_Raichu_Thunderbolt.png",
+    "精神強念": "https://archives.bulbagarden.net/media/upload/3/31/UNITE_Alolan_Raichu_Psychic.png"
+  },
+  "火焰雞": {
+    "火焰踢": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blaziken/Blaze+Kick.png",
+    "過熱": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blaziken/Overheat.png",
+    "火焰拳": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blaziken/Fire+Punch.png",
+    "真氣彈": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blaziken/Focus+Blast.png"
+  },
+  "武道熊師": {
+    "暗冥強擊": "https://www.pokemonunite.gg/res/img/pkmn/892_003.png",
+    "地獄突刺": "https://www.pokemonunite.gg/res/img/pkmn/892_005.png",
+    "水流連打": "https://www.pokemonunite.gg/res/img/pkmn/892_004.png",
+    "流水裂破": "https://www.pokemonunite.gg/res/img/pkmn/892_006.png"
+  },
+  "巨鉗螳螂": {
+    "雙翼": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Scizor/Dual+Wingbeat.png",
+    "子彈拳": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Scizor/Bullet+Punch.png",
+    "劍舞": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Scizor/Swords+Dance.png",
+    "二連擊": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Scizor/Double+Hit.png"
+  },
+  "夢幻": {
+    "電球": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Mew/Electro+Ball.png",
+    "日光束": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Mew/Solar+Beam.png",
+    "衝浪": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Mew/Surf.png",
+    "指導": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Mew/Coaching.png",
+    "光牆": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Mew/Light+Screen.png",
+    "高速移動": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Mew/Agility.png"
+  },
+  "妙蛙花": {
+    "污泥炸彈": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Venusaur/Sludge+Bomb.png",
+    "日光束": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Venusaur/Solar+Beam.png",
+    "花瓣舞": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Venusaur/Petal+Dance.png"
+  },
+  "皮卡丘": {
+    "電球": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Pikachu/Electro+Ball.png",
+    "打雷": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Pikachu/Thunder.png",
+    "伏特攻擊": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Pikachu/Volt+Tackle.png",
+    "十萬伏特": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Pikachu/Thunderbolt.png"
+  },
+  "閃焰王牌": {
+    "火焰球": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Cinderace/Pyro+Ball.png",
+    "火焰踢": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Cinderace/Blaze+Kick.png",
+    "佯攻": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Cinderace/Feint.png",
+    "蓄能焰襲": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Cinderace/Flame+Charge.png"
+  },
+  "沙奈朵": {
+    "精神強念": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Gardevoir/Psychic.png",
+    "月亮之力": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Gardevoir/Moonblast.png",
+    "精神衝擊": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Gardevoir/Psyshock.png",
+    "預知未來": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Gardevoir/Future+Sight.png"
+  },
+  "堅盾劍怪": {
+    "聖劍": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Aegislash/Sacred+Sword.png",
+    "暗影爪": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Aegislash/Shadow+Claw.png",
+    "鐵頭": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Aegislash/Iron+Head.png",
+    "廣域防守": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Aegislash/Wide+Guard.png"
+  },
+  "霜奶仙": {
+    "自我再生": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Alcremie/Recover.png",
+    "裝飾": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Alcremie/Decorate.png",
+    "魔法閃耀": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Alcremie/Dazzling+Gleam.png",
+    "甜甜香氣": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Alcremie/Sweet+Scent.png"
+  },
+  "紅蓮鎧騎": {
+    "火焰旋渦": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Armarouge/Fire+Spin.png",
+    "鎧農炮": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Armarouge/Armor+Cannon.png",
+    "蓄能焰襲": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Armarouge/Flame+Charge.png",
+    "精神強念": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Armarouge/Psychic.png"
+  },
+  "瑪力露麗": {
+    "潮旋": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Azumarill/Whirlpool.png",
+    "水流尾": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Azumarill/Aqua+Tail.png",
+    "嬉鬧": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Azumarill/Play+Rough.png",
+    "水之波動": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Azumarill/Water+Pulse.png"
+  },
+  "水箭龜": {
+    "噴水": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blastoise/Water+Spout.png",
+    "水炮": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blastoise/Hydro+Pump.png",
+    "高速旋轉": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blastoise/Rapid+Spin.png",
+    "衝浪": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blastoise/Surf.png"
+  },
+  "幸福蛋": {
+    "幫助": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blissey/Helping+Hand.png",
+    "炸蛋": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blissey/Egg+Bomb.png",
+    "神秘守護": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blissey/Safeguard.png",
+    "生蛋": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Blissey/Soft-Boiled.png"
+  },
+  "爆肌蚊": {
+    "吸血": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Buzzwole/Leech+Life.png",
+    "蠻力": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Buzzwole/Superpower.png",
+    "猛撲": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Buzzwole/Lunge.png",
+    "擊落": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Buzzwole/Smack+Down.png"
+  },
+  "蒼炎刃鬼": {
+    "潛靈奇襲": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Ceruledge/Phantom+Force.png",
+    "蓄能焰襲": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Ceruledge/Flame+Charge.png",
+    "悔念劍": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Ceruledge/Bitter+Blade.png",
+    "精神利刃": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Ceruledge/Psycho+Cut.png"
+  },
+  "水晶燈火靈": {
+    "過熱": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Chandelure/Overheat.png",
+    "噴射火焰": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Chandelure/Flamethrower.png",
+    "封印": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Chandelure/Imprison.png",
+    "靈騷": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Chandelure/Poltergeist.png"
+  },
+  "噴火龍": {
+    "火焰拳": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Charizard/Fire+Punch.png",
+    "噴射火焰": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Charizard/Flamethrower.png",
+    "閃焰衝鋒": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Charizard/Flare+Blitz.png",
+    "大字爆炎": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Charizard/Fire+Blast.png"
+  },
+  "皮可西": {
+    "月光": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Clefable/Moonlight.png",
+    "吸取之吻": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Clefable/Draining+Kiss.png",
+    "看我嘛": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Clefable/Follow+Me.png",
+    "重力": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Clefable/Gravity.png"
+  },
+  "花療環環": {
+    "花療": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Comfey/Floral+Healing.png",
+    "天使之吻": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Comfey/Sweet+Kiss.png",
+    "魔法葉": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Comfey/Magical+Leaf.png",
+    "打草結": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Comfey/Grass+Knot.png"
+  },
+  "古月鳥": {
+    "潛水": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Cramorant/Dive.png",
+    "衝浪": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Cramorant/Surf.png",
+    "空氣斬": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Cramorant/Air+Slash.png",
+    "暴風": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Cramorant/Hurricane.png"
+  },
+  "岩殿居蟹": {
+    "破殼": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Crustle/Shell+Smash.png",
+    "岩石封鎖": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Crustle/Rock+Tomb.png",
+    "十字剪": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Crustle/X-Scissor.png",
+    "隱形岩": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/Crustle/Stealth+Rock.png"
+  }
 };
-// Unite-DB 的公開技能圖示 CDN。技能英文名稱沿用 pokemon.json 的 moveIcons 對照。
-// 多數資料夾以 Pokémon 英文名稱命名；部分形態會沿用基礎名稱（例如 Alolan Raichu -> Raichu）。
-const UNITE_DB_SKILL_CDN = "https://d275t8dp8rxb42.cloudfront.net/assets/skills";
-const uniteDbSkillFolders = {
- "阿勃梭魯":"Absol", "阿羅拉雷丘":"Raichu", "火焰雞":"Blaziken", "武道熊師":"Urshifu",
- "巨鉗螳螂":"Scizor", "夢幻":"Mew", "妙蛙花":"Venusaur", "皮卡丘":"Pikachu",
- "閃焰王牌":"Cinderace", "沙奈朵":"Gardevoir", "堅盾劍怪":"Aegislash", "霜奶仙":"Alcremie",
- "紅蓮鎧騎":"Armarouge", "瑪力露麗":"Azumarill", "水箭龜":"Blastoise", "幸福蛋":"Blissey",
- "爆肌蚊":"Buzzwole", "蒼炎刃鬼":"Ceruledge", "水晶燈火靈":"Chandelure", "噴火龍":"Charizard",
- "皮可西":"Clefable", "花療環環":"Comfey", "古月鳥":"Cramorant", "岩殿居蟹":"Crustle"
-};
-// 從已人工核對的技能對照中建立共用字典。同名技能可跨寶可夢共用英文名稱，
-// 不必每個角色重複維護；沒有可靠對照的技能仍顯示預設圖示，避免配錯。
-function sharedEnglishMove(move){
- for(const mapping of Object.values(moveIcons)){
-  if(mapping && mapping[move]) return mapping[move];
- }
- return "";
-}
-function skillFolder(name){
- if(uniteDbSkillFolders[name]) return uniteDbSkillFolders[name];
- const english=nameMap[name]||"";
- if(!english)return "";
- return english.replace(/^(Alolan|Galarian|Hisuian|Mega)\s+/i,"").replace(/\s+(X|Y)$/i,"");
-}
 function uniteDbMoveIconUrl(name, move){
- const folder=skillFolder(name);
- const englishMove=moveIcons[name]?.[move] || sharedEnglishMove(move);
- if(!folder||!englishMove)return "";
- const file=encodeURIComponent(englishMove).replaceAll("%20","+");
- return `${UNITE_DB_SKILL_CDN}/${folder}/${file}.png`;
+ const url=skillIconUrls[name]?.[move];
+ return url || "";
 }
 function legacyMoveIconUrl(name, move){
  const direct=directMoveIconUrls[name]?.[move];
  if(direct)return direct;
- const en=nameMap[name],slug=moveIcons[name]?.[move] || sharedEnglishMove(move);
+ const en=nameMap[name],slug=moveIcons[name]?.[move];
  if(!en||!slug)return "";
  const file=`UNITE_${en.replaceAll(" ","_")}_${slug.replaceAll(" ","_")}.png`;
  return `https://archives.bulbagarden.net/wiki/Special:Redirect/file/${encodeURIComponent(file).replaceAll("%2F","/")}`;
@@ -165,7 +272,7 @@ $("search").addEventListener("input",render);$("filter").addEventListener("chang
 $("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
 $("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
 $("resetPokemon").onclick=()=>{if(confirm("確定要清除此寶可夢的所有設定與勝利紀錄？")){draftWins={};draftMove1=[];draftMove2=[];$("countMode").value="unconfigured";syncModeUI();renderCombos();}};
-$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:24,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v24.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:21,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v20.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
 $("importBtn").onclick=()=>$("importFile").click();$("obsBtn").onclick=()=>window.open(location.pathname+"?mode=overlay","unite-obs-overlay","width=900,height=500");
 $("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前挑戰紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
 

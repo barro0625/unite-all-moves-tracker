@@ -1,7 +1,7 @@
 {
-  "title": "Pokémon UNITE 全技能組一勝挑戰 V24",
+  "title": "Pokémon UNITE 全技能組一勝挑戰",
   "source": "https://unite-db.com/",
-  "note": "V24：擴充共用技能英文名稱對照，讓已核對過的技能圖示可跨角色重用；未確認對應仍使用預設圖示。",
+  "note": "V23：依使用者提供的更正，更新閃電鳥及其後 15 隻角色的兩個技能名稱；維持單一勝利計算及 V22 其他功能。",
   "pokemon": [
     "阿勃梭魯",
     "堅盾劍怪",
@@ -211,7 +211,7 @@
     "伽勒爾烈焰馬": "Galarian Rapidash",
     "阿羅拉雷丘": "Alolan Raichu"
   },
-  "schemaVersion": 24,
+  "schemaVersion": 22,
   "movesets": {
     "夢幻": {
       "status": "tentative",
@@ -1937,9 +1937,8 @@
     }
   },
   "skillIconSource": {
-    "provider": "Unite-DB public CloudFront skill assets",
+    "provider": "V25 固定技能圖示對照表",
     "website": "https://unite-db.com/",
-    "assetBase": "https://d275t8dp8rxb42.cloudfront.net/assets/skills/",
-    "note": "技能圖示優先使用 Unite-DB 公開靜態資產；圖片載入失敗時回退至既有圖示來源。技能英文名稱使用 moveIcons 對照，角色資料夾使用 uniteDbSkillFolders 對照。"
+    "note": "使用明確列出的技能圖示網址；未建立對照的技能不再自動猜測網址，顯示預設符號。部分圖片仍由外部來源載入，並非全部已下載為本機圖片。"
   }
 }
