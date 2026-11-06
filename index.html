@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>全技能組一勝挑戰｜Pokémon UNITE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">U</div><div><strong>全技能組一勝挑戰</strong><small>POKÉMON UNITE · MOVESET WIN TRACKER · V6</small></div></div>
+  <a class="source-link" href="https://unite-db.com/" target="_blank" rel="noreferrer">UNITE-DB ↗</a>
+</header>
+<main>
+  <section class="hero">
+    <div><p class="eyebrow">YOUR CHALLENGE, YOUR RECORD</p><h1>每一種技能組，<span>都拿下一勝。</span></h1>
+    <p class="sub">記錄每隻寶可夢的技能搭配，逐一完成勝利。</p></div>
+    <div class="hero-ball"><span></span></div>
+  </section>
+  <section class="stats">
+    <article><small>已完成技能組</small><strong id="wonCount">0</strong><em id="wonPct">0% 完成</em></article>
+    <article><small>總技能組</small><strong id="totalCount">0</strong><em>依各角色設定計算</em></article>
+    <article><small>剩餘技能組</small><strong id="leftCount">0</strong><em>尚待取得勝利</em></article>
+    <article><small>已完成寶可夢</small><strong id="donePokemon">0</strong><em id="rosterCount">共 0 隻角色</em></article>
+  </section>
+  <section class="toolbar">
+    <label class="search"><span>⌕</span><input id="search" type="search" placeholder="搜尋寶可夢名稱…"></label>
+    <select id="filter"><option value="all">全部角色</option><option value="progress">進行中</option><option value="done">已全數完成</option><option value="not">尚未開始</option></select>
+    <button class="secondary" id="exportBtn">匯出備份</button>
+    <button class="secondary" id="importBtn">匯入備份</button>
+    <input id="importFile" type="file" accept="application/json" hidden>
+  </section>
+  <div class="section-head"><div><h2>寶可夢列表</h2><p>V6：依技能路線規則修正計算方式。預填名稱可能有誤，請在開始挑戰前自行核對；仍可自行編輯。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
+  <section id="grid" class="pokemon-grid"></section>
+  <footer>紀錄只會儲存在目前瀏覽器。清除瀏覽器網站資料前，請先匯出備份。<br>非官方粉絲工具，與 Nintendo、The Pokémon Company 或 TiMi Studio Group 無關。</footer>
+</main>
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="modal-backdrop" data-close="1"></div>
+ <div class="dialog">
+  <div class="dialog-head"><div class="modal-identity"><img id="modalAvatar" class="modal-avatar" alt=""><div><p class="eyebrow">POKÉMON SETTINGS</p><h2 id="modalTitle">角色名稱</h2></div></div><button class="icon-btn" id="closeModal" aria-label="關閉">×</button></div>
+  <p class="hint">先確認該角色的技能機制，再選擇計算方式。尚未確認的角色不會被計入總組數，避免錯誤統計。每行輸入一個技能選項。</p>
+  <label class="mode-label">勝利計算方式
+   <select id="countMode" class="mode-select">
+    <option value="unconfigured">尚未設定（暫不計入統計）</option>
+    <option value="combination">自動組合（每種搭配各一勝）</option>
+    <option value="single">單一勝利（所有技能視為同一組）</option>
+    <option value="paths">固定流派（每個流派各一勝，不交叉混搭）</option>
+   </select>
+  </label>
+  <div class="move-edit" id="moveFields">
+   <label id="move1Label">技能一選項<textarea id="move1" rows="3" placeholder="每行一個選項"></textarea></label>
+   <label id="move2Label">技能二選項<textarea id="move2" rows="3" placeholder="每行一個選項"></textarea></label>
+  </div>
+  <div class="combo-head"><div><h3>技能組勝利紀錄</h3><small id="comboSummary">0 組</small></div><button id="resetPokemon" class="text-btn">重置此角色</button></div>
+  <div id="comboList" class="combo-list"></div>
+  <div class="dialog-actions"><button class="secondary" id="cancelModal">取消</button><button class="primary" id="saveModal">儲存設定</button></div>
+ </div>
+</div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body></html>
