@@ -211,7 +211,7 @@
     "阿羅拉九尾": "Alolan Ninetales",
     "伽勒爾烈焰馬": "Galarian Rapidash"
   },
-  "schemaVersion": 7,
+  "schemaVersion": 8,
   "movesets": {
     "夢幻": {
       "status": "tentative",
@@ -658,13 +658,16 @@
     },
     "巨鉗螳螂": {
       "status": "tentative",
-      "mode": "paths",
+      "mode": "combination",
       "move1": [
-        "巨鉗螳螂流派：子彈拳＋雙重攻擊",
-        "巨鉗螳螂流派：子彈拳＋劍舞"
+        "雙翼",
+        "子彈拳"
       ],
-      "move2": [],
-      "note": "固定子彈拳，再選雙重攻擊或劍舞；每個有效流派各計一勝，不與飛天螳螂的燕返路線混搭。"
+      "move2": [
+        "劍舞",
+        "二連擊"
+      ],
+      "note": "V8 修正：兩個技能欄位各有兩個選項，形成 4 種合法技能組合。技能名稱依使用者指定，請自行核對遊戲內正式名稱。"
     },
     "皮可西": {
       "status": "tentative",
@@ -1528,8 +1531,8 @@
     "蒼炎刃鬼": "https://www.pokemonunite.jp/wp-content/uploads/ceruledge.png",
     "水晶燈火靈": "https://www.pokemonunite.jp/wp-content/uploads/chandelure.png",
     "噴火龍": "https://www.pokemonunite.jp/wp-content/uploads/charizard.png",
-    "超級噴火龍 X": "https://www.pokemonunite.jp/wp-content/uploads/mega-charizard-x.png",
-    "超級噴火龍 Y": "https://www.pokemonunite.jp/wp-content/uploads/mega-charizard-y.png",
+    "超級噴火龍 X": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10034.png",
+    "超級噴火龍 Y": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10035.png",
     "閃焰王牌": "https://www.pokemonunite.jp/wp-content/uploads/cinderace.png",
     "皮可西": "https://www.pokemonunite.jp/wp-content/uploads/clefable.png",
     "花療環環": "https://www.pokemonunite.jp/wp-content/uploads/comfey.png",
@@ -1542,11 +1545,11 @@
     "嘟嘟利": "https://www.pokemonunite.jp/wp-content/uploads/dodrio.png",
     "多龍巴魯托": "https://www.pokemonunite.jp/wp-content/uploads/dragapult.png",
     "快龍": "https://www.pokemonunite.jp/wp-content/uploads/dragonite.png",
-    "鋁鋼龍": "https://www.pokemonunite.jp/wp-content/uploads/duraludon.png",
+    "鋁鋼龍": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/884.png",
     "白蓬蓬": "https://www.pokemonunite.jp/wp-content/uploads/eldegoss.png",
-    "帝王拿波": "https://www.pokemonunite.jp/wp-content/uploads/empoleon.png",
+    "帝王拿波": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/395.png",
     "太陽伊布": "https://www.pokemonunite.jp/wp-content/uploads/espeon.png",
-    "列陣兵": "https://www.pokemonunite.jp/wp-content/uploads/falinks.png",
+    "列陣兵": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/870.png",
     "大力鱷": "https://www.pokemonunite.jp/wp-content/uploads/feraligatr.png",
     "火伊布": "https://www.pokemonunite.jp/wp-content/uploads/flareon.png",
     "烈咬陸鯊": "https://www.pokemonunite.jp/wp-content/uploads/garchomp.png",
@@ -1557,46 +1560,46 @@
     "藏飽栗鼠": "https://www.pokemonunite.jp/wp-content/uploads/greedent.png",
     "甲賀忍蛙": "https://www.pokemonunite.jp/wp-content/uploads/greninja.png",
     "暴鯉龍": "https://www.pokemonunite.jp/wp-content/uploads/gyarados.png",
-    "超級暴鯉龍": "https://www.pokemonunite.jp/wp-content/uploads/mega-gyarados.png",
+    "超級暴鯉龍": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10041.png",
     "鳳王": "https://www.pokemonunite.jp/wp-content/uploads/ho-oh.png",
     "胡帕": "https://www.pokemonunite.jp/wp-content/uploads/hoopa.png",
     "千面避役": "https://www.pokemonunite.jp/wp-content/uploads/inteleon.png",
     "雷伊布": "https://www.pokemonunite.jp/wp-content/uploads/jolteon.png",
     "拉普拉斯": "https://www.pokemonunite.jp/wp-content/uploads/lapras.png",
-    "拉帝亞斯": "https://www.pokemonunite.jp/wp-content/uploads/latias.png",
-    "拉帝歐斯": "https://www.pokemonunite.jp/wp-content/uploads/latios.png",
+    "拉帝亞斯": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/380.png",
+    "拉帝歐斯": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/381.png",
     "葉伊布": "https://www.pokemonunite.jp/wp-content/uploads/leafeon.png",
     "路卡利歐": "https://www.pokemonunite.jp/wp-content/uploads/lucario.png",
-    "超級路卡利歐": "https://www.pokemonunite.jp/wp-content/uploads/mega-lucario.png",
+    "超級路卡利歐": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10059.png",
     "怪力": "https://www.pokemonunite.jp/wp-content/uploads/machamp.png",
     "象牙豬": "https://www.pokemonunite.jp/wp-content/uploads/mamoswine.png",
     "大竺葵": "https://www.pokemonunite.jp/wp-content/uploads/meganium.png",
     "魔幻假面喵": "https://www.pokemonunite.jp/wp-content/uploads/meowscarada.png",
-    "喵喵": "https://www.pokemonunite.jp/wp-content/uploads/meowth.png",
+    "喵喵": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/52.png",
     "巨金怪": "https://www.pokemonunite.jp/wp-content/uploads/metagross.png",
     "夢幻": "https://www.pokemonunite.jp/wp-content/uploads/mew.png",
-    "超級超夢 X": "https://www.pokemonunite.jp/wp-content/uploads/mewtwo-x.png",
-    "超級超夢 Y": "https://www.pokemonunite.jp/wp-content/uploads/mewtwo-y.png",
+    "超級超夢 X": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10043.png",
+    "超級超夢 Y": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10044.png",
     "謎擬Ｑ": "https://www.pokemonunite.jp/wp-content/uploads/mimikyu.png",
     "密勒頓": "https://www.pokemonunite.jp/wp-content/uploads/miraidon.png",
     "火焰鳥": "https://www.pokemonunite.jp/wp-content/uploads/moltres.png",
-    "莫魯貝可": "https://www.pokemonunite.jp/wp-content/uploads/morpeko.png",
-    "魔牆人偶": "https://www.pokemonunite.jp/wp-content/uploads/mr-mime.png",
-    "帕路奇亞": "https://www.pokemonunite.jp/wp-content/uploads/palkia.png",
+    "莫魯貝可": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/877.png",
+    "魔牆人偶": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/122.png",
+    "帕路奇亞": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/484.png",
     "巴布土撥": "https://www.pokemonunite.jp/wp-content/uploads/pawmot.png",
     "皮卡丘": "https://www.pokemonunite.jp/wp-content/uploads/pikachu.png",
-    "可達鴨": "https://www.pokemonunite.jp/wp-content/uploads/psyduck.png",
-    "狂歡浪舞鴨": "https://www.pokemonunite.jp/wp-content/uploads/quaquaval.png",
-    "雷丘": "https://www.pokemonunite.jp/wp-content/uploads/raichu.png",
-    "萊希拉姆": "https://www.pokemonunite.jp/wp-content/uploads/reshiram.png",
+    "可達鴨": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png",
+    "狂歡浪舞鴨": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/914.png",
+    "雷丘": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png",
+    "萊希拉姆": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/643.png",
     "勾魂眼": "https://www.pokemonunite.jp/wp-content/uploads/sableye.png",
     "巨鉗螳螂": "https://www.pokemonunite.jp/wp-content/uploads/scizor.png",
-    "蔥遊兵": "https://www.pokemonunite.jp/wp-content/uploads/sirfetchd.png",
-    "骨紋巨聲鱷": "https://www.pokemonunite.jp/wp-content/uploads/skeledirge.png",
+    "蔥遊兵": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/865.png",
+    "骨紋巨聲鱷": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/911.png",
     "呆殼獸": "https://www.pokemonunite.jp/wp-content/uploads/slowbro.png",
     "卡比獸": "https://www.pokemonunite.jp/wp-content/uploads/snorlax.png",
-    "索爾迦雷歐": "https://www.pokemonunite.jp/wp-content/uploads/solgaleo.png",
-    "水君": "https://www.pokemonunite.jp/wp-content/uploads/suicune.png",
+    "索爾迦雷歐": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/791.png",
+    "水君": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/245.png",
     "仙子伊布": "https://www.pokemonunite.jp/wp-content/uploads/sylveon.png",
     "烈箭鷹": "https://www.pokemonunite.jp/wp-content/uploads/talonflame.png",
     "巨鍛匠": "https://www.pokemonunite.jp/wp-content/uploads/tinkaton.png",
@@ -1615,8 +1618,8 @@
     "閃電鳥": "https://www.pokemonunite.jp/wp-content/uploads/zapdos.png",
     "捷拉奧拉": "https://www.pokemonunite.jp/wp-content/uploads/zeraora.png",
     "索羅亞克": "https://www.pokemonunite.jp/wp-content/uploads/zoroark.png",
-    "阿羅拉九尾": "https://www.pokemonunite.jp/wp-content/uploads/alolan-ninetales.png",
-    "伽勒爾烈焰馬": "https://www.pokemonunite.jp/wp-content/uploads/galarian-rapidash.png"
+    "阿羅拉九尾": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10104.png",
+    "伽勒爾烈焰馬": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10164.png"
   },
   "ruleNotes": {
     "postZapdosSinglePath": [
@@ -1646,8 +1649,7 @@
       "夢幻"
     ],
     "fixedPaths": [
-      "武道熊師",
-      "巨鉗螳螂"
+      "武道熊師"
     ],
     "rosterChanges": {
       "added": [
@@ -1657,6 +1659,36 @@
         "飛天螳螂"
       ],
       "reason": "依使用者要求保留巨鉗螳螂，移除飛天螳螂，並補回捷拉奧拉。"
-    }
+    },
+    "forceCombination": [
+      "巨鉗螳螂"
+    ],
+    "avatarRepairs": [
+      "超級路卡利歐",
+      "喵喵",
+      "超級超夢 X",
+      "超級超夢 Y",
+      "莫魯貝可",
+      "魔牆人偶",
+      "阿羅拉九尾",
+      "帕路奇亞",
+      "可達鴨",
+      "狂歡浪舞鴨",
+      "雷丘",
+      "伽勒爾烈焰馬",
+      "萊希拉姆",
+      "蔥遊兵",
+      "索爾迦雷歐",
+      "水君",
+      "帝王拿波",
+      "骨紋巨聲鱷",
+      "列陣兵",
+      "鋁鋼龍",
+      "拉帝歐斯",
+      "拉帝亞斯",
+      "超級噴火龍 X",
+      "超級噴火龍 Y",
+      "超級暴鯉龍"
+    ]
   }
 }
