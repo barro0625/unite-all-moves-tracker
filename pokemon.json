@@ -1814,5 +1814,65 @@
     "花療環環": "輔助型",
     "白蓬蓬": "輔助型",
     "霜奶仙": "輔助型"
+  },
+  "moveIcons": {
+    "阿勃梭魯": {
+      "暗襲要害": "Night Slash",
+      "追打": "Pursuit",
+      "精神利刃": "Psycho Cut",
+      "突襲": "Sucker Punch"
+    },
+    "阿羅拉雷丘": {
+      "輔助力量": "Stored Power",
+      "電球": "Electro Ball",
+      "十萬伏特": "Thunderbolt",
+      "精神強念": "Psychic"
+    },
+    "火焰雞": {
+      "火焰踢": "Blaze Kick",
+      "過熱": "Overheat",
+      "火焰拳": "Fire Punch",
+      "真氣彈": "Focus Blast"
+    },
+    "武道熊師": {
+      "一擊流：暗冥強擊＋地獄突刺": "Wicked Blow",
+      "連擊流：水流連打＋流水裂破": "Surging Strikes"
+    },
+    "巨鉗螳螂": {
+      "雙翼": "Dual Wingbeat",
+      "子彈拳": "Bullet Punch",
+      "劍舞": "Swords Dance",
+      "二連擊": "Double Hit"
+    },
+    "夢幻": {
+      "電球": "Electro Ball",
+      "日光束": "Solar Beam",
+      "衝浪": "Surf",
+      "指導": "Coaching",
+      "光牆": "Light Screen",
+      "高速移動": "Agility"
+    },
+    "妙蛙花": {
+      "污泥炸彈": "Sludge Bomb",
+      "日光束": "Solar Beam",
+      "花瓣舞": "Petal Dance"
+    },
+    "皮卡丘": {
+      "電球": "Electro Ball",
+      "打雷": "Thunder",
+      "伏特攻擊": "Volt Tackle",
+      "十萬伏特": "Thunderbolt"
+    },
+    "閃焰王牌": {
+      "火焰球": "Pyro Ball",
+      "火焰踢": "Blaze Kick",
+      "佯攻": "Feint"
+    },
+    "沙奈朵": {
+      "精神強念": "Psychic",
+      "月亮之力": "Moonblast",
+      "精神衝擊": "Psyshock",
+      "預知未來": "Future Sight"
+    }
   }
 }

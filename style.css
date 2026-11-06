@@ -46,3 +46,12 @@
 .collapsible-head[aria-expanded="false"] .collapse-icon{transform:rotate(-90deg)}
 .summary-tools{display:flex;align-items:center;gap:10px;flex:0 0 auto}
 @media(max-width:560px){.collapsible-head{padding:15px}.collapsible-content{padding:0 15px 15px}.collapsible-title small{max-width:245px}.summary-tools{gap:6px}}
+
+/* V16 skill icon chips */
+.combo-skills{display:flex;align-items:center;flex-wrap:wrap;gap:7px;min-width:0}
+.skill-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 7px;border-radius:10px;background:rgba(105,130,165,.12);font-size:13px;line-height:1.25}
+.skill-icon{width:30px;height:30px;object-fit:cover;border-radius:7px;flex:0 0 30px;background:#25344a}
+.skill-icon-fallback{width:30px;height:30px;display:inline-grid;place-items:center;border-radius:7px;background:linear-gradient(135deg,#334b68,#647d9e);color:#fff;font-size:17px;flex:0 0 30px}
+.skill-plus{color:#8fa4bf;font-weight:800;margin:0 1px}
+.combo-name{display:flex;align-items:center;min-width:0}
+@media(max-width:560px){.skill-chip{font-size:12px}.skill-icon,.skill-icon-fallback{width:26px;height:26px;flex-basis:26px}}

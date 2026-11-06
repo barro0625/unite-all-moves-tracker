@@ -1,10 +1,11 @@
-const STORAGE_KEY = "unite-all-moves-win-tracker-v14";
+const STORAGE_KEY = "unite-all-moves-win-tracker-v15";
+const PREV_V14_KEY = "unite-all-moves-win-tracker-v14";
 const PREV_V13_KEY = "unite-all-moves-win-tracker-v13";
 const PREV_V12_KEY = "unite-all-moves-win-tracker-v12";
 const PREVIOUS_STORAGE_KEY = "unite-all-moves-win-tracker-v11";
 const LEGACY_STORAGE_KEY = "unite-all-moves-win-tracker-v10";
 const OLDER_STORAGE_KEY = "unite-all-moves-win-tracker-v9";
-let roster=[], state={}, activeName=null, draftWins={}, nameMap={}, avatars={}, roles={}, draftMove1=[], draftMove2=[];
+let roster=[], state={}, activeName=null, draftWins={}, nameMap={}, avatars={}, roles={}, moveIcons={}, draftMove1=[], draftMove2=[];
 const $=id=>document.getElementById(id);
 const clean=s=>(s||"").split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
 function defaults(){return {mode:"unconfigured",move1:[],move2:[],wins:{}};}
@@ -12,12 +13,13 @@ function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
 function load(){
  try{
    const v8=localStorage.getItem(STORAGE_KEY);
+   const v14=localStorage.getItem(PREV_V14_KEY);
    const v13=localStorage.getItem(PREV_V13_KEY);
    const v12=localStorage.getItem(PREV_V12_KEY);
    const v7=localStorage.getItem(PREVIOUS_STORAGE_KEY);
    const v6=localStorage.getItem(LEGACY_STORAGE_KEY);
    const v5=localStorage.getItem(OLDER_STORAGE_KEY);
-   state=JSON.parse(v8 || v13 || v12 || v7 || v6 || v5 || "{}");
+   state=JSON.parse(v8 || v14 || v13 || v12 || v7 || v6 || v5 || "{}");
  }catch{state={};}
  Object.entries(nameMap).forEach(([zh,en])=>{if(state[en]&&!state[zh])state[zh]=state[en];if(state[en])delete state[en];});
  const presets=data.movesets||{};
@@ -61,8 +63,11 @@ function readDraft(){return {mode:$("countMode").value,move1:clean($("move1").va
 function syncModeUI(){const mode=$("countMode").value,single=mode==="single",paths=mode==="paths",unconfigured=mode==="unconfigured";$("move1Label").style.display=unconfigured?"none":"";$("move2Label").style.display=(single||paths||unconfigured)?"none":"";$("move1Label").firstChild.textContent=paths?"固定流派（每行一套完整技能搭配）":single?"技能名稱（僅供參考）":"技能一選項";$("move1").disabled=unconfigured;$("move2").disabled=single||paths||unconfigured;$("move1").value=draftMove1.join("\n");$("move2").value=draftMove2.join("\n");$("move1").placeholder=paths?"例如：一擊流：技能A＋技能B":single?"每行一個技能名稱":"每行一個技能選項";}
 function openModal(name){activeName=name;const c=getConfig(name);$("modalTitle").textContent=name;const avatar=$("modalAvatar");avatar.src=avatars[name]||"";avatar.alt=name;avatar.style.display=avatars[name]?"block":"none";avatar.onerror=()=>avatar.style.display="none";$("countMode").value=c.mode;draftMove1=[...c.move1];draftMove2=[...c.move2];draftWins={...c.wins};syncModeUI();renderCombos();$("modal").classList.remove("hidden");document.body.style.overflow="hidden";}
 function closeModal(){$("modal").classList.add("hidden");document.body.style.overflow="";}
+function moveIconUrl(name, move){const en=nameMap[name],slug=moveIcons[name]?.[move];if(!en||!slug)return "";const file=`UNITE_${en.replaceAll(" ","_")}_${slug.replaceAll(" ","_")}.png`;return `https://archives.bulbagarden.net/wiki/Special:Redirect/file/${encodeURIComponent(file).replaceAll("%2F","/")}`;}
+function skillChip(name,move){const url=moveIconUrl(name,move);return `<span class="skill-chip">${url?`<img class="skill-icon" src="${url}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'skill-icon-fallback',textContent:'✦'}))">`:'<span class="skill-icon-fallback">✦</span>'}<span>${escapeHtml(move)}</span></span>`;}
+function comboSkills(name,label,cfg){if(cfg.mode==="combination"){const parts=label.split(" ＋ ");return parts.map(x=>skillChip(name,x)).join('<span class="skill-plus">＋</span>');}if(cfg.mode==="single"){return (cfg.move1||[]).map(x=>skillChip(name,x)).join("");}if(cfg.mode==="paths"){const text=label.includes(":")?label.split(":").slice(1).join(":").trim():label;return text.split(/[＋+]/).map(x=>skillChip(name,x.trim())).join('<span class="skill-plus">＋</span>');}return escapeHtml(label);}
 function renderCombos(){const cfg=readDraft(),list=combos(cfg);$("comboSummary").textContent=cfg.mode==="unconfigured"?"尚未設定，不計入統計":`${list.length} 種組合 · ${list.filter(x=>draftWins[x.id]).length} 勝`;
- $("comboList").innerHTML=cfg.mode==="unconfigured"?'<p class="sub">此角色的技能資料尚未設定。確認遊戲內技能後，再選擇計算方式。</p>':!list.length?'<p class="sub">請先填入技能名稱，每行一個選項。</p>':list.map((x,i)=>`<div class="combo-row"><div class="combo-name"><span style="color:#7187a2;margin-right:7px">${String(i+1).padStart(2,"0")}</span>${escapeHtml(x.label)}</div><button class="win-toggle ${draftWins[x.id]?"active":""}" data-id="${encodeURIComponent(x.id)}">${draftWins[x.id]?"✓ 已取得勝利":"＋ 記錄一勝"}</button></div>`).join("");
+ $("comboList").innerHTML=cfg.mode==="unconfigured"?'<p class="sub">此角色的技能資料尚未設定。確認遊戲內技能後，再選擇計算方式。</p>':!list.length?'<p class="sub">請先填入技能名稱，每行一個選項。</p>':list.map((x,i)=>`<div class="combo-row"><div class="combo-name"><span style="color:#7187a2;margin-right:7px">${String(i+1).padStart(2,"0")}</span><div class="combo-skills">${comboSkills(activeName,x.label,cfg)}</div></div><button class="win-toggle ${draftWins[x.id]?"active":""}" data-id="${encodeURIComponent(x.id)}">${draftWins[x.id]?"✓ 已取得勝利":"＋ 記錄一勝"}</button></div>`).join("");
  $("comboList").querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{const id=decodeURIComponent(btn.dataset.id);draftWins[id]=!draftWins[id];renderCombos();}));}
 function saveCurrent(){const cfg=readDraft();if(cfg.mode==="combination"&&(!cfg.move1.length||!cfg.move2.length)){alert("自動組合模式下，技能一與技能二都至少需要一個選項。");return;}if((cfg.mode==="single"||cfg.mode==="paths")&&!cfg.move1.length){alert(cfg.mode==="paths"?"固定流派模式至少需要填寫一套完整技能搭配。":"單一勝利模式至少需要填寫一個技能名稱。");return;}if(cfg.move1.length>8||cfg.move2.length>4){alert("最多可填 8 個技能選項或固定流派。");return;}const valid=new Set(combos(cfg).map(x=>x.id)),wins={};Object.keys(draftWins).forEach(k=>{if(valid.has(k)&&draftWins[k])wins[k]=true;});state[activeName]={...cfg,wins};save();closeModal();render();toast("已儲存 "+activeName+" 的設定");}
 function toast(msg){$("toast").textContent=msg;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1800);}
@@ -70,9 +75,9 @@ $("search").addEventListener("input",render);$("filter").addEventListener("chang
 $("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
 $("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
 $("resetPokemon").onclick=()=>{if(confirm("確定要清除此寶可夢的所有設定與勝利紀錄？")){draftWins={};draftMove1=[];draftMove2=[];$("countMode").value="unconfigured";syncModeUI();renderCombos();}};
-$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:14,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v14.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:15,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v15.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
 $("importBtn").onclick=()=>$("importFile").click();$("obsBtn").onclick=()=>window.open(location.pathname+"?mode=overlay","unite-obs-overlay","width=900,height=500");
-$("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前 V11 紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
+$("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前挑戰紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
 
 // V11 隨機挑戰：從所有尚未取得勝利的技能組中抽選。
 $("randomBtn").onclick=()=>{
@@ -96,7 +101,7 @@ document.querySelectorAll("[data-panel-toggle]").forEach(button=>{
  });
 });
 
-let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};load();if(!renderOverlay())render();}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
+let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};moveIcons=d.moveIcons||{};load();if(!renderOverlay())render();}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
 
 window.addEventListener("storage",e=>{if(e.key===STORAGE_KEY){try{state=JSON.parse(e.newValue||"{}");if(new URLSearchParams(location.search).get("mode")==="overlay")renderOverlay();else render();}catch{}}});
 
