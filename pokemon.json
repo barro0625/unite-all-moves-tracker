@@ -1856,8 +1856,7 @@
     "閃焰王牌": {
       "火焰球": "Pyro Ball",
       "火焰踢": "Blaze Kick",
-      "佯攻": "Feint",
-      "蓄能焰襲": "Flame Charge"
+      "佯攻": "Feint"
     },
     "沙奈朵": {
       "精神強念": "Psychic",
@@ -1865,29 +1864,41 @@
       "精神衝擊": "Psyshock",
       "預知未來": "Future Sight"
     },
-    "堅盾劍怪": {
-      "聖劍": "Sacred Sword",
-      "暗影爪": "Shadow Claw",
-      "鐵頭": "Iron Head",
-      "廣域防守": "Wide Guard"
+    "噴火龍": {
+      "火焰拳": "Fire Punch",
+      "噴射火焰": "Flamethrower",
+      "閃焰衝鋒": "Flare Blitz",
+      "大字爆炎": "Fire Blast"
     },
-    "霜奶仙": {
-      "自我再生": "Recover",
-      "裝飾": "Decorate",
-      "魔法閃耀": "Dazzling Gleam",
-      "甜甜香氣": "Sweet Scent"
+    "卡比獸": {
+      "重磅衝撞": "Heavy Slam",
+      "抓狂": "Flail",
+      "哈欠": "Yawn",
+      "擋路": "Block"
     },
-    "紅蓮鎧騎": {
-      "火焰旋渦": "Fire Spin",
-      "鎧農炮": "Armor Cannon",
+    "甲賀忍蛙": {
+      "飛水手裡劍": "Water Shuriken",
+      "衝浪": "Surf",
+      "影子分身": "Double Team",
+      "煙幕": "Smokescreen"
+    },
+    "路卡利歐": {
+      "神速": "Extreme Speed",
+      "增強拳": "Power-Up Punch",
+      "骨棒亂打": "Bone Rush",
+      "近身戰": "Close Combat"
+    },
+    "耿鬼": {
+      "污泥炸彈": "Sludge Bomb",
+      "暗影球": "Shadow Ball",
+      "禍不單行": "Hex",
+      "食夢": "Dream Eater"
+    },
+    "烈箭鷹": {
+      "飛翔": "Fly",
+      "勇鳥猛攻": "Brave Bird",
       "蓄能焰襲": "Flame Charge",
-      "精神強念": "Psychic"
-    },
-    "瑪力露麗": {
-      "潮旋": "Whirlpool",
-      "水流尾": "Aqua Tail",
-      "嬉鬧": "Play Rough",
-      "水之波動": "Water Pulse"
+      "燕返": "Aerial Ace"
     },
     "水箭龜": {
       "噴水": "Water Spout",
@@ -1895,59 +1906,11 @@
       "高速旋轉": "Rapid Spin",
       "衝浪": "Surf"
     },
-    "幸福蛋": {
-      "幫助": "Helping Hand",
-      "炸蛋": "Egg Bomb",
-      "神秘守護": "Safeguard",
-      "生蛋": "Soft-Boiled"
-    },
-    "爆肌蚊": {
-      "吸血": "Leech Life",
-      "蠻力": "Superpower",
-      "猛撲": "Lunge",
-      "擊落": "Smack Down"
-    },
-    "蒼炎刃鬼": {
-      "潛靈奇襲": "Phantom Force",
-      "蓄能焰襲": "Flame Charge",
-      "悔念劍": "Bitter Blade",
-      "精神利刃": "Psycho Cut"
-    },
-    "水晶燈火靈": {
-      "過熱": "Overheat",
-      "噴射火焰": "Flamethrower",
-      "封印": "Imprison",
-      "靈騷": "Poltergeist"
-    },
-    "噴火龍": {
-      "火焰拳": "Fire Punch",
-      "噴射火焰": "Flamethrower",
-      "閃焰衝鋒": "Flare Blitz",
-      "大字爆炎": "Fire Blast"
-    },
-    "皮可西": {
-      "月光": "Moonlight",
-      "吸取之吻": "Draining Kiss",
-      "看我嘛": "Follow Me",
-      "重力": "Gravity"
-    },
-    "花療環環": {
-      "花療": "Floral Healing",
-      "天使之吻": "Sweet Kiss",
-      "魔法葉": "Magical Leaf",
-      "打草結": "Grass Knot"
-    },
     "古月鳥": {
       "潛水": "Dive",
       "衝浪": "Surf",
       "空氣斬": "Air Slash",
       "暴風": "Hurricane"
-    },
-    "岩殿居蟹": {
-      "破殼": "Shell Smash",
-      "岩石封鎖": "Rock Tomb",
-      "十字剪": "X-Scissor",
-      "隱形岩": "Stealth Rock"
     }
   }
 }
