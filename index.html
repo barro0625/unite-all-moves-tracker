@@ -26,34 +26,16 @@
   </section>
   <section class="toolbar">
     <label class="search"><span>⌕</span><input id="search" type="search" placeholder="搜尋寶可夢名稱…"></label>
-    <select id="filter"><option value="all">全部角色</option><option value="progress">進行中</option><option value="done">已全數完成</option><option value="not">尚未開始／未設定</option><option value="unconfigured">待設定</option></select>
+    <select id="roleFilter" aria-label="依角色定位篩選"><option value="all">全部定位</option><option value="攻擊型">攻擊型</option><option value="防禦型">防禦型</option><option value="敏捷型">敏捷型</option><option value="平衡型">平衡型</option><option value="輔助型">輔助型</option></select>
+    <select id="filter" aria-label="依挑戰進度篩選"><option value="all">全部進度</option><option value="progress">進行中</option><option value="done">已全數完成</option><option value="not">尚未開始／未設定</option><option value="unconfigured">待設定</option></select>
     <button class="primary" id="randomBtn">🎲 隨機挑戰</button>
-    <button class="secondary" id="cloudToggle">☁ 雲端同步</button>
     <button class="secondary" id="exportBtn">匯出備份</button>
     <button class="secondary" id="importBtn">匯入備份</button>
     <input id="importFile" type="file" accept="application/json" hidden>
   </section>
-  <section id="cloudPanel" class="cloud-panel hidden">
-    <div class="cloud-title"><div><h3>☁ 雲端同步設定</h3><p>使用 Supabase 免費資料庫，讓不同裝置可以共用同一份挑戰紀錄。</p></div><button class="icon-btn" id="closeCloud" aria-label="關閉">×</button></div>
-    <div class="cloud-fields">
-      <label>Supabase Project URL<input id="sbUrl" placeholder="https://你的專案.supabase.co"></label>
-      <label>Supabase anon / publishable key<input id="sbKey" placeholder="公開 anon key 或 publishable key"></label>
-      <label>同步代碼<input id="syncId" placeholder="自訂一組夠長且難猜的代碼"></label>
-    </div>
-    <div class="cloud-actions"><button class="secondary" id="saveCloud">儲存連線設定</button><button class="secondary" id="cloudUpload">↑ 上傳目前紀錄</button><button class="secondary" id="cloudDownload">↓ 從雲端載入</button></div>
-    <p id="cloudStatus" class="cloud-status">尚未設定雲端連線。第一次使用前，請先依 README 建立資料表。</p>
-    <details class="cloud-help"><summary>第一次使用？查看資料庫設定 SQL</summary><pre>create table if not exists public.unite_sync (
-  sync_id text primary key,
-  payload jsonb not null,
-  updated_at timestamptz not null default now()
-);
-alter table public.unite_sync enable row level security;
-create policy "sync by secret code" on public.unite_sync
-for all to anon using (true) with check (true);</pre><small>同步代碼是存取憑證，請勿分享。這是個人用途的簡易同步方式，不適合存放敏感資料。</small></details>
-  </section>
-  <div class="section-head"><div><h2>寶可夢列表</h2><p>V11：保留原有技能設定與勝利紀錄，新增搜尋篩選、隨機挑戰及雲端同步。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
+  <div class="section-head"><div><h2>寶可夢列表</h2><p>V12：依五種角色定位分類，支援名稱搜尋、定位篩選與隨機挑戰。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
   <section id="grid" class="pokemon-grid"></section>
-  <footer>紀錄預設儲存在目前瀏覽器；可使用 JSON 備份，或自行設定 Supabase 雲端同步。<br>非官方粉絲工具，與 Nintendo、The Pokémon Company 或 TiMi Studio Group 無關。</footer>
+  <footer>紀錄儲存在目前瀏覽器；建議定期使用 JSON 匯出備份。<br>非官方粉絲工具，與 Nintendo、The Pokémon Company 或 TiMi Studio Group 無關。</footer>
 </main>
 <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
  <div class="modal-backdrop" data-close="1"></div>
