@@ -1863,6 +1863,54 @@
       "月亮之力": "Moonblast",
       "精神衝擊": "Psyshock",
       "預知未來": "Future Sight"
+    },
+    "噴火龍": {
+      "火焰拳": "Fire Punch",
+      "噴射火焰": "Flamethrower",
+      "閃焰衝鋒": "Flare Blitz",
+      "大字爆炎": "Fire Blast"
+    },
+    "卡比獸": {
+      "重磅衝撞": "Heavy Slam",
+      "抓狂": "Flail",
+      "哈欠": "Yawn",
+      "擋路": "Block"
+    },
+    "甲賀忍蛙": {
+      "飛水手裡劍": "Water Shuriken",
+      "衝浪": "Surf",
+      "影子分身": "Double Team",
+      "煙幕": "Smokescreen"
+    },
+    "路卡利歐": {
+      "神速": "Extreme Speed",
+      "增強拳": "Power-Up Punch",
+      "骨棒亂打": "Bone Rush",
+      "近身戰": "Close Combat"
+    },
+    "耿鬼": {
+      "污泥炸彈": "Sludge Bomb",
+      "暗影球": "Shadow Ball",
+      "禍不單行": "Hex",
+      "食夢": "Dream Eater"
+    },
+    "烈箭鷹": {
+      "飛翔": "Fly",
+      "勇鳥猛攻": "Brave Bird",
+      "蓄能焰襲": "Flame Charge",
+      "燕返": "Aerial Ace"
+    },
+    "水箭龜": {
+      "噴水": "Water Spout",
+      "水炮": "Hydro Pump",
+      "高速旋轉": "Rapid Spin",
+      "衝浪": "Surf"
+    },
+    "古月鳥": {
+      "潛水": "Dive",
+      "衝浪": "Surf",
+      "空氣斬": "Air Slash",
+      "暴風": "Hurricane"
     }
   }
 }
