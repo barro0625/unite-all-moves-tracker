@@ -1,4 +1,6 @@
-const STORAGE_KEY = "unite-all-moves-win-tracker-v21";
+const STORAGE_KEY = "unite-all-moves-win-tracker-v23";
+const PREV_V22_KEY = "unite-all-moves-win-tracker-v22";
+const PREV_V21_KEY = "unite-all-moves-win-tracker-v21";
 const PREV_V20_KEY = "unite-all-moves-win-tracker-v20";
 const PREV_V19_KEY = "unite-all-moves-win-tracker-v17";
 const PREV_V16_KEY = "unite-all-moves-win-tracker-v16";
@@ -15,7 +17,9 @@ function defaults(){return {mode:"unconfigured",move1:[],move2:[],wins:{}};}
 function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
 function load(){
  try{
-   const v21=localStorage.getItem(STORAGE_KEY);
+   const v23=localStorage.getItem(STORAGE_KEY);
+   const v22=localStorage.getItem(PREV_V22_KEY);
+    const v21=localStorage.getItem(PREV_V21_KEY);
    const v20=localStorage.getItem(PREV_V20_KEY);
    const v19=localStorage.getItem(PREV_V19_KEY);
    const v14=localStorage.getItem(PREV_V14_KEY);
@@ -24,7 +28,7 @@ function load(){
    const v7=localStorage.getItem(PREVIOUS_STORAGE_KEY);
    const v6=localStorage.getItem(LEGACY_STORAGE_KEY);
    const v5=localStorage.getItem(OLDER_STORAGE_KEY);
-   state=JSON.parse(v21 || v20 || v19 || v14 || v13 || v12 || v7 || v6 || v5 || "{}");
+   state=JSON.parse(v23 || v22 || v21 || v20 || v19 || v14 || v13 || v12 || v7 || v6 || v5 || "{}");
  }catch{state={};}
  Object.entries(nameMap).forEach(([zh,en])=>{if(state[en]&&!state[zh])state[zh]=state[en];if(state[en])delete state[en];});
  const presets=data.movesets||{};
