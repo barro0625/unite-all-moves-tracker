@@ -1,4 +1,5 @@
-const STORAGE_KEY = "unite-all-moves-win-tracker-v15";
+const STORAGE_KEY = "unite-all-moves-win-tracker-v17";
+const PREV_V16_KEY = "unite-all-moves-win-tracker-v16";
 const PREV_V14_KEY = "unite-all-moves-win-tracker-v14";
 const PREV_V13_KEY = "unite-all-moves-win-tracker-v13";
 const PREV_V12_KEY = "unite-all-moves-win-tracker-v12";
@@ -36,6 +37,22 @@ function load(){
    Object.entries(current.wins||{}).forEach(([id,won])=>{
      if(won && validIds.has(id)) next.wins[id]=true;
    });
+   // Keep previous wins when a fixed path label is simplified or a former single-win Mega entry becomes one explicit path.
+   if(next.mode==="paths"){
+     next.move1.forEach((path,i)=>{
+       const newId="__path_"+i+"__:"+path;
+       if(next.wins[newId]) return;
+       const oldPathWin=Object.entries(current.wins||{}).some(([oldId,won])=>
+         won && (oldId.endsWith(":"+path) ||
+           (n==="武道熊師" && oldId.endsWith(":"+(
+             i===0 ? "一擊流："+path : "連擊流："+path
+           )))
+         )
+       );
+       const oldSingleWin=(["超級噴火龍 X","超級噴火龍 Y","超級路卡利歐","超級暴鯉龍"].includes(n) && current.wins["__single_win__"]);
+       if(oldPathWin || oldSingleWin) next.wins[newId]=true;
+     });
+   }
    state[n]=next;
  });
  // Drop retired roster entries from saved state.

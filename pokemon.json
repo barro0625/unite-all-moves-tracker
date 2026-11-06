@@ -209,7 +209,7 @@
     "索羅亞克": "Zoroark",
     "阿羅拉九尾": "Alolan Ninetales",
     "伽勒爾烈焰馬": "Galarian Rapidash",
-    "阿羅拉雷丘": "Raichu-Alola"
+    "阿羅拉雷丘": "Alolan Raichu"
   },
   "schemaVersion": 10,
   "movesets": {
@@ -712,11 +712,11 @@
       "status": "tentative",
       "mode": "paths",
       "move1": [
-        "一擊流：暗冥強擊＋地獄突刺",
-        "連擊流：水流連打＋流水裂破"
+        "暗冥強擊＋地獄突刺",
+        "水流連打＋流水裂破"
       ],
       "move2": [],
-      "note": "兩種流派各自固定配對，各計一勝；不可交叉混搭。"
+      "note": "兩種固定技能搭配，各計一勝；不交叉混搭。"
     },
     "多龍巴魯托": {
       "status": "tentative",
@@ -1091,27 +1091,21 @@
     },
     "超級噴火龍 X": {
       "status": "tentative",
-      "mode": "single",
+      "mode": "paths",
       "move1": [
-        "火焰拳",
-        "閃焰衝鋒",
-        "火焰旋渦",
-        "噴射火焰"
+        "火焰拳＋閃焰衝鋒"
       ],
       "move2": [],
-      "note": "特殊機制：整場只計一勝。火焰雞可透過集結招式切換踢擊／拳擊風格；Mega 角色為固定技能組。"
+      "note": "固定技能組：僅有這一套技能搭配，完成後計一勝。"
     },
     "超級噴火龍 Y": {
       "status": "tentative",
-      "mode": "single",
+      "mode": "paths",
       "move1": [
-        "噴射火焰",
-        "大字爆炎",
-        "火焰旋渦",
-        "火焰拳"
+        "噴射火焰＋大字爆炎"
       ],
       "move2": [],
-      "note": "特殊機制：整場只計一勝。火焰雞可透過集結招式切換踢擊／拳擊風格；Mega 角色為固定技能組。"
+      "note": "固定技能組：僅有這一套技能搭配，完成後計一勝。"
     },
     "閃焰王牌": {
       "status": "tentative",
@@ -1218,15 +1212,12 @@
     },
     "超級暴鯉龍": {
       "status": "tentative",
-      "mode": "single",
+      "mode": "paths",
       "move1": [
-        "攀瀑",
-        "水流尾",
-        "龍之舞",
-        "咬碎"
+        "龍息＋攀瀑"
       ],
       "move2": [],
-      "note": "特殊機制：整場只計一勝。火焰雞可透過集結招式切換踢擊／拳擊風格；Mega 角色為固定技能組。"
+      "note": "固定技能組：僅有這一套技能搭配，完成後計一勝。"
     },
     "鳳王": {
       "status": "tentative",
@@ -1269,15 +1260,12 @@
     },
     "超級路卡利歐": {
       "status": "tentative",
-      "mode": "single",
+      "mode": "paths",
       "move1": [
-        "神速",
-        "增強拳",
-        "骨棒亂打",
-        "近身戰"
+        "近身戰＋增強拳"
       ],
       "move2": [],
-      "note": "特殊機制：整場只計一勝。火焰雞可透過集結招式切換踢擊／拳擊風格；Mega 角色為固定技能組。"
+      "note": "固定技能組：僅有這一套技能搭配，完成後計一勝。"
     },
     "大竺葵": {
       "status": "tentative",
@@ -1835,8 +1823,10 @@
       "真氣彈": "Focus Blast"
     },
     "武道熊師": {
-      "一擊流：暗冥強擊＋地獄突刺": "Wicked Blow",
-      "連擊流：水流連打＋流水裂破": "Surging Strikes"
+      "暗冥強擊": "Wicked Blow",
+      "地獄突刺": "Throat Chop",
+      "水流連打": "Surging Strikes",
+      "流水裂破": "Liquidation"
     },
     "巨鉗螳螂": {
       "雙翼": "Dual Wingbeat",
