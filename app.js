@@ -1,4 +1,5 @@
-const STORAGE_KEY = "unite-all-moves-win-tracker-v20";
+const STORAGE_KEY = "unite-all-moves-win-tracker-v21";
+const PREV_V20_KEY = "unite-all-moves-win-tracker-v20";
 const PREV_V19_KEY = "unite-all-moves-win-tracker-v17";
 const PREV_V16_KEY = "unite-all-moves-win-tracker-v16";
 const PREV_V14_KEY = "unite-all-moves-win-tracker-v14";
@@ -14,14 +15,16 @@ function defaults(){return {mode:"unconfigured",move1:[],move2:[],wins:{}};}
 function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
 function load(){
  try{
-   const v8=localStorage.getItem(STORAGE_KEY);
+   const v21=localStorage.getItem(STORAGE_KEY);
+   const v20=localStorage.getItem(PREV_V20_KEY);
+   const v19=localStorage.getItem(PREV_V19_KEY);
    const v14=localStorage.getItem(PREV_V14_KEY);
    const v13=localStorage.getItem(PREV_V13_KEY);
    const v12=localStorage.getItem(PREV_V12_KEY);
    const v7=localStorage.getItem(PREVIOUS_STORAGE_KEY);
    const v6=localStorage.getItem(LEGACY_STORAGE_KEY);
    const v5=localStorage.getItem(OLDER_STORAGE_KEY);
-   state=JSON.parse(v8 || v14 || v13 || v12 || v7 || v6 || v5 || "{}");
+   state=JSON.parse(v21 || v20 || v19 || v14 || v13 || v12 || v7 || v6 || v5 || "{}");
  }catch{state={};}
  Object.entries(nameMap).forEach(([zh,en])=>{if(state[en]&&!state[zh])state[zh]=state[en];if(state[en])delete state[en];});
  const presets=data.movesets||{};
@@ -95,23 +98,55 @@ const directMoveIconUrls={
   "流水裂破":"https://www.pokemonunite.gg/res/img/pkmn/892_006.png"
  }
 };
-function moveIconUrl(name, move){const direct=directMoveIconUrls[name]?.[move];if(direct)return direct;const en=nameMap[name],slug=moveIcons[name]?.[move];if(!en||!slug)return "";const file=`UNITE_${en.replaceAll(" ","_")}_${slug.replaceAll(" ","_")}.png`;return `https://archives.bulbagarden.net/wiki/Special:Redirect/file/${encodeURIComponent(file).replaceAll("%2F","/")}`;}
-function skillChip(name,move){const url=moveIconUrl(name,move);return `<span class="skill-chip">${url?`<img class="skill-icon" src="${url}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'skill-icon-fallback',textContent:'✦'}))">`:'<span class="skill-icon-fallback">✦</span>'}<span>${escapeHtml(move)}</span></span>`;}
+// Unite-DB 的公開技能圖示 CDN。技能英文名稱沿用 pokemon.json 的 moveIcons 對照。
+// 多數資料夾以 Pokémon 英文名稱命名；部分形態會沿用基礎名稱（例如 Alolan Raichu -> Raichu）。
+const UNITE_DB_SKILL_CDN = "https://d275t8dp8rxb42.cloudfront.net/assets/skills";
+const uniteDbSkillFolders = {
+ "阿勃梭魯":"Absol", "阿羅拉雷丘":"Raichu", "火焰雞":"Blaziken", "武道熊師":"Urshifu",
+ "巨鉗螳螂":"Scizor", "夢幻":"Mew", "妙蛙花":"Venusaur", "皮卡丘":"Pikachu",
+ "閃焰王牌":"Cinderace", "沙奈朵":"Gardevoir", "堅盾劍怪":"Aegislash", "霜奶仙":"Alcremie",
+ "紅蓮鎧騎":"Armarouge", "瑪力露麗":"Azumarill", "水箭龜":"Blastoise", "幸福蛋":"Blissey",
+ "爆肌蚊":"Buzzwole", "蒼炎刃鬼":"Ceruledge", "水晶燈火靈":"Chandelure", "噴火龍":"Charizard",
+ "皮可西":"Clefable", "花療環環":"Comfey", "古月鳥":"Cramorant", "岩殿居蟹":"Crustle"
+};
+function uniteDbMoveIconUrl(name, move){
+ const folder=uniteDbSkillFolders[name];
+ const englishMove=moveIcons[name]?.[move];
+ if(!folder||!englishMove)return "";
+ const file=encodeURIComponent(englishMove).replaceAll("%20","+");
+ return `${UNITE_DB_SKILL_CDN}/${folder}/${file}.png`;
+}
+function legacyMoveIconUrl(name, move){
+ const direct=directMoveIconUrls[name]?.[move];
+ if(direct)return direct;
+ const en=nameMap[name],slug=moveIcons[name]?.[move];
+ if(!en||!slug)return "";
+ const file=`UNITE_${en.replaceAll(" ","_")}_${slug.replaceAll(" ","_")}.png`;
+ return `https://archives.bulbagarden.net/wiki/Special:Redirect/file/${encodeURIComponent(file).replaceAll("%2F","/")}`;
+}
+function moveIconCandidates(name,move){
+ return [...new Set([uniteDbMoveIconUrl(name,move),legacyMoveIconUrl(name,move)].filter(Boolean))];
+}
+function skillChip(name,move){
+ const candidates=moveIconCandidates(name,move);
+ const first=candidates.shift()||"";
+ const second=candidates.shift()||"";
+ const img=first
+  ? `<img class="skill-icon" src="${first}" data-fallback="${second}" alt="${escapeHtml(move)} 技能圖示" loading="lazy" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.dataset.fallback='';}else{this.replaceWith(Object.assign(document.createElement('span'),{className:'skill-icon-fallback',textContent:'✦'}))}">`
+  : '<span class="skill-icon-fallback">✦</span>';
+ return `<span class="skill-chip">${img}<span>${escapeHtml(move)}</span></span>`;
+}
 function comboSkills(name,label,cfg){if(cfg.mode==="combination"){const parts=label.split(" ＋ ");return parts.map(x=>skillChip(name,x)).join('<span class="skill-plus">＋</span>');}if(cfg.mode==="single"){return (cfg.move1||[]).map(x=>skillChip(name,x)).join("");}if(cfg.mode==="paths"){const text=label.includes(":")?label.split(":").slice(1).join(":").trim():label;return text.split(/[＋+]/).map(x=>skillChip(name,x.trim())).join('<span class="skill-plus">＋</span>');}return escapeHtml(label);}
 function renderCombos(){const cfg=readDraft(),list=combos(cfg);$("comboSummary").textContent=cfg.mode==="unconfigured"?"尚未設定，不計入統計":`${list.length} 種組合 · ${list.filter(x=>draftWins[x.id]).length} 勝`;
  $("comboList").innerHTML=cfg.mode==="unconfigured"?'<p class="sub">此角色的技能資料尚未設定。確認遊戲內技能後，再選擇計算方式。</p>':!list.length?'<p class="sub">請先填入技能名稱，每行一個選項。</p>':list.map((x,i)=>`<div class="combo-row"><div class="combo-name"><span style="color:#7187a2;margin-right:7px">${String(i+1).padStart(2,"0")}</span><div class="combo-skills">${comboSkills(activeName,x.label,cfg)}</div></div><button class="win-toggle ${draftWins[x.id]?"active":""}" data-id="${encodeURIComponent(x.id)}">${draftWins[x.id]?"✓ 已取得勝利":"＋ 記錄一勝"}</button></div>`).join("");
- $("comboList").querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{const id=decodeURIComponent(btn.dataset.id);draftWins[id]=!draftWins[id];const cfg=getConfig(activeName);const valid=new Set(combos(cfg).map(x=>x.id));const wins={};Object.keys(draftWins).forEach(k=>{if(valid.has(k)&&draftWins[k])wins[k]=true;});state[activeName]={...cfg,wins};save();renderCombos();render();}));}
+ $("comboList").querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{const id=decodeURIComponent(btn.dataset.id);draftWins[id]=!draftWins[id];renderCombos();}));}
 function saveCurrent(){const cfg=readDraft();if(cfg.mode==="combination"&&(!cfg.move1.length||!cfg.move2.length)){alert("自動組合模式下，技能一與技能二都至少需要一個選項。");return;}if((cfg.mode==="single"||cfg.mode==="paths")&&!cfg.move1.length){alert(cfg.mode==="paths"?"固定流派模式至少需要填寫一套完整技能搭配。":"單一勝利模式至少需要填寫一個技能名稱。");return;}if(cfg.move1.length>8||cfg.move2.length>4){alert("最多可填 8 個技能選項或固定流派。");return;}const valid=new Set(combos(cfg).map(x=>x.id)),wins={};Object.keys(draftWins).forEach(k=>{if(valid.has(k)&&draftWins[k])wins[k]=true;});state[activeName]={...cfg,wins};save();closeModal();render();toast("已儲存 "+activeName+" 的設定");}
 function toast(msg){$("toast").textContent=msg;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1800);}
 $("search").addEventListener("input",render);$("filter").addEventListener("change",render);$("roleFilter").addEventListener("change",render);$("closeModal").onclick=closeModal;$("cancelModal").onclick=closeModal;$("modal").addEventListener("click",e=>{if(e.target.dataset.close)closeModal();});
-$("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});
-$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
-$("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});
-$("saveModal").onclick=saveCurrent;
-
-
-
-$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:15,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v15.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
+$("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
+$("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
+$("resetPokemon").onclick=()=>{if(confirm("確定要清除此寶可夢的所有設定與勝利紀錄？")){draftWins={};draftMove1=[];draftMove2=[];$("countMode").value="unconfigured";syncModeUI();renderCombos();}};
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:21,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v20.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
 $("importBtn").onclick=()=>$("importFile").click();$("obsBtn").onclick=()=>window.open(location.pathname+"?mode=overlay","unite-obs-overlay","width=900,height=500");
 $("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前挑戰紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
 
