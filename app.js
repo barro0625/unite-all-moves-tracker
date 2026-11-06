@@ -80,7 +80,21 @@ function readDraft(){return {mode:$("countMode").value,move1:clean($("move1").va
 function syncModeUI(){const mode=$("countMode").value,single=mode==="single",paths=mode==="paths",unconfigured=mode==="unconfigured";$("move1Label").style.display=unconfigured?"none":"";$("move2Label").style.display=(single||paths||unconfigured)?"none":"";$("move1Label").firstChild.textContent=paths?"固定流派（每行一套完整技能搭配）":single?"技能名稱（僅供參考）":"技能一選項";$("move1").disabled=unconfigured;$("move2").disabled=single||paths||unconfigured;$("move1").value=draftMove1.join("\n");$("move2").value=draftMove2.join("\n");$("move1").placeholder=paths?"例如：一擊流：技能A＋技能B":single?"每行一個技能名稱":"每行一個技能選項";}
 function openModal(name){activeName=name;const c=getConfig(name);$("modalTitle").textContent=name;const avatar=$("modalAvatar");avatar.src=avatars[name]||"";avatar.alt=name;avatar.style.display=avatars[name]?"block":"none";avatar.onerror=()=>avatar.style.display="none";$("countMode").value=c.mode;draftMove1=[...c.move1];draftMove2=[...c.move2];draftWins={...c.wins};syncModeUI();renderCombos();$("modal").classList.remove("hidden");document.body.style.overflow="hidden";}
 function closeModal(){$("modal").classList.add("hidden");document.body.style.overflow="";}
-function moveIconUrl(name, move){const en=nameMap[name],slug=moveIcons[name]?.[move];if(!en||!slug)return "";const file=`UNITE_${en.replaceAll(" ","_")}_${slug.replaceAll(" ","_")}.png`;return `https://archives.bulbagarden.net/wiki/Special:Redirect/file/${encodeURIComponent(file).replaceAll("%2F","/")}`;}
+const directMoveIconUrls={
+ "阿羅拉雷丘":{
+  "輔助力量":"https://archives.bulbagarden.net/media/upload/0/0c/UNITE_Alolan_Raichu_Stored_Power.png",
+  "電球":"https://archives.bulbagarden.net/media/upload/5/54/UNITE_Alolan_Raichu_Electro_Ball.png",
+  "十萬伏特":"https://archives.bulbagarden.net/media/upload/a/a1/UNITE_Alolan_Raichu_Thunderbolt.png",
+  "精神強念":"https://archives.bulbagarden.net/media/upload/3/31/UNITE_Alolan_Raichu_Psychic.png"
+ },
+ "武道熊師":{
+  "暗冥強擊":"https://www.pokemonunite.gg/res/img/pkmn/892_003.png",
+  "地獄突刺":"https://www.pokemonunite.gg/res/img/pkmn/892_005.png",
+  "水流連打":"https://www.pokemonunite.gg/res/img/pkmn/892_004.png",
+  "流水裂破":"https://www.pokemonunite.gg/res/img/pkmn/892_006.png"
+ }
+};
+function moveIconUrl(name, move){const direct=directMoveIconUrls[name]?.[move];if(direct)return direct;const en=nameMap[name],slug=moveIcons[name]?.[move];if(!en||!slug)return "";const file=`UNITE_${en.replaceAll(" ","_")}_${slug.replaceAll(" ","_")}.png`;return `https://archives.bulbagarden.net/wiki/Special:Redirect/file/${encodeURIComponent(file).replaceAll("%2F","/")}`;}
 function skillChip(name,move){const url=moveIconUrl(name,move);return `<span class="skill-chip">${url?`<img class="skill-icon" src="${url}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'skill-icon-fallback',textContent:'✦'}))">`:'<span class="skill-icon-fallback">✦</span>'}<span>${escapeHtml(move)}</span></span>`;}
 function comboSkills(name,label,cfg){if(cfg.mode==="combination"){const parts=label.split(" ＋ ");return parts.map(x=>skillChip(name,x)).join('<span class="skill-plus">＋</span>');}if(cfg.mode==="single"){return (cfg.move1||[]).map(x=>skillChip(name,x)).join("");}if(cfg.mode==="paths"){const text=label.includes(":")?label.split(":").slice(1).join(":").trim():label;return text.split(/[＋+]/).map(x=>skillChip(name,x.trim())).join('<span class="skill-plus">＋</span>');}return escapeHtml(label);}
 function renderCombos(){const cfg=readDraft(),list=combos(cfg);$("comboSummary").textContent=cfg.mode==="unconfigured"?"尚未設定，不計入統計":`${list.length} 種組合 · ${list.filter(x=>draftWins[x.id]).length} 勝`;
