@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><div class="brand-mark">U</div><div><strong>全技能組一勝挑戰</strong><small>POKÉMON UNITE · MOVESET WIN TRACKER · V11</small></div></div>
+  <div class="brand"><div class="brand-mark">U</div><div><strong>全技能組一勝挑戰</strong><small>POKÉMON UNITE · MOVESET WIN TRACKER · V13</small></div></div>
   <a class="source-link" href="https://unite-db.com/" target="_blank" rel="noreferrer">UNITE-DB ↗</a>
 </header>
 <main>
@@ -24,6 +24,15 @@
     <article><small>剩餘技能組</small><strong id="leftCount">0</strong><em>尚待取得勝利</em></article>
     <article><small>已完成寶可夢</small><strong id="donePokemon">0</strong><em id="rosterCount">共 0 隻角色</em></article>
   </section>
+  <section class="overview-panel" id="overviewPanel">
+    <div class="section-head"><div><h2>全角色挑戰總覽</h2><p>所有已設定技能組的完成進度與定位分布。</p></div><span class="count-pill" id="overallPct">0%</span></div>
+    <div class="overview-track"><span id="overallBar"></span></div>
+    <div class="overview-grid" id="roleOverview"></div>
+  </section>
+  <section class="unfinished-panel" id="unfinishedPanel">
+    <div class="section-head"><div><h2>尚未完成的技能組</h2><p>點選項目即可開啟角色紀錄，快速找到下一個目標。</p></div><span id="unfinishedCount" class="count-pill">0 組</span></div>
+    <div id="unfinishedList" class="unfinished-list"></div>
+  </section>
   <section class="toolbar">
     <label class="search"><span>⌕</span><input id="search" type="search" placeholder="搜尋寶可夢名稱…"></label>
     <select id="roleFilter" aria-label="依角色定位篩選"><option value="all">全部定位</option><option value="攻擊型">攻擊型</option><option value="防禦型">防禦型</option><option value="敏捷型">敏捷型</option><option value="平衡型">平衡型</option><option value="輔助型">輔助型</option></select>
@@ -31,9 +40,10 @@
     <button class="primary" id="randomBtn">🎲 隨機挑戰</button>
     <button class="secondary" id="exportBtn">匯出備份</button>
     <button class="secondary" id="importBtn">匯入備份</button>
+    <button class="secondary" id="obsBtn">OBS 實況模式</button>
     <input id="importFile" type="file" accept="application/json" hidden>
   </section>
-  <div class="section-head"><div><h2>寶可夢列表</h2><p>V12：依五種角色定位分類，支援名稱搜尋、定位篩選與隨機挑戰。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
+  <div class="section-head"><div><h2>寶可夢列表</h2><p>V13：五種定位、挑戰總覽與 OBS 實況模式，支援名稱搜尋、定位篩選與隨機挑戰。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
   <section id="grid" class="pokemon-grid"></section>
   <footer>紀錄儲存在目前瀏覽器；建議定期使用 JSON 匯出備份。<br>非官方粉絲工具，與 Nintendo、The Pokémon Company 或 TiMi Studio Group 無關。</footer>
 </main>

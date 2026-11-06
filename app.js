@@ -1,4 +1,5 @@
-const STORAGE_KEY = "unite-all-moves-win-tracker-v12";
+const STORAGE_KEY = "unite-all-moves-win-tracker-v13";
+const PREV_V12_KEY = "unite-all-moves-win-tracker-v12";
 const PREVIOUS_STORAGE_KEY = "unite-all-moves-win-tracker-v11";
 const LEGACY_STORAGE_KEY = "unite-all-moves-win-tracker-v10";
 const OLDER_STORAGE_KEY = "unite-all-moves-win-tracker-v9";
@@ -10,10 +11,11 @@ function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
 function load(){
  try{
    const v8=localStorage.getItem(STORAGE_KEY);
+   const v12=localStorage.getItem(PREV_V12_KEY);
    const v7=localStorage.getItem(PREVIOUS_STORAGE_KEY);
    const v6=localStorage.getItem(LEGACY_STORAGE_KEY);
    const v5=localStorage.getItem(OLDER_STORAGE_KEY);
-   state=JSON.parse(v8 || v7 || v6 || v5 || "{}");
+   state=JSON.parse(v8 || v12 || v7 || v6 || v5 || "{}");
  }catch{state={};}
  Object.entries(nameMap).forEach(([zh,en])=>{if(state[en]&&!state[zh])state[zh]=state[en];if(state[en])delete state[en];});
  const presets=data.movesets||{};
@@ -46,9 +48,11 @@ function combos(cfg){
  return a.flatMap(x=>b.map(y=>({id:x+"|||"+y,label:x+" ＋ "+y})));
 }
 function counts(name){const c=getConfig(name),list=combos(c),won=list.filter(x=>c.wins[x.id]).length;return {won,total:list.length,done:list.length>0&&won===list.length,started:won>0,configured:c.mode!=="unconfigured"&&list.length>0};}
-function renderStats(){let total=0,won=0,done=0,configured=0;roster.forEach(n=>{const c=counts(n);total+=c.total;won+=c.won;if(c.done)done++;if(c.configured)configured++;});$("wonCount").textContent=won;$("totalCount").textContent=total;$("leftCount").textContent=total-won;$("donePokemon").textContent=done;$("rosterCount").textContent=`共 ${roster.length} 隻角色 · 已設定 ${configured} 隻`;$ ("wonPct").textContent=(total?Math.round(won/total*100):0)+"% 完成";}
+function renderStats(){let total=0,won=0,done=0,configured=0;const byRole={};roster.forEach(n=>{const c=counts(n),r=roles[n]||"未分類";total+=c.total;won+=c.won;if(c.done)done++;if(c.configured)configured++;if(!byRole[r])byRole[r]={pokemon:0,done:0,won:0,total:0};byRole[r].pokemon++;byRole[r].won+=c.won;byRole[r].total+=c.total;if(c.done)byRole[r].done++;});$("wonCount").textContent=won;$("totalCount").textContent=total;$("leftCount").textContent=total-won;$("donePokemon").textContent=done;$("rosterCount").textContent=`共 ${roster.length} 隻角色 · 已設定 ${configured} 隻`;$ ("wonPct").textContent=(total?Math.round(won/total*100):0)+"% 完成";const pct=total?Math.round(won/total*100):0;if($("overallPct")){ $("overallPct").textContent=pct+"%";$("overallBar").style.width=pct+"%";const order=["攻擊型","防禦型","敏捷型","平衡型","輔助型"];const colors={"攻擊型":"#e45d65","防禦型":"#45c78e","敏捷型":"#4e9fe7","平衡型":"#b28af0","輔助型":"#e5b84f"};$("roleOverview").innerHTML=order.map(r=>{const x=byRole[r]||{pokemon:0,done:0,won:0,total:0};return `<div class="overview-role" style="border-top:3px solid ${colors[r]}"><small>${r} · ${x.pokemon} 隻</small><strong>${x.done}/${x.pokemon}</strong><small>角色完成 · ${x.won}/${x.total} 組勝利</small></div>`;}).join("");}}
+function renderUnfinished(){const items=[];roster.forEach(name=>{const cfg=getConfig(name);combos(cfg).forEach(x=>{if(!cfg.wins[x.id])items.push({name,label:x.label});});});const box=$("unfinishedList");if(!box)return;$("unfinishedCount").textContent=items.length+" 組";box.innerHTML=items.length?items.slice(0,40).map((x,i)=>`<button class="unfinished-item" data-name="${escapeHtml(x.name)}"><span><b>${escapeHtml(x.name)}</b><small>${escapeHtml(x.label)}</small></span><span>›</span></button>`).join(""):'<div class="unfinished-empty">🎉 所有已設定的技能組都完成了！</div>';box.querySelectorAll("button").forEach(b=>b.onclick=()=>openModal(b.dataset.name));}
+function renderOverlay(){const mode=new URLSearchParams(location.search).get("mode");if(mode!=="overlay")return false;document.body.className="obs-mode";const total=roster.reduce((a,n)=>a+counts(n).total,0),won=roster.reduce((a,n)=>a+counts(n).won,0),done=roster.filter(n=>counts(n).done).length,pct=total?Math.round(won/total*100):0;document.body.innerHTML=`<main class="obs-wrap"><div class="obs-title">全技能組一勝挑戰</div><div class="obs-sub">POKÉMON UNITE · LIVE CHALLENGE</div><div class="obs-numbers"><div class="obs-number"><b>${won}</b><span>已取得勝利</span></div><div class="obs-number"><b>${total-won}</b><span>剩餘技能組</span></div><div class="obs-number"><b>${done}/${roster.length}</b><span>完成角色</span></div></div><div class="obs-bar"><span style="width:${pct}%"></span></div><div class="obs-hint">整體完成率 ${pct}% · 本機紀錄即時讀取</div></main>`;return true;}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function render(){renderStats();const q=$("search").value.trim().toLowerCase(),f=$("filter").value,r=$("roleFilter").value;const list=roster.filter(n=>{const c=counts(n);return (n.toLowerCase().includes(q)||(nameMap[n]||"").toLowerCase().includes(q))&&(r==="all"||roles[n]===r)&&(f==="all"||(f==="progress"&&c.started&&!c.done)||(f==="done"&&c.done)||(f==="not"&&(!c.started||!c.configured))||(f==="unconfigured"&&!c.configured));});$("shownCount").textContent=`${list.length} 隻`;
+function render(){renderStats();renderUnfinished();const q=$("search").value.trim().toLowerCase(),f=$("filter").value,r=$("roleFilter").value;const list=roster.filter(n=>{const c=counts(n);return (n.toLowerCase().includes(q)||(nameMap[n]||"").toLowerCase().includes(q))&&(r==="all"||roles[n]===r)&&(f==="all"||(f==="progress"&&c.started&&!c.done)||(f==="done"&&c.done)||(f==="not"&&(!c.started||!c.configured))||(f==="unconfigured"&&!c.configured));});$("shownCount").textContent=`${list.length} 隻`;
  $("grid").innerHTML=list.map(n=>{const c=counts(n),pct=c.total?Math.round(c.won/c.total*100):0;const status=!c.configured?'<span class="status">待設定</span>':c.done?'<span class="status done">已完成</span>':c.started?'<span class="status started">進行中</span>':'<span class="status">未開始</span>';const avatar=avatars[n]||"";const role=roles[n]||"未分類";const roleClass={"攻擊型":"attacker","防禦型":"defender","敏捷型":"speedster","平衡型":"allrounder","輔助型":"supporter"}[role]||"";return `<article class="pokemon-card role-${roleClass}" data-name="${escapeHtml(n)}"><div class="card-top"><div class="pokemon-identity">${avatar?`<img class="pokemon-avatar" src="${escapeHtml(avatar)}" alt="${escapeHtml(n)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:""}<span class="avatar-fallback" style="${avatar?"display:none":""}">${escapeHtml(n.slice(0,1))}</span><div class="pokemon-title"><span class="pokemon-name">${escapeHtml(n)}</span><small>${escapeHtml(nameMap[n]||"")}</small></div></div><div class="card-tags"><span class="role-tag">${escapeHtml(role)}</span>${status}</div></div><div class="card-progress"><span style="width:${pct}%"></span></div><div class="card-bottom"><span>${c.configured?`${c.won} / ${c.total} 組勝利`:"技能資料尚未設定"}</span><b>${c.configured?pct+"%":"—"}</b></div></article>`;}).join("");
  $("grid").querySelectorAll(".pokemon-card").forEach(el=>el.addEventListener("click",()=>openModal(el.dataset.name)));if(!list.length)$("grid").innerHTML='<p class="sub">找不到符合條件的寶可夢。</p>';}
 function readDraft(){return {mode:$("countMode").value,move1:clean($("move1").value),move2:clean($("move2").value)};}
@@ -64,8 +68,9 @@ $("search").addEventListener("input",render);$("filter").addEventListener("chang
 $("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
 $("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
 $("resetPokemon").onclick=()=>{if(confirm("確定要清除此寶可夢的所有設定與勝利紀錄？")){draftWins={};draftMove1=[];draftMove2=[];$("countMode").value="unconfigured";syncModeUI();renderCombos();}};
-$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:12,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v12.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
-$("importBtn").onclick=()=>$("importFile").click();$("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前 V11 紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:13,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v13.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
+$("importBtn").onclick=()=>$("importFile").click();$("obsBtn").onclick=()=>window.open(location.pathname+"?mode=overlay","unite-obs-overlay","width=900,height=500");
+$("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前 V11 紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
 
 // V11 隨機挑戰：從所有尚未取得勝利的技能組中抽選。
 $("randomBtn").onclick=()=>{
@@ -78,4 +83,8 @@ $("randomBtn").onclick=()=>{
  toast(`隨機挑戰：${pick.name}｜${pick.label}`);
 };
 
-let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};load();render();}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
+let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};load();if(!renderOverlay())render();}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
+
+window.addEventListener("storage",e=>{if(e.key===STORAGE_KEY){try{state=JSON.parse(e.newValue||"{}");if(new URLSearchParams(location.search).get("mode")==="overlay")renderOverlay();else render();}catch{}}});
+
+if(new URLSearchParams(location.search).get("mode")==="overlay"){setInterval(()=>{if(data&&roster.length)renderOverlay();},2000);}
