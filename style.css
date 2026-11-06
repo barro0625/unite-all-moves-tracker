@@ -16,3 +16,18 @@
 /* V13 dashboard and OBS */
 .overview-panel,.unfinished-panel{background:linear-gradient(145deg,#14243a,#101a2b);border:1px solid var(--line);border-radius:18px;padding:20px;margin:10px 0 24px}.overview-track{height:12px;background:#263750;border-radius:99px;overflow:hidden;margin:14px 0 18px}.overview-track span{display:block;height:100%;width:0;background:linear-gradient(90deg,#67e8c1,#72a7ff);border-radius:99px;transition:width .25s}.overview-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.overview-role{background:#1a2b42;border:1px solid #30445f;border-radius:12px;padding:12px}.overview-role strong{display:block;font-size:20px}.overview-role small{color:var(--muted)}.unfinished-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:320px;overflow:auto}.unfinished-item{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;background:#1a2b42;border:1px solid #30445f;color:var(--text);border-radius:10px;padding:10px 12px;cursor:pointer}.unfinished-item:hover{border-color:var(--accent)}.unfinished-item small{display:block;color:var(--muted);margin-top:3px}.unfinished-empty{color:var(--accent);padding:10px 0}.pokemon-card{border-top:3px solid var(--role-color)}
 .obs-mode{background:#080d18;color:#fff;min-height:100vh;padding:22px;font-family:'DM Sans','Noto Sans TC',sans-serif}.obs-wrap{max-width:900px;margin:auto;background:linear-gradient(135deg,#14243aee,#101827ee);border:1px solid #40536e;border-radius:18px;padding:22px;box-shadow:0 12px 40px #0008}.obs-title{font-weight:800;font-size:clamp(20px,4vw,34px)}.obs-sub{color:#a9bad0;font-size:13px;margin:6px 0 18px}.obs-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.obs-number{background:#1c2d45;border-radius:12px;padding:14px}.obs-number b{display:block;font-size:clamp(24px,5vw,40px)}.obs-number span{font-size:12px;color:#b8c8dc}.obs-bar{height:12px;background:#34455d;border-radius:99px;overflow:hidden;margin-top:16px}.obs-bar span{display:block;height:100%;background:linear-gradient(90deg,#67e8c1,#72a7ff)}.obs-hint{color:#a9bad0;font-size:12px;margin-top:12px}@media(max-width:700px){.overview-grid{grid-template-columns:repeat(2,1fr)}.unfinished-list{grid-template-columns:1fr}.obs-numbers{grid-template-columns:1fr 1fr}}
+
+/* V14：挑戰總覽與未完成技能組可展開／收合 */
+.collapsible-panel{padding:0;overflow:hidden}
+.collapsible-head{list-style:none;cursor:pointer;padding:18px 20px;margin:0;align-items:center;gap:14px;user-select:none}
+.collapsible-head::-webkit-details-marker{display:none}
+.collapsible-head::marker{content:""}
+.collapsible-head>div{min-width:0}
+.collapsible-head h2{display:flex;align-items:center;gap:8px}
+.summary-tools{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.collapse-icon{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--accent);font-size:19px;transition:transform .2s,background .2s}
+.collapsible-panel[open] .collapse-icon{transform:rotate(180deg);background:#20334a}
+.collapsible-head:hover .collapse-icon{border-color:var(--accent)}
+.collapsible-content{padding:0 20px 20px;animation:panelReveal .18s ease-out}
+@keyframes panelReveal{from{opacity:.35;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:560px){.collapsible-head{padding:15px}.collapsible-content{padding:0 15px 15px}.collapsible-head p{max-width:245px;line-height:1.5}.summary-tools{gap:6px}}

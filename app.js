@@ -1,4 +1,5 @@
-const STORAGE_KEY = "unite-all-moves-win-tracker-v13";
+const STORAGE_KEY = "unite-all-moves-win-tracker-v14";
+const PREV_V13_KEY = "unite-all-moves-win-tracker-v13";
 const PREV_V12_KEY = "unite-all-moves-win-tracker-v12";
 const PREVIOUS_STORAGE_KEY = "unite-all-moves-win-tracker-v11";
 const LEGACY_STORAGE_KEY = "unite-all-moves-win-tracker-v10";
@@ -11,11 +12,12 @@ function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
 function load(){
  try{
    const v8=localStorage.getItem(STORAGE_KEY);
+   const v13=localStorage.getItem(PREV_V13_KEY);
    const v12=localStorage.getItem(PREV_V12_KEY);
    const v7=localStorage.getItem(PREVIOUS_STORAGE_KEY);
    const v6=localStorage.getItem(LEGACY_STORAGE_KEY);
    const v5=localStorage.getItem(OLDER_STORAGE_KEY);
-   state=JSON.parse(v8 || v12 || v7 || v6 || v5 || "{}");
+   state=JSON.parse(v8 || v13 || v12 || v7 || v6 || v5 || "{}");
  }catch{state={};}
  Object.entries(nameMap).forEach(([zh,en])=>{if(state[en]&&!state[zh])state[zh]=state[en];if(state[en])delete state[en];});
  const presets=data.movesets||{};
@@ -68,7 +70,7 @@ $("search").addEventListener("input",render);$("filter").addEventListener("chang
 $("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
 $("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
 $("resetPokemon").onclick=()=>{if(confirm("確定要清除此寶可夢的所有設定與勝利紀錄？")){draftWins={};draftMove1=[];draftMove2=[];$("countMode").value="unconfigured";syncModeUI();renderCombos();}};
-$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:13,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v13.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:14,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v14.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
 $("importBtn").onclick=()=>$("importFile").click();$("obsBtn").onclick=()=>window.open(location.pathname+"?mode=overlay","unite-obs-overlay","width=900,height=500");
 $("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前 V11 紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
 
