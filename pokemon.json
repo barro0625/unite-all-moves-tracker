@@ -81,7 +81,6 @@
     "萊希拉姆",
     "勾魂眼",
     "巨鉗螳螂",
-    "飛天螳螂",
     "蔥遊兵",
     "骨紋巨聲鱷",
     "呆殼獸",
@@ -185,7 +184,6 @@
     "萊希拉姆": "Reshiram",
     "勾魂眼": "Sableye",
     "巨鉗螳螂": "Scizor",
-    "飛天螳螂": "Scyther",
     "蔥遊兵": "Sirfetch'd",
     "骨紋巨聲鱷": "Skeledirge",
     "呆殼獸": "Slowbro",
@@ -213,7 +211,7 @@
     "阿羅拉九尾": "Alolan Ninetales",
     "伽勒爾烈焰馬": "Galarian Rapidash"
   },
-  "schemaVersion": 6,
+  "schemaVersion": 7,
   "movesets": {
     "夢幻": {
       "status": "tentative",
@@ -1403,19 +1401,6 @@
       "move2": [],
       "note": "單一路線規則：此角色只計一勝。技能名稱為暫填參考，可自行修改。"
     },
-    "飛天螳螂": {
-      "status": "needs_review",
-      "mode": "unconfigured",
-      "move1": [
-        "招式選項 1（請修改）",
-        "招式選項 2（請修改）"
-      ],
-      "move2": [
-        "招式選項 1（請修改）",
-        "招式選項 2（請修改）"
-      ],
-      "note": "尚未取得可靠技能資料；先提供可編輯欄位，選擇計算模式後才納入統計。"
-    },
     "蔥遊兵": {
       "status": "tentative",
       "mode": "combination",
@@ -1503,17 +1488,17 @@
       "note": "單一路線規則：此角色只計一勝。技能名稱為暫填參考，可自行修改。"
     },
     "捷拉奧拉": {
-      "status": "needs_review",
-      "mode": "unconfigured",
+      "status": "tentative",
+      "mode": "combination",
       "move1": [
-        "招式選項 1（請修改）",
-        "招式選項 2（請修改）"
+        "伏特替換（暫譯）",
+        "電光（暫譯）"
       ],
       "move2": [
-        "招式選項 1（請修改）",
-        "招式選項 2（請修改）"
+        "放電（暫譯）",
+        "瘋狂伏特（暫譯）"
       ],
-      "note": "尚未取得可靠技能資料；先提供可編輯欄位，選擇計算模式後才納入統計。"
+      "note": "捷拉奧拉已補回。技能名稱為暫譯，請依遊戲內繁體中文名稱自行修正；此角色使用一般技能組交叉計算。"
     },
     "伽勒爾烈焰馬": {
       "status": "tentative",
@@ -1606,7 +1591,6 @@
     "萊希拉姆": "https://www.pokemonunite.jp/wp-content/uploads/reshiram.png",
     "勾魂眼": "https://www.pokemonunite.jp/wp-content/uploads/sableye.png",
     "巨鉗螳螂": "https://www.pokemonunite.jp/wp-content/uploads/scizor.png",
-    "飛天螳螂": "https://www.pokemonunite.jp/wp-content/uploads/scyther.png",
     "蔥遊兵": "https://www.pokemonunite.jp/wp-content/uploads/sirfetchd.png",
     "骨紋巨聲鱷": "https://www.pokemonunite.jp/wp-content/uploads/skeledirge.png",
     "呆殼獸": "https://www.pokemonunite.jp/wp-content/uploads/slowbro.png",
@@ -1664,6 +1648,15 @@
     "fixedPaths": [
       "武道熊師",
       "巨鉗螳螂"
-    ]
+    ],
+    "rosterChanges": {
+      "added": [
+        "捷拉奧拉"
+      ],
+      "removed": [
+        "飛天螳螂"
+      ],
+      "reason": "依使用者要求保留巨鉗螳螂，移除飛天螳螂，並補回捷拉奧拉。"
+    }
   }
 }

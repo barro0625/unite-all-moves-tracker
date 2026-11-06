@@ -1,5 +1,5 @@
-const STORAGE_KEY = "unite-all-moves-win-tracker-v6";
-const LEGACY_STORAGE_KEY = "unite-all-moves-win-tracker-v5";
+const STORAGE_KEY = "unite-all-moves-win-tracker-v7";
+const LEGACY_STORAGE_KEY = "unite-all-moves-win-tracker-v6";
 let roster=[], state={}, activeName=null, draftWins={}, nameMap={}, avatars={}, draftMove1=[], draftMove2=[];
 const $=id=>document.getElementById(id);
 const clean=s=>(s||"").split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
@@ -7,9 +7,9 @@ function defaults(){return {mode:"unconfigured",move1:[],move2:[],wins:{}};}
 function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
 function load(){
  try{
-   const v6=localStorage.getItem(STORAGE_KEY);
-   const v5=localStorage.getItem(LEGACY_STORAGE_KEY);
-   state=JSON.parse(v6 || v5 || "{}");
+   const v7=localStorage.getItem(STORAGE_KEY);
+   const v6=localStorage.getItem(LEGACY_STORAGE_KEY);
+   state=JSON.parse(v7 || v6 || "{}");
  }catch{state={};}
  Object.entries(nameMap).forEach(([zh,en])=>{if(state[en]&&!state[zh])state[zh]=state[en];if(state[en])delete state[en];});
  const presets=data.movesets||{};
@@ -17,12 +17,17 @@ function load(){
  Object.entries(presets).forEach(([n,c])=>{
    const current=state[n];
    if(forced.has(n)){
-     // User requested these rules explicitly; apply the new mode immediately.
      state[n]={mode:c.mode,move1:c.move1||[],move2:c.move2||[],wins:{}};
-   }else if(!current){
-     state[n]={mode:c.mode,move1:c.move1||[],move2:c.move2||[],wins:{}};
+   }else{
+     const placeholder=!current || current.mode==="unconfigured" ||
+       [...(current.move1||[]),...(current.move2||[])].some(x=>String(x).includes("請修改")||String(x).includes("招式選項"));
+     if(placeholder){
+       state[n]={mode:c.mode,move1:c.move1||[],move2:c.move2||[],wins:current?.wins||{}};
+     }
    }
  });
+ // Drop retired roster entries from saved state.
+ delete state["飛天螳螂"];
  save();
 }
 function getConfig(name){return {...defaults(),...(state[name]||{}),wins:{...((state[name]||{}).wins||{})}};}
@@ -53,6 +58,6 @@ $("search").addEventListener("input",render);$("filter").addEventListener("chang
 $("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
 $("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
 $("resetPokemon").onclick=()=>{if(confirm("確定要清除此寶可夢的所有設定與勝利紀錄？")){draftWins={};draftMove1=[];draftMove2=[];$("countMode").value="unconfigured";syncModeUI();renderCombos();}};
-$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:6,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v6.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
-$("importBtn").onclick=()=>$("importFile").click();$("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前 V6 紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:7,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v7.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
+$("importBtn").onclick=()=>$("importFile").click();$("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前 V7 紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
 let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};load();render();}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
