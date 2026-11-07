@@ -15,21 +15,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: 22
+
       - name: Install dependencies
         run: npm install
+
       - name: Build Windows installer
-        run: npm run dist:win
+        run: npx electron-builder --win nsis --publish never
+
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
         with:
           name: Pokemon-Unite-Tracker-Windows-Installer
           path: dist/*.exe
           if-no-files-found: error
+
       - name: Publish GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2

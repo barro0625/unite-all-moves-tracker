@@ -362,6 +362,46 @@ function exportBackupWithCustomName(){
  return true;
 }
 
+function mergeBackupWithPreset(importedState){
+ // The bundled pokemon.json is the canonical source for the complete roster
+ // and current skill-set definitions. A website backup contributes progress,
+ // not a partial replacement for the bundled catalogue.
+ const merged={};
+ const englishToChinese=Object.fromEntries(Object.entries(nameMap).map(([zh,en])=>[en,zh]));
+ const importedByChinese={...importedState};
+ Object.entries(importedState).forEach(([name,cfg])=>{
+  const zh=englishToChinese[name];
+  if(zh && !importedByChinese[zh]) importedByChinese[zh]=cfg;
+ });
+ roster.forEach(name=>{
+  const preset=data.movesets?.[name]||defaults();
+  const imported=importedByChinese[name]||{};
+  const next={
+   mode:preset.mode||"unconfigured",
+   move1:Array.isArray(preset.move1)?[...preset.move1]:[],
+   move2:Array.isArray(preset.move2)?[...preset.move2]:[],
+   wins:{}
+  };
+  const oldWins=imported.wins&&typeof imported.wins==="object"?imported.wins:{};
+  if(next.mode==="single"){
+   if(oldWins["__single_win__"]===true)next.wins["__single_win__"]=true;
+  }else if(next.mode==="paths"){
+   next.move1.forEach((path,index)=>{
+    const id=`__path_${index}__:${path}`;
+    const legacyMatch=Object.entries(oldWins).some(([oldId,won])=>won===true&&oldId.endsWith(`:${path}`));
+    if(oldWins[id]===true||legacyMatch)next.wins[id]=true;
+   });
+  }else if(next.mode==="combination"){
+   next.move1.forEach(a=>next.move2.forEach(b=>{
+    const id=`${a}|||${b}`;
+    if(oldWins[id]===true)next.wins[id]=true;
+   }));
+  }
+  merged[name]=next;
+ });
+ return merged;
+}
+
 function validateBackupPayload(obj){
  if(!obj||typeof obj!=="object"||Array.isArray(obj))throw new Error("備份檔最外層必須是 JSON 物件。");
  if(!obj.state||typeof obj.state!=="object"||Array.isArray(obj.state))throw new Error("找不到有效的 state 挑戰紀錄資料。");
@@ -473,7 +513,7 @@ $("importFile").onchange=async e=>{
   if(file.size>5*1024*1024)throw new Error("備份檔超過 5 MB，已取消匯入。");
   const parsed=JSON.parse(await file.text());
   const validated=validateBackupPayload(parsed);
-  const candidateState=validated.state;
+  const candidateState=mergeBackupWithPreset(validated.state);
   const candidateUserData=validated.userData;
   const proceed=confirm(`備份檔格式驗證通過。
 
@@ -536,7 +576,39 @@ document.querySelectorAll("[data-panel-toggle]").forEach(button=>{
  });
 });
 
-let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};moveIcons=d.moveIcons||{};load();loadUserData();if(!renderOverlay()){render();renderBackupStatus();if(!startWelcomeTour())showFirstBackupNotice();}}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
+let data={};
+async function loadPokemonCatalogue(){
+ const urls=[new URL("pokemon.json",location.href).href,new URL("/pokemon.json",location.origin).href];
+ let lastError=null;
+ for(const url of [...new Set(urls)]){
+  try{
+   const response=await fetch(url,{cache:"no-store"});
+   if(!response.ok)throw new Error(`HTTP ${response.status}: ${url}`);
+   const parsed=await response.json();
+   if(!Array.isArray(parsed.pokemon)||!parsed.movesets||typeof parsed.movesets!=="object")throw new Error("pokemon.json 缺少 pokemon 或 movesets 資料。");
+   if(parsed.pokemon.length===0)throw new Error("pokemon.json 的角色清單是空的。");
+   const missing=parsed.pokemon.filter(name=>!parsed.movesets[name]);
+   if(missing.length)throw new Error(`pokemon.json 有 ${missing.length} 隻角色缺少技能設定：${missing.slice(0,5).join("、")}`);
+   data=parsed;
+   roster=parsed.pokemon;
+   nameMap=parsed.nameMap||{};
+   avatars=parsed.avatars||{};
+   roles=parsed.roles||{};
+   moveIcons=parsed.moveIcons||{};
+   load();
+   loadUserData();
+   if(!renderOverlay()){
+    render();
+    renderBackupStatus();
+    if(!startWelcomeTour())showFirstBackupNotice();
+   }
+   return;
+  }catch(error){lastError=error;console.error("Catalogue load failed:",url,error);}
+ }
+ const grid=$("grid");
+ if(grid)grid.innerHTML=`<p class="sub">無法載入 pokemon.json。${escapeHtml(lastError?.message||"請確認安裝檔包含完整資料。")}</p>`;
+}
+loadPokemonCatalogue();
 
 window.addEventListener("storage",e=>{
  if(e.key===STORAGE_KEY){try{state=JSON.parse(e.newValue||"{}");if(new URLSearchParams(location.search).get("mode")==="overlay")renderOverlay();else render();}catch{}}

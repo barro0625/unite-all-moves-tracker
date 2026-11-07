@@ -1,6 +1,6 @@
 {
   "name": "pokemon-unite-all-moves-tracker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pokémon UNITE 全技能組一勝挑戰追蹤器",
   "main": "electron/main.cjs",
   "author": "barro0625",
@@ -16,10 +16,29 @@
   "build": {
     "appId": "tw.barro0625.uniteallmovestracker",
     "productName": "Pokemon Unite Tracker",
-    "directories": { "output": "dist" },
-    "files": ["index.html", "style.css", "app.js", "pokemon.json", "electron/**/*", "package.json"],
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "index.html",
+      "style.css",
+      "app.js",
+      "pokemon.json",
+      "electron/**/*",
+      "package.json"
+    ],
     "asar": true,
-    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }], "artifactName": "Pokemon-Unite-Tracker-Setup-${version}.${ext}" },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Pokemon-Unite-Tracker-Setup-${version}.${ext}"
+    },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
