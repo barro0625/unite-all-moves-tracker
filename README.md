@@ -128,3 +128,29 @@ V23 更新：依使用者更正更新閃電鳥及其後 15 隻角色的技能名
 - 問號功能說明改為固定右下角浮動按鈕，捲動頁面時仍可開啟。
 - 新增網站內更新日誌，整理 V27 至 V30 的主要功能變更。
 - 三條線功能選單加入「查看更新日誌」。
+
+## Windows 桌面程式版（Electron）
+
+此專案可透過 Electron 打包成 Windows x64 安裝程式。桌面版直接載入相同的 `index.html`、`style.css`、`app.js` 與 `pokemon.json`，原有 JSON 備份匯入／匯出功能可用於網站與桌面版之間搬移挑戰資料。
+
+### 本機建置
+
+1. 安裝 Node.js 20 或更新版本。
+2. 在專案根目錄執行 `npm install`。
+3. 執行 `npm run dist:win`。
+4. 安裝檔會產生於 `dist/`。
+
+### GitHub Actions 建置與網站下載入口
+
+- Repository 的 Actions 頁面可手動執行 **Build Windows Installer**，取得 EXE Artifact。
+- 若要發布到 Releases，推送 `desktop-v1.0.0` 形式的 tag，工作流程會建立 GitHub Release 並附上安裝檔。
+- 網站側邊選單的「下載 Windows 桌面版」會連到 GitHub Releases 最新版本頁面。
+
+### 資料移轉
+
+1. 在網站使用「匯出備份」或「快速備份」，下載 JSON。
+2. 安裝並開啟桌面版。
+3. 在桌面版選單中選擇「匯入備份」，選取該 JSON。
+4. 桌面版會依既有匯入流程驗證資料並在匯入前保護目前資料。
+
+網站與桌面版的儲存空間彼此獨立，必須透過 JSON 備份移轉；不會自動同步。
