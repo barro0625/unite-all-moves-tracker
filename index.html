@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><div class="brand-mark">U</div><div><strong>全技能組一勝挑戰</strong><small>POKÉMON UNITE · MOVESET WIN TRACKER · V16</small></div></div>
+  <div class="brand"><div class="brand-mark">U</div><div><strong>全技能組一勝挑戰</strong><small>POKÉMON UNITE · PERSONAL CHALLENGE TRACKER · V27</small></div></div>
   <a class="source-link" href="https://unite-db.com/" target="_blank" rel="noreferrer">UNITE-DB ↗</a>
 </header>
 <main>
@@ -45,7 +45,10 @@
     <label class="search"><span>⌕</span><input id="search" type="search" placeholder="搜尋寶可夢名稱…"></label>
     <select id="roleFilter" aria-label="依角色定位篩選"><option value="all">全部定位</option><option value="攻擊型">攻擊型</option><option value="防禦型">防禦型</option><option value="敏捷型">敏捷型</option><option value="平衡型">平衡型</option><option value="輔助型">輔助型</option></select>
     <select id="filter" aria-label="依挑戰進度篩選"><option value="all">全部進度</option><option value="progress">進行中</option><option value="done">已全數完成</option><option value="not">尚未開始／未設定</option><option value="unconfigured">待設定</option></select>
-    <button class="primary" id="randomBtn">🎲 隨機挑戰</button>
+    <button class="primary" id="randomBtn">🎲 智慧隨機挑戰</button>
+    <select id="savedFilter" aria-label="依收藏狀態篩選"><option value="all">全部角色</option><option value="favorites">★ 我的最愛</option><option value="collection">▣ 我的收藏</option></select>
+    <select id="sortOrder" aria-label="角色排序"><option value="original">原始順序</option><option value="name">名稱排序</option><option value="progress-desc">完成度由高至低</option><option value="progress-asc">完成度由低至高</option><option value="favorites">最愛優先</option></select>
+    <button class="secondary" id="settingsBtn">⚙ 個人化設定</button>
     <button class="secondary" id="exportBtn">匯出備份（自訂檔名）</button>
     <button class="secondary" id="quickExportBtn">快速備份（自動命名）</button>
     <button class="secondary" id="importBtn">匯入備份</button>
@@ -53,7 +56,7 @@
     <button class="secondary" id="obsBtn">OBS 實況模式</button>
     <input id="importFile" type="file" accept="application/json" hidden>
   </section>
-  <div class="section-head"><div><h2>寶可夢列表</h2><p>V16：技能圖示試行與可收合挑戰總覽、未完成技能組與 OBS 實況模式，支援名稱搜尋、定位篩選與隨機挑戰。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
+  <div class="section-head"><div><h2>寶可夢列表</h2><p>V27：支援智慧隨機挑戰、最愛與收藏、個人化設定、備份安全及 OBS 綠幕顯示。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
   <section id="grid" class="pokemon-grid"></section>
   <footer>紀錄儲存在目前瀏覽器；建議定期使用 JSON 匯出備份。<br>非官方粉絲工具，與 Nintendo、The Pokémon Company 或 TiMi Studio Group 無關。</footer>
 </main>
@@ -78,6 +81,40 @@
   <div id="comboList" class="combo-list"></div>
   <div class="dialog-actions"><button class="secondary" id="cancelModal">取消</button><button class="primary" id="saveModal">儲存設定</button></div>
  </div>
+</div>
+<div id="randomModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="randomModalTitle">
+ <div class="modal-backdrop" data-close="1"></div>
+ <section class="dialog feature-dialog">
+  <div class="dialog-head"><div><p class="eyebrow">SMART CHALLENGE 2.0</p><h2 id="randomModalTitle">智慧隨機挑戰</h2></div><button class="icon-btn" id="closeRandomModal" aria-label="關閉">×</button></div>
+  <p class="hint">從尚未完成的角色中抽選目標。每次最多抽出五隻不同寶可夢，每隻提供一組尚未完成的技能組。</p>
+  <div class="feature-form-grid">
+   <label>挑戰職業<select id="randomRole"><option value="all">全部職業</option><option value="攻擊型">攻擊型</option><option value="防禦型">防禦型</option><option value="敏捷型">敏捷型</option><option value="平衡型">平衡型</option><option value="輔助型">輔助型</option></select></label>
+   <label>抽選數量<select id="randomQuantity"><option value="1">1 隻</option><option value="3" selected>3 隻</option><option value="5">5 隻</option></select></label>
+   <label class="wide-field">抽選策略<select id="randomStrategy"><option value="random">完全隨機</option><option value="low-progress">優先完成度較低的角色</option><option value="many-sets">優先剩餘技能組較多的角色</option></select></label>
+   <label class="wide-field">排除角色（以逗號或頓號分隔）<input id="randomExcludeNames" type="text" placeholder="例如：皮卡丘、噴火龍"></label>
+   <label class="check-field wide-field"><input id="randomExcludeFavorites" type="checkbox"> 排除已加入「我的最愛」的角色</label>
+  </div>
+  <div class="dialog-actions"><button class="secondary" id="cancelRandomModal">關閉</button><button class="primary" id="runRandomBtn">🎲 開始抽選</button></div>
+  <div id="randomResults" class="random-results hidden"></div>
+ </section>
+</div>
+<div id="settingsModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
+ <div class="modal-backdrop" data-close="1"></div>
+ <section class="dialog feature-dialog">
+  <div class="dialog-head"><div><p class="eyebrow">PERSONAL PREFERENCES</p><h2 id="settingsModalTitle">個人化設定</h2></div><button class="icon-btn" id="closeSettingsModal" aria-label="關閉">×</button></div>
+  <p class="hint">這些設定只儲存在目前瀏覽器，也會隨新版 JSON 備份一起匯出。</p>
+  <div class="feature-form-grid">
+   <label>介面主題<select id="settingTheme"><option value="dark">深色主題</option><option value="light">淺色主題</option></select></label>
+   <label>角色卡片密度<select id="settingDensity"><option value="comfortable">舒適</option><option value="compact">精簡</option></select></label>
+   <label>預設角色排序<select id="settingSort"><option value="original">原始順序</option><option value="name">名稱排序</option><option value="progress-desc">完成度由高至低</option><option value="progress-asc">完成度由低至高</option><option value="favorites">最愛優先</option></select></label>
+   <label>預設職業篩選<select id="settingRole"><option value="all">全部職業</option><option value="攻擊型">攻擊型</option><option value="防禦型">防禦型</option><option value="敏捷型">敏捷型</option><option value="平衡型">平衡型</option><option value="輔助型">輔助型</option></select></label>
+   <label>預設挑戰進度<select id="settingProgress"><option value="all">全部進度</option><option value="progress">進行中</option><option value="done">已完成</option><option value="not">尚未開始／未設定</option><option value="unconfigured">待設定</option></select></label>
+   <label>OBS 數字大小<select id="settingObsScale"><option value="small">小</option><option value="medium">中</option><option value="large">大</option></select></label>
+   <label class="check-field"><input id="settingAnimations" type="checkbox"> 啟用介面動畫</label>
+   <label class="check-field"><input id="settingObsTitle" type="checkbox"> OBS 顯示標題</label>
+  </div>
+  <div class="dialog-actions"><button class="secondary" id="cancelSettings">取消</button><button class="primary" id="saveSettings">儲存設定</button></div>
+ </section>
 </div>
 <div id="backupNotice" class="backup-notice hidden" role="dialog" aria-modal="true" aria-labelledby="backupNoticeTitle">
  <div class="backup-notice-backdrop"></div>

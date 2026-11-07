@@ -12,7 +12,12 @@ const LEGACY_STORAGE_KEY = "unite-all-moves-win-tracker-v10";
 const OLDER_STORAGE_KEY = "unite-all-moves-win-tracker-v9";
 const LAST_BACKUP_KEY = `${STORAGE_KEY}-last-backup-at`;
 const BACKUP_NOTICE_KEY = `${STORAGE_KEY}-backup-notice-dismissed`;
+const FAVORITES_KEY = `${STORAGE_KEY}-favorites-v1`;
+const COLLECTION_KEY = `${STORAGE_KEY}-collection-v1`;
+const PREFERENCES_KEY = `${STORAGE_KEY}-preferences-v1`;
+const DEFAULT_PREFERENCES = {theme:"dark",density:"comfortable",sort:"original",defaultRole:"all",defaultProgress:"all",animations:true,obsScale:"medium",obsShowTitle:true};
 let roster=[], state={}, activeName=null, draftWins={}, nameMap={}, avatars={}, roles={}, moveIcons={}, draftMove1=[], draftMove2=[];
+let favorites=new Set(), collection=new Set(), preferences={...DEFAULT_PREFERENCES};
 const $=id=>document.getElementById(id);
 const clean=s=>(s||"").split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
 function defaults(){return {mode:"unconfigured",move1:[],move2:[],wins:{}};}
@@ -88,8 +93,8 @@ function renderOverlay(){
  const total=roster.reduce((a,n)=>a+counts(n).total,0);
  const won=roster.reduce((a,n)=>a+counts(n).won,0);
  const done=roster.filter(n=>counts(n).done).length;
- document.body.innerHTML=`<main class="obs-wrap">
-   <div class="obs-title">全技能組一勝挑戰</div>
+ document.body.innerHTML=`<main class="obs-wrap obs-scale-${preferences.obsScale||"medium"}">
+   ${preferences.obsShowTitle?'<div class="obs-title">全技能組一勝挑戰</div>':""}
    <div class="obs-numbers">
      <div class="obs-number"><b>${won}</b><span>已取得勝利</span></div>
      <div class="obs-number"><b>${total-won}</b><span>剩餘技能組</span></div>
@@ -99,9 +104,35 @@ function renderOverlay(){
  return true;
 }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function render(){renderStats();renderUnfinished();const q=$("search").value.trim().toLowerCase(),f=$("filter").value,r=$("roleFilter").value;const list=roster.filter(n=>{const c=counts(n);return (n.toLowerCase().includes(q)||(nameMap[n]||"").toLowerCase().includes(q))&&(r==="all"||roles[n]===r)&&(f==="all"||(f==="progress"&&c.started&&!c.done)||(f==="done"&&c.done)||(f==="not"&&(!c.started||!c.configured))||(f==="unconfigured"&&!c.configured));});$("shownCount").textContent=`${list.length} 隻`;
- $("grid").innerHTML=list.map(n=>{const c=counts(n),pct=c.total?Math.round(c.won/c.total*100):0;const status=!c.configured?'<span class="status">待設定</span>':c.done?'<span class="status done">已完成</span>':c.started?'<span class="status started">進行中</span>':'<span class="status">未開始</span>';const avatar=avatars[n]||"";const role=roles[n]||"未分類";const roleClass={"攻擊型":"attacker","防禦型":"defender","敏捷型":"speedster","平衡型":"allrounder","輔助型":"supporter"}[role]||"";return `<article class="pokemon-card role-${roleClass}" data-name="${escapeHtml(n)}"><div class="card-top"><div class="pokemon-identity">${avatar?`<img class="pokemon-avatar" src="${escapeHtml(avatar)}" alt="${escapeHtml(n)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:""}<span class="avatar-fallback" style="${avatar?"display:none":""}">${escapeHtml(n.slice(0,1))}</span><div class="pokemon-title"><span class="pokemon-name">${escapeHtml(n)}</span><small>${escapeHtml(nameMap[n]||"")}</small></div></div><div class="card-tags"><span class="role-tag">${escapeHtml(role)}</span>${status}</div></div><div class="card-progress"><span style="width:${pct}%"></span></div><div class="card-bottom"><span>${c.configured?`${c.won} / ${c.total} 組勝利`:"技能資料尚未設定"}</span><b>${c.configured?pct+"%":"—"}</b></div></article>`;}).join("");
- $("grid").querySelectorAll(".pokemon-card").forEach(el=>el.addEventListener("click",()=>openModal(el.dataset.name)));if(!list.length)$("grid").innerHTML='<p class="sub">找不到符合條件的寶可夢。</p>';}
+function render(){
+ renderStats();renderUnfinished();
+ const q=$("search").value.trim().toLowerCase(),f=$("filter").value,r=$("roleFilter").value,mark=$("savedFilter")?.value||"all";
+ let list=roster.filter(n=>{
+  const c=counts(n);
+  return (n.toLowerCase().includes(q)||(nameMap[n]||"").toLowerCase().includes(q)) &&
+   (r==="all"||roles[n]===r) &&
+   (f==="all"||(f==="progress"&&c.started&&!c.done)||(f==="done"&&c.done)||(f==="not"&&(!c.started||!c.configured))||(f==="unconfigured"&&!c.configured)) &&
+   (mark==="all"||(mark==="favorites"&&favorites.has(n))||(mark==="collection"&&collection.has(n)));
+ });
+ const sort=$("sortOrder")?.value||preferences.sort;
+ if(sort==="name")list.sort((a,b)=>a.localeCompare(b,"zh-Hant"));
+ else if(sort==="progress-desc")list.sort((a,b)=>completionRatio(b)-completionRatio(a));
+ else if(sort==="progress-asc")list.sort((a,b)=>completionRatio(a)-completionRatio(b));
+ else if(sort==="favorites")list.sort((a,b)=>Number(favorites.has(b))-Number(favorites.has(a))||roster.indexOf(a)-roster.indexOf(b));
+ $("shownCount").textContent=`${list.length} 隻`;
+ $("grid").innerHTML=list.map(n=>{
+  const c=counts(n),pct=c.total?Math.round(c.won/c.total*100):0;
+  const status=!c.configured?'<span class="status">待設定</span>':c.done?'<span class="status done">已完成</span>':c.started?'<span class="status started">進行中</span>':'<span class="status">未開始</span>';
+  const avatar=avatars[n]||"",role=roles[n]||"未分類";
+  const roleClass={"攻擊型":"attacker","防禦型":"defender","敏捷型":"speedster","平衡型":"allrounder","輔助型":"supporter"}[role]||"";
+  const isFavorite=favorites.has(n),isCollected=collection.has(n);
+  return `<article class="pokemon-card role-${roleClass}" data-name="${escapeHtml(n)}"><div class="card-top"><div class="pokemon-identity">${avatar?`<img class="pokemon-avatar" src="${escapeHtml(avatar)}" alt="${escapeHtml(n)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:""}<span class="avatar-fallback" style="${avatar?"display:none":""}">${escapeHtml(n.slice(0,1))}</span><div class="pokemon-title"><span class="pokemon-name">${escapeHtml(n)}</span><small>${escapeHtml(nameMap[n]||"")}</small></div></div><div class="card-tags"><span class="role-tag">${escapeHtml(role)}</span>${status}<div class="card-markers"><button type="button" class="mark-btn favorite-btn ${isFavorite?"active":""}" data-action="favorite" data-name="${escapeHtml(n)}" aria-label="${isFavorite?"取消最愛":"加入最愛"}" title="${isFavorite?"取消最愛":"加入最愛"}">${isFavorite?"★":"☆"}</button><button type="button" class="mark-btn collection-btn ${isCollected?"active":""}" data-action="collection" data-name="${escapeHtml(n)}" aria-label="${isCollected?"移出收藏":"加入收藏"}" title="${isCollected?"移出收藏":"加入收藏"}">${isCollected?"▣":"▢"}</button></div></div></div><div class="card-progress"><span style="width:${pct}%"></span></div><div class="card-bottom"><span>${c.configured?`${c.won} / ${c.total} 組勝利`:"技能資料尚未設定"}</span><b>${c.configured?pct+"%":"—"}</b></div></article>`;
+ }).join("");
+ $("grid").querySelectorAll(".pokemon-card").forEach(el=>el.addEventListener("click",e=>{if(e.target.closest(".mark-btn"))return;openModal(el.dataset.name);}));
+ $("grid").querySelectorAll(".mark-btn").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();toggleSaved(btn.dataset.name,btn.dataset.action);}));
+ if(!list.length)$("grid").innerHTML='<p class="sub">找不到符合條件的寶可夢。</p>';
+}
+function completionRatio(name){const c=counts(name);return c.total?c.won/c.total:0;}
 function readDraft(){return {mode:$("countMode").value,move1:clean($("move1").value),move2:clean($("move2").value)};}
 function syncModeUI(){const mode=$("countMode").value,single=mode==="single",paths=mode==="paths",unconfigured=mode==="unconfigured";$("move1Label").style.display=unconfigured?"none":"";$("move2Label").style.display=(single||paths||unconfigured)?"none":"";$("move1Label").firstChild.textContent=paths?"固定流派（每行一套完整技能搭配）":single?"技能名稱（僅供參考）":"技能一選項";$("move1").disabled=unconfigured;$("move2").disabled=single||paths||unconfigured;$("move1").value=draftMove1.join("\n");$("move2").value=draftMove2.join("\n");$("move1").placeholder=paths?"例如：一擊流：技能A＋技能B":single?"每行一個技能名稱":"每行一個技能選項";}
 function openModal(name){activeName=name;const c=getConfig(name);$("modalTitle").textContent=name;const avatar=$("modalAvatar");avatar.src=avatars[name]||"";avatar.alt=name;avatar.style.display=avatars[name]?"block":"none";avatar.onerror=()=>avatar.style.display="none";$("countMode").value=c.mode;draftMove1=[...c.move1];draftMove2=[...c.move2];draftWins={...c.wins};syncModeUI();renderCombos();$("modal").classList.remove("hidden");document.body.style.overflow="hidden";}
@@ -164,6 +195,100 @@ function renderCombos(){const cfg=readDraft(),list=combos(cfg);$("comboSummary")
  $("comboList").querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{const id=decodeURIComponent(btn.dataset.id);draftWins[id]=!draftWins[id];renderCombos();}));}
 function saveCurrent(){const cfg=readDraft();if(cfg.mode==="combination"&&(!cfg.move1.length||!cfg.move2.length)){alert("自動組合模式下，技能一與技能二都至少需要一個選項。");return;}if((cfg.mode==="single"||cfg.mode==="paths")&&!cfg.move1.length){alert(cfg.mode==="paths"?"固定流派模式至少需要填寫一套完整技能搭配。":"單一勝利模式至少需要填寫一個技能名稱。");return;}if(cfg.move1.length>8||cfg.move2.length>4){alert("最多可填 8 個技能選項或固定流派。");return;}const valid=new Set(combos(cfg).map(x=>x.id)),wins={};Object.keys(draftWins).forEach(k=>{if(valid.has(k)&&draftWins[k])wins[k]=true;});state[activeName]={...cfg,wins};save();closeModal();render();toast("已儲存 "+activeName+" 的設定");}
 function toast(msg){$("toast").textContent=msg;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1800);}
+function loadUserData(){
+ try{favorites=new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY)||"[]").filter(n=>roster.includes(n)));}catch{favorites=new Set();}
+ try{collection=new Set(JSON.parse(localStorage.getItem(COLLECTION_KEY)||"[]").filter(n=>roster.includes(n)));}catch{collection=new Set();}
+ try{preferences={...DEFAULT_PREFERENCES,...JSON.parse(localStorage.getItem(PREFERENCES_KEY)||"{}")};}catch{preferences={...DEFAULT_PREFERENCES};}
+ applyPreferences();
+}
+function saveUserData(){
+ const keys=[FAVORITES_KEY,COLLECTION_KEY,PREFERENCES_KEY];
+ const values=[JSON.stringify([...favorites]),JSON.stringify([...collection]),JSON.stringify(preferences)];
+ const previous=Object.fromEntries(keys.map(key=>[key,localStorage.getItem(key)]));
+ try{keys.forEach((key,index)=>localStorage.setItem(key,values[index]));}
+ catch(error){
+  keys.forEach(key=>{try{if(previous[key]===null)localStorage.removeItem(key);else localStorage.setItem(key,previous[key]);}catch(rollbackError){console.error("User-data rollback failed for",key,rollbackError);}});
+  throw error;
+ }
+}
+function toggleSaved(name,type){
+ const target=type==="favorite"?favorites:collection;
+ if(target.has(name))target.delete(name);else target.add(name);
+ try{saveUserData();}catch(error){alert("無法儲存收藏設定，請檢查瀏覽器網站儲存空間。");if(target.has(name))target.delete(name);else target.add(name);return;}
+ render();
+ toast(type==="favorite"?(favorites.has(name)?`已將 ${name} 加入最愛`:`已取消 ${name} 的最愛`):(collection.has(name)?`已將 ${name} 加入收藏`:`已將 ${name} 移出收藏`));
+}
+function applyPreferences(){
+ document.body.classList.toggle("light-theme",preferences.theme==="light");
+ document.body.classList.toggle("compact-cards",preferences.density==="compact");
+ document.body.classList.toggle("reduce-motion",!preferences.animations);
+ const role=$("roleFilter"),progress=$("filter"),sort=$("sortOrder");
+ if(role)role.value=preferences.defaultRole||"all";
+ if(progress)progress.value=preferences.defaultProgress||"all";
+ if(sort)sort.value=preferences.sort||"original";
+}
+function openSettings(){
+ $("settingTheme").value=preferences.theme;
+ $("settingDensity").value=preferences.density;
+ $("settingSort").value=preferences.sort;
+ $("settingRole").value=preferences.defaultRole;
+ $("settingProgress").value=preferences.defaultProgress;
+ $("settingAnimations").checked=!!preferences.animations;
+ $("settingObsScale").value=preferences.obsScale;
+ $("settingObsTitle").checked=!!preferences.obsShowTitle;
+ $("settingsModal").classList.remove("hidden");document.body.style.overflow="hidden";
+}
+function closeSettings(){$("settingsModal").classList.add("hidden");document.body.style.overflow="";}
+function saveSettings(){
+ preferences={
+  theme:$("settingTheme").value,
+  density:$("settingDensity").value,
+  sort:$("settingSort").value,
+  defaultRole:$("settingRole").value,
+  defaultProgress:$("settingProgress").value,
+  animations:$("settingAnimations").checked,
+  obsScale:$("settingObsScale").value,
+  obsShowTitle:$("settingObsTitle").checked
+ };
+ try{saveUserData();}catch(error){alert("設定儲存失敗，原本設定仍會保留。");loadUserData();return;}
+ applyPreferences();$("savedFilter").value="all";render();closeSettings();toast("個人化設定已儲存");
+}
+function openRandomModal(){
+ $("randomRole").value="all";$("randomQuantity").value="3";$("randomStrategy").value="random";$("randomExcludeFavorites").checked=false;$("randomExcludeNames").value="";
+ $("randomResults").innerHTML="";$("randomResults").classList.add("hidden");
+ $("randomModal").classList.remove("hidden");document.body.style.overflow="hidden";
+}
+function closeRandomModal(){$("randomModal").classList.add("hidden");document.body.style.overflow="";}
+function drawSmartChallenges(){
+ const role=$("randomRole").value,quantity=Number($("randomQuantity").value)||1,strategy=$("randomStrategy").value;
+ const excluded=new Set($("randomExcludeNames").value.split(/[、,，;；]+/).map(x=>x.trim()).filter(Boolean));
+ const excludeFavorites=$("randomExcludeFavorites").checked;
+ const pool=[];
+ roster.forEach(name=>{
+  if(role!=="all"&&roles[name]!==role)return;
+  if(excluded.has(name)||(nameMap[name]&&excluded.has(nameMap[name])))return;
+  if(excludeFavorites&&favorites.has(name))return;
+  const cfg=getConfig(name),all=combos(cfg),remaining=all.filter(combo=>!cfg.wins[combo.id]);
+  if(!remaining.length)return;
+  const picked=remaining[Math.floor(Math.random()*remaining.length)];
+  const c=counts(name);
+  pool.push({name,id:picked.id,label:picked.label,ratio:c.total?c.won/c.total:0,remaining:remaining.length,won:c.won,total:c.total,tie:Math.random()});
+ });
+ if(strategy==="low-progress")pool.sort((a,b)=>a.ratio-b.ratio||a.tie-b.tie);
+ else if(strategy==="many-sets")pool.sort((a,b)=>b.remaining-a.remaining||a.tie-b.tie);
+ else for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+ const result=pool.slice(0,quantity);
+ if(!result.length){toast("沒有符合條件的未完成角色，請調整篩選條件。");return;}
+ $("randomResults").classList.remove("hidden");
+ $("randomResults").innerHTML=`<div class="random-result-head"><strong>抽選結果</strong><span>${result.length} / ${quantity} 個目標</span></div>`+result.map((item,index)=>`<button type="button" class="random-result-item" data-name="${escapeHtml(item.name)}" data-combo="${encodeURIComponent(item.id)}"><span class="random-result-index">${index+1}</span><span class="random-result-info"><b>${escapeHtml(item.name)}</b><small>${escapeHtml(item.label)} · 目前 ${item.won}/${item.total} 勝</small></span><span class="random-result-open">開啟 ›</span></button>`).join("");
+ $("randomResults").querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{
+  const name=btn.dataset.name,id=decodeURIComponent(btn.dataset.combo);
+  closeRandomModal();$("search").value="";$("filter").value="all";$("roleFilter").value="all";$("savedFilter").value="all";render();openModal(name);
+  setTimeout(()=>{const row=[...$("comboList").querySelectorAll(".combo-row")].find(el=>el.querySelector("button")?.dataset.id===encodeURIComponent(id));if(row){row.classList.add("random-highlight");row.scrollIntoView({behavior:preferences.animations?"smooth":"auto",block:"center"});}},80);
+  toast(`挑戰目標：${name}`);
+ }));
+ if(result.length<quantity)toast(`符合條件的角色只有 ${result.length} 隻，已全部列出。`);
+}
 function formatBackupDate(value){
  const date=new Date(value);
  if(Number.isNaN(date.getTime()))return "日期資料無法辨識";
@@ -181,7 +306,7 @@ function makeBackupTimestamp(date=new Date()){
  return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}_${pad(date.getHours())}-${pad(date.getMinutes())}-${pad(date.getSeconds())}`;
 }
 function makeBackupPayload(now=new Date()){
- return {format:"pokemon-unite-challenge-backup",version:23,exportedAt:now.toISOString(),state};
+ return {format:"pokemon-unite-challenge-backup",version:24,exportedAt:now.toISOString(),state,userData:{favorites:[...favorites],collection:[...collection],preferences:{...preferences}}};
 }
 function sanitizeBackupFilename(input,fallback){
  let name=String(input??"").trim();
@@ -259,8 +384,25 @@ function validateBackupPayload(obj){
    }
   }
  }
+ // Validate optional user data from newer backups. Older backup files remain supported.
+ let userData=null;
+ if(obj.userData!==undefined){
+  const u=obj.userData;
+  if(!u||typeof u!=="object"||Array.isArray(u))throw new Error("個人化資料格式不正確。");
+  const validateNameList=(value,label)=>{
+   if(!Array.isArray(value)||value.length>roster.length||!value.every(n=>typeof n==="string"&&roster.includes(n)))throw new Error(`${label}清單格式不正確。`);
+   return [...new Set(value)];
+  };
+  const raw=u.preferences===undefined?{}:u.preferences;
+  if(!raw||typeof raw!=="object"||Array.isArray(raw))throw new Error("個人化設定必須是 JSON 物件。");
+  const allowed={theme:["dark","light"],density:["comfortable","compact"],sort:["original","name","progress-desc","progress-asc","favorites"],defaultRole:["all","攻擊型","防禦型","敏捷型","平衡型","輔助型"],defaultProgress:["all","progress","done","not","unconfigured"],obsScale:["small","medium","large"]};
+  const cleanPrefs={...DEFAULT_PREFERENCES};
+  for(const [key,values] of Object.entries(allowed)){if(raw[key]!==undefined){if(!values.includes(raw[key]))throw new Error(`個人化設定「${key}」的值無效。`);cleanPrefs[key]=raw[key];}}
+  for(const key of ["animations","obsShowTitle"]){if(raw[key]!==undefined){if(typeof raw[key]!=="boolean")throw new Error(`個人化設定「${key}」必須是布林值。`);cleanPrefs[key]=raw[key];}}
+  userData={favorites:validateNameList(u.favorites||[],"最愛"),collection:validateNameList(u.collection||[],"收藏"),preferences:cleanPrefs};
+ }
  // JSON.parse creates plain data only. Clone before committing so the validated object is detached.
- return JSON.parse(JSON.stringify(obj.state));
+ return {state:JSON.parse(JSON.stringify(obj.state)),userData};
 }
 function showFirstBackupNotice(){
  let dismissed=false;
@@ -288,7 +430,9 @@ $("importFile").onchange=async e=>{
  try{
   if(file.size>5*1024*1024)throw new Error("備份檔超過 5 MB，已取消匯入。");
   const parsed=JSON.parse(await file.text());
-  const candidateState=validateBackupPayload(parsed);
+  const validated=validateBackupPayload(parsed);
+  const candidateState=validated.state;
+  const candidateUserData=validated.userData;
   const proceed=confirm(`備份檔格式驗證通過。
 
 匯入會取代目前瀏覽器中的挑戰紀錄。為保護現有資料，按「確定」會先自動下載一份目前紀錄的備份，再繼續匯入；按「取消」則完全不變更資料。
@@ -298,10 +442,21 @@ $("importFile").onchange=async e=>{
   if(!downloadBackup("before-import"))throw new Error("匯入前備份下載失敗，為避免資料遺失，已取消匯入。原有紀錄沒有變更。");
   // Atomic commit: persist the fully validated candidate before changing in-memory state.
   // If localStorage throws (for example, quota/security restrictions), the current state stays intact.
-  let serialized;
-  try{serialized=JSON.stringify(candidateState);localStorage.setItem(STORAGE_KEY,serialized);}
-  catch(storageError){throw new Error("無法儲存匯入資料（可能是瀏覽器儲存空間不足或權限受限）。原有紀錄沒有變更。");}
+  const storageKeys=[STORAGE_KEY,FAVORITES_KEY,COLLECTION_KEY,PREFERENCES_KEY];
+  const oldValues=Object.fromEntries(storageKeys.map(key=>[key,localStorage.getItem(key)]));
+  try{
+   localStorage.setItem(STORAGE_KEY,JSON.stringify(candidateState));
+   if(candidateUserData){
+    localStorage.setItem(FAVORITES_KEY,JSON.stringify(candidateUserData.favorites));
+    localStorage.setItem(COLLECTION_KEY,JSON.stringify(candidateUserData.collection));
+    localStorage.setItem(PREFERENCES_KEY,JSON.stringify(candidateUserData.preferences));
+   }
+  }catch(storageError){
+   for(const key of storageKeys){try{if(oldValues[key]===null)localStorage.removeItem(key);else localStorage.setItem(key,oldValues[key]);}catch(rollbackError){console.error("Import rollback failed for",key,rollbackError);}}
+   throw new Error("無法儲存匯入資料（可能是瀏覽器儲存空間不足或權限受限）。系統已嘗試還原原資料，請重新整理後確認紀錄。");
+  }
   state=candidateState;
+  if(candidateUserData){favorites=new Set(candidateUserData.favorites);collection=new Set(candidateUserData.collection);preferences={...DEFAULT_PREFERENCES,...candidateUserData.preferences};applyPreferences();}
   render();
   toast("備份匯入成功，原紀錄已先備份。");
  }catch(error){
@@ -314,16 +469,19 @@ $("importFile").onchange=async e=>{
 $("backupNoticeDismiss").onclick=dismissFirstBackupNotice;
 $("backupNoticeExport").onclick=()=>{if(downloadBackup()){dismissFirstBackupNotice();toast("快速備份已匯出，請妥善保存檔案。");}else alert("無法建立備份檔，請稍後再試。");};
 
-// V11 隨機挑戰：從所有尚未取得勝利的技能組中抽選。
-$("randomBtn").onclick=()=>{
- const pool=[];
- roster.forEach(name=>{const cfg=getConfig(name);combos(cfg).forEach(combo=>{if(!cfg.wins[combo.id])pool.push({name,id:combo.id,label:combo.label});});});
- if(!pool.length){toast("所有已設定技能組都完成了！");return;}
- const pick=pool[Math.floor(Math.random()*pool.length)];
- $("search").value="";$("filter").value="all";$("roleFilter").value="all";render();openModal(pick.name);
- setTimeout(()=>{const row=[...$("comboList").querySelectorAll(".combo-row")].find(el=>el.querySelector("button")?.dataset.id===encodeURIComponent(pick.id));if(row){row.classList.add("random-highlight");row.scrollIntoView({behavior:"smooth",block:"center"});}},80);
- toast(`隨機挑戰：${pick.name}｜${pick.label}`);
-};
+// Smart Random Challenge 2.0
+$("randomBtn").onclick=openRandomModal;
+$("runRandomBtn").onclick=drawSmartChallenges;
+$("closeRandomModal").onclick=closeRandomModal;
+$("cancelRandomModal").onclick=closeRandomModal;
+$("randomModal").addEventListener("click",e=>{if(e.target.dataset.close)closeRandomModal();});
+$("settingsBtn").onclick=openSettings;
+$("closeSettingsModal").onclick=closeSettings;
+$("cancelSettings").onclick=closeSettings;
+$("saveSettings").onclick=saveSettings;
+$("settingsModal").addEventListener("click",e=>{if(e.target.dataset.close)closeSettings();});
+$("savedFilter").addEventListener("change",render);
+$("sortOrder").addEventListener("change",render);
 
 // V15：以明確按鈕控制兩個面板，避免原生 details/summary 在部分樣式或瀏覽器下無法辨識。
 document.querySelectorAll("[data-panel-toggle]").forEach(button=>{
@@ -336,8 +494,11 @@ document.querySelectorAll("[data-panel-toggle]").forEach(button=>{
  });
 });
 
-let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};moveIcons=d.moveIcons||{};load();if(!renderOverlay()){render();renderBackupStatus();showFirstBackupNotice();}}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
+let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};moveIcons=d.moveIcons||{};load();loadUserData();if(!renderOverlay()){render();renderBackupStatus();showFirstBackupNotice();}}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
 
-window.addEventListener("storage",e=>{if(e.key===STORAGE_KEY){try{state=JSON.parse(e.newValue||"{}");if(new URLSearchParams(location.search).get("mode")==="overlay")renderOverlay();else render();}catch{}}});
+window.addEventListener("storage",e=>{
+ if(e.key===STORAGE_KEY){try{state=JSON.parse(e.newValue||"{}");if(new URLSearchParams(location.search).get("mode")==="overlay")renderOverlay();else render();}catch{}}
+ if([FAVORITES_KEY,COLLECTION_KEY,PREFERENCES_KEY].includes(e.key)){loadUserData();if(new URLSearchParams(location.search).get("mode")==="overlay")renderOverlay();else render();}
+});
 
 if(new URLSearchParams(location.search).get("mode")==="overlay"){setInterval(()=>{if(data&&roster.length)renderOverlay();},2000);}
