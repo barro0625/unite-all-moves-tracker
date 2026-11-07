@@ -17,8 +17,7 @@ function defaults(){return {mode:"unconfigured",move1:[],move2:[],wins:{}};}
 function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
 function load(){
  try{
-   const v24=localStorage.getItem(STORAGE_KEY);
-   const v23=localStorage.getItem(PREV_V23_KEY);
+   const v23=localStorage.getItem(STORAGE_KEY);
    const v22=localStorage.getItem(PREV_V22_KEY);
     const v21=localStorage.getItem(PREV_V21_KEY);
    const v20=localStorage.getItem(PREV_V20_KEY);
@@ -29,7 +28,7 @@ function load(){
    const v7=localStorage.getItem(PREVIOUS_STORAGE_KEY);
    const v6=localStorage.getItem(LEGACY_STORAGE_KEY);
    const v5=localStorage.getItem(OLDER_STORAGE_KEY);
-   state=JSON.parse(v24 || v23 || v22 || v21 || v20 || v19 || v14 || v13 || v12 || v7 || v6 || v5 || "{}");
+   state=JSON.parse(v23 || v22 || v21 || v20 || v19 || v14 || v13 || v12 || v7 || v6 || v5 || "{}");
  }catch{state={};}
  Object.entries(nameMap).forEach(([zh,en])=>{if(state[en]&&!state[zh])state[zh]=state[en];if(state[en])delete state[en];});
  const presets=data.movesets||{};
@@ -114,23 +113,9 @@ const uniteDbSkillFolders = {
  "爆肌蚊":"Buzzwole", "蒼炎刃鬼":"Ceruledge", "水晶燈火靈":"Chandelure", "噴火龍":"Charizard",
  "皮可西":"Clefable", "花療環環":"Comfey", "古月鳥":"Cramorant", "岩殿居蟹":"Crustle"
 };
-// 從已人工核對的技能對照中建立共用字典。同名技能可跨寶可夢共用英文名稱，
-// 不必每個角色重複維護；沒有可靠對照的技能仍顯示預設圖示，避免配錯。
-function sharedEnglishMove(move){
- for(const mapping of Object.values(moveIcons)){
-  if(mapping && mapping[move]) return mapping[move];
- }
- return "";
-}
-function skillFolder(name){
- if(uniteDbSkillFolders[name]) return uniteDbSkillFolders[name];
- const english=nameMap[name]||"";
- if(!english)return "";
- return english.replace(/^(Alolan|Galarian|Hisuian|Mega)\s+/i,"").replace(/\s+(X|Y)$/i,"");
-}
 function uniteDbMoveIconUrl(name, move){
- const folder=skillFolder(name);
- const englishMove=moveIcons[name]?.[move] || sharedEnglishMove(move);
+ const folder=uniteDbSkillFolders[name];
+ const englishMove=moveIcons[name]?.[move];
  if(!folder||!englishMove)return "";
  const file=encodeURIComponent(englishMove).replaceAll("%20","+");
  return `${UNITE_DB_SKILL_CDN}/${folder}/${file}.png`;
@@ -138,7 +123,7 @@ function uniteDbMoveIconUrl(name, move){
 function legacyMoveIconUrl(name, move){
  const direct=directMoveIconUrls[name]?.[move];
  if(direct)return direct;
- const en=nameMap[name],slug=moveIcons[name]?.[move] || sharedEnglishMove(move);
+ const en=nameMap[name],slug=moveIcons[name]?.[move];
  if(!en||!slug)return "";
  const file=`UNITE_${en.replaceAll(" ","_")}_${slug.replaceAll(" ","_")}.png`;
  return `https://archives.bulbagarden.net/wiki/Special:Redirect/file/${encodeURIComponent(file).replaceAll("%2F","/")}`;
@@ -165,7 +150,7 @@ $("search").addEventListener("input",render);$("filter").addEventListener("chang
 $("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
 $("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
 $("resetPokemon").onclick=()=>{if(confirm("確定要清除此寶可夢的所有設定與勝利紀錄？")){draftWins={};draftMove1=[];draftMove2=[];$("countMode").value="unconfigured";syncModeUI();renderCombos();}};
-$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:24,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v24.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:21,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v20.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
 $("importBtn").onclick=()=>$("importFile").click();$("obsBtn").onclick=()=>window.open(location.pathname+"?mode=overlay","unite-obs-overlay","width=900,height=500");
 $("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前挑戰紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
 
