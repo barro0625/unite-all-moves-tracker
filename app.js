@@ -20,6 +20,7 @@ let roster=[], state={}, activeName=null, draftWins={}, nameMap={}, avatars={}, 
 let favorites=new Set(), collection=new Set(), preferences={...DEFAULT_PREFERENCES};
 const $=id=>document.getElementById(id);
 const clean=s=>(s||"").split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+function tr(value){return window.__i18n?.t(value)||value;}
 function displayPokemonName(name){return window.__i18n?.displayPokemonName(name)||name;}
 function displayMoveName(name,move){if(window.__i18n?.lang==="en")return moveIcons[name]?.[move]||move;return move;}
 function defaults(){return {mode:"unconfigured",move1:[],move2:[],wins:{}};}
@@ -86,7 +87,7 @@ function combos(cfg){
  return a.flatMap(x=>b.map(y=>({id:x+"|||"+y,label:x+" ＋ "+y})));
 }
 function counts(name){const c=getConfig(name),list=combos(c),won=list.filter(x=>c.wins[x.id]).length;return {won,total:list.length,done:list.length>0&&won===list.length,started:won>0,configured:c.mode!=="unconfigured"&&list.length>0};}
-function renderStats(){let total=0,won=0,done=0,configured=0;const byRole={};roster.forEach(n=>{const c=counts(n),r=roles[n]||"未分類";total+=c.total;won+=c.won;if(c.done)done++;if(c.configured)configured++;if(!byRole[r])byRole[r]={pokemon:0,done:0,won:0,total:0};byRole[r].pokemon++;byRole[r].won+=c.won;byRole[r].total+=c.total;if(c.done)byRole[r].done++;});$("wonCount").textContent=won;$("totalCount").textContent=total;$("leftCount").textContent=total-won;$("donePokemon").textContent=done;$("rosterCount").textContent=`共 ${roster.length} 隻角色 · 已設定 ${configured} 隻`;$ ("wonPct").textContent=(total?Math.round(won/total*100):0)+"% 完成";const pct=total?Math.round(won/total*100):0;if($("overallPct")){ $("overallPct").textContent=pct+"%";$("overallBar").style.width=pct+"%";const order=["攻擊型","防禦型","敏捷型","平衡型","輔助型"];const colors={"攻擊型":"#e45d65","防禦型":"#45c78e","敏捷型":"#4e9fe7","平衡型":"#b28af0","輔助型":"#e5b84f"};$("roleOverview").innerHTML=order.map(r=>{const x=byRole[r]||{pokemon:0,done:0,won:0,total:0};return `<div class="overview-role" style="border-top:3px solid ${colors[r]}"><small>${r} · ${x.pokemon} 隻</small><strong>${x.done}/${x.pokemon}</strong><small>角色完成 · ${x.won}/${x.total} 組勝利</small></div>`;}).join("");}}
+function renderStats(){let total=0,won=0,done=0,configured=0;const byRole={};roster.forEach(n=>{const c=counts(n),r=roles[n]||"未分類";total+=c.total;won+=c.won;if(c.done)done++;if(c.configured)configured++;if(!byRole[r])byRole[r]={pokemon:0,done:0,won:0,total:0};byRole[r].pokemon++;byRole[r].won+=c.won;byRole[r].total+=c.total;if(c.done)byRole[r].done++;});$("wonCount").textContent=won;$("totalCount").textContent=total;$("leftCount").textContent=total-won;$("donePokemon").textContent=done;$("rosterCount").textContent=window.__i18n?.lang==="zh"?`共 ${roster.length} 隻角色 · 已設定 ${configured} 隻`:`${tr("共")}${roster.length}${tr("隻角色")} · ${tr("已設定")}${configured}${tr("隻")}`;$ ("wonPct").textContent=(total?Math.round(won/total*100):0)+"% 完成";const pct=total?Math.round(won/total*100):0;if($("overallPct")){ $("overallPct").textContent=pct+"%";$("overallBar").style.width=pct+"%";const order=["攻擊型","防禦型","敏捷型","平衡型","輔助型"];const colors={"攻擊型":"#e45d65","防禦型":"#45c78e","敏捷型":"#4e9fe7","平衡型":"#b28af0","輔助型":"#e5b84f"};$("roleOverview").innerHTML=order.map(r=>{const x=byRole[r]||{pokemon:0,done:0,won:0,total:0};return `<div class="overview-role" style="border-top:3px solid ${colors[r]}"><small>${tr(r)} · ${x.pokemon} ${tr("隻")}</small><strong>${x.done}/${x.pokemon}</strong><small>${tr("角色完成")} · ${x.won}/${x.total} ${tr("組勝利")}</small></div>`;}).join("");}}
 function renderUnfinished(){const items=[];roster.forEach(name=>{const cfg=getConfig(name);combos(cfg).forEach(x=>{if(!cfg.wins[x.id])items.push({name,label:x.label});});});const box=$("unfinishedList");if(!box)return;$("unfinishedCount").textContent=items.length+" 組";box.innerHTML=items.length?items.slice(0,40).map((x,i)=>`<button class="unfinished-item" data-name="${escapeHtml(x.name)}"><span><b>${escapeHtml(displayPokemonName(x.name))}</b><small>${escapeHtml(x.label)}</small></span><span>›</span></button>`).join(""):'<div class="unfinished-empty">🎉 所有已設定的技能組都完成了！</div>';box.querySelectorAll("button").forEach(b=>b.onclick=()=>openModal(b.dataset.name));}
 function renderOverlay(){
  const mode=new URLSearchParams(location.search).get("mode");
@@ -96,11 +97,11 @@ function renderOverlay(){
  const won=roster.reduce((a,n)=>a+counts(n).won,0);
  const done=roster.filter(n=>counts(n).done).length;
  document.body.innerHTML=`<main class="obs-wrap obs-scale-${preferences.obsScale||"medium"}">
-   ${preferences.obsShowTitle?'<div class="obs-title">全技能組一勝挑戰</div>':""}
+   ${preferences.obsShowTitle?`<div class="obs-title">${tr("全技能組一勝挑戰")}</div>`:""}
    <div class="obs-numbers">
-     <div class="obs-number"><b>${won}</b><span>已取得勝利</span></div>
-     <div class="obs-number"><b>${total-won}</b><span>剩餘技能組</span></div>
-     <div class="obs-number"><b>${done}/${roster.length}</b><span>完成角色</span></div>
+     <div class="obs-number"><b>${won}</b><span>${tr("已取得勝利")}</span></div>
+     <div class="obs-number"><b>${total-won}</b><span>${tr("剩餘技能組")}</span></div>
+     <div class="obs-number"><b>${done}/${roster.length}</b><span>${tr("完成角色")}</span></div>
    </div>
  </main>`;
  return true;
@@ -124,11 +125,11 @@ function render(){
  $("shownCount").textContent=`${list.length} 隻`;
  $("grid").innerHTML=list.map(n=>{
   const c=counts(n),pct=c.total?Math.round(c.won/c.total*100):0;
-  const status=!c.configured?'<span class="status">待設定</span>':c.done?'<span class="status done">已完成</span>':c.started?'<span class="status started">進行中</span>':'<span class="status">未開始</span>';
-  const avatar=avatars[n]||"",role=roles[n]||"未分類";
+  const status=!c.configured?`<span class="status">${tr("待設定")}</span>`:c.done?`<span class="status done">${tr("已完成")}</span>`:c.started?`<span class="status started">${tr("進行中")}</span>`:`<span class="status">${tr("未開始")}</span>`;
+  const avatar=avatars[n]||"",role=tr(roles[n]||"未分類");
   const roleClass={"攻擊型":"attacker","防禦型":"defender","敏捷型":"speedster","平衡型":"allrounder","輔助型":"supporter"}[role]||"";
   const isFavorite=favorites.has(n),isCollected=collection.has(n);
-  return `<article class="pokemon-card role-${roleClass}" data-name="${escapeHtml(n)}"><div class="card-top"><div class="pokemon-identity">${avatar?`<img class="pokemon-avatar" src="${escapeHtml(avatar)}" alt="${escapeHtml(n)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:""}<span class="avatar-fallback" style="${avatar?"display:none":""}">${escapeHtml(n.slice(0,1))}</span><div class="pokemon-title"><span class="pokemon-name">${escapeHtml(displayPokemonName(n))}</span><small>${escapeHtml(window.__i18n?.lang==="en"?n:window.__i18n?.lang==="ja"?(nameMap[n]||""):(nameMap[n]||""))}</small></div></div><div class="card-tags"><span class="role-tag">${escapeHtml(role)}</span>${status}<div class="card-markers"><button type="button" class="mark-btn favorite-btn ${isFavorite?"active":""}" data-action="favorite" data-name="${escapeHtml(n)}" aria-label="${isFavorite?"取消最愛":"加入最愛"}" title="${isFavorite?"取消最愛":"加入最愛"}">${isFavorite?"★":"☆"}</button><button type="button" class="mark-btn collection-btn ${isCollected?"active":""}" data-action="collection" data-name="${escapeHtml(n)}" aria-label="${isCollected?"移出收藏":"加入收藏"}" title="${isCollected?"移出收藏":"加入收藏"}">${isCollected?"▣":"▢"}</button></div></div></div><div class="card-progress"><span style="width:${pct}%"></span></div><div class="card-bottom"><span>${c.configured?`${c.won} / ${c.total} 組勝利`:"技能資料尚未設定"}</span><b>${c.configured?pct+"%":"—"}</b></div></article>`;
+  return `<article class="pokemon-card role-${roleClass}" data-name="${escapeHtml(n)}"><div class="card-top"><div class="pokemon-identity">${avatar?`<img class="pokemon-avatar" src="${escapeHtml(avatar)}" alt="${escapeHtml(n)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:""}<span class="avatar-fallback" style="${avatar?"display:none":""}">${escapeHtml(n.slice(0,1))}</span><div class="pokemon-title"><span class="pokemon-name">${escapeHtml(displayPokemonName(n))}</span><small>${escapeHtml(window.__i18n?.lang==="en"?n:window.__i18n?.lang==="ja"?(nameMap[n]||""):(nameMap[n]||""))}</small></div></div><div class="card-tags"><span class="role-tag">${escapeHtml(role)}</span>${status}<div class="card-markers"><button type="button" class="mark-btn favorite-btn ${isFavorite?"active":""}" data-action="favorite" data-name="${escapeHtml(n)}" aria-label="${isFavorite?"取消最愛":"加入最愛"}" title="${isFavorite?"取消最愛":"加入最愛"}">${isFavorite?"★":"☆"}</button><button type="button" class="mark-btn collection-btn ${isCollected?"active":""}" data-action="collection" data-name="${escapeHtml(n)}" aria-label="${isCollected?"移出收藏":"加入收藏"}" title="${isCollected?"移出收藏":"加入收藏"}">${isCollected?"▣":"▢"}</button></div></div></div><div class="card-progress"><span style="width:${pct}%"></span></div><div class="card-bottom"><span>${c.configured?`${c.won} / ${c.total} ${tr("組勝利")}`:tr("技能資料尚未設定")}</span><b>${c.configured?pct+"%":"—"}</b></div></article>`;
  }).join("");
  $("grid").querySelectorAll(".pokemon-card").forEach(el=>el.addEventListener("click",e=>{if(e.target.closest(".mark-btn"))return;openModal(el.dataset.name);}));
  $("grid").querySelectorAll(".mark-btn").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();toggleSaved(btn.dataset.name,btn.dataset.action);}));
@@ -192,11 +193,11 @@ function skillChip(name,move){
  return `<span class="skill-chip">${img}<span>${escapeHtml(displayMoveName(name,move))}</span></span>`;
 }
 function comboSkills(name,label,cfg){if(cfg.mode==="combination"){const parts=label.split(" ＋ ");return parts.map(x=>skillChip(name,x)).join('<span class="skill-plus">＋</span>');}if(cfg.mode==="single"){return (cfg.move1||[]).map(x=>skillChip(name,x)).join("");}if(cfg.mode==="paths"){const text=label.includes(":")?label.split(":").slice(1).join(":").trim():label;return text.split(/[＋+]/).map(x=>skillChip(name,x.trim())).join('<span class="skill-plus">＋</span>');}return escapeHtml(label);}
-function renderCombos(){const cfg=readDraft(),list=combos(cfg);$("comboSummary").textContent=cfg.mode==="unconfigured"?"尚未設定，不計入統計":`${list.length} 種組合 · ${list.filter(x=>draftWins[x.id]).length} 勝`;
- $("comboList").innerHTML=cfg.mode==="unconfigured"?'<p class="sub">此角色的技能資料尚未設定。確認遊戲內技能後，再選擇計算方式。</p>':!list.length?'<p class="sub">請先填入技能名稱，每行一個選項。</p>':list.map((x,i)=>`<div class="combo-row"><div class="combo-name"><span style="color:#7187a2;margin-right:7px">${String(i+1).padStart(2,"0")}</span><div class="combo-skills">${comboSkills(activeName,x.label,cfg)}</div></div><button class="win-toggle ${draftWins[x.id]?"active":""}" data-id="${encodeURIComponent(x.id)}">${draftWins[x.id]?"✓ 已取得勝利":"＋ 記錄一勝"}</button></div>`).join("");
+function renderCombos(){const cfg=readDraft(),list=combos(cfg);$("comboSummary").textContent=cfg.mode==="unconfigured"?tr("尚未設定，不計入統計"):`${list.length} ${tr("種組合")} · ${list.filter(x=>draftWins[x.id]).length} ${tr("勝")}`;
+ $("comboList").innerHTML=cfg.mode==="unconfigured"?'<p class="sub">此角色的技能資料尚未設定。確認遊戲內技能後，再選擇計算方式。</p>':!list.length?'<p class="sub">請先填入技能名稱，每行一個選項。</p>':list.map((x,i)=>`<div class="combo-row"><div class="combo-name"><span style="color:#7187a2;margin-right:7px">${String(i+1).padStart(2,"0")}</span><div class="combo-skills">${comboSkills(activeName,x.label,cfg)}</div></div><button class="win-toggle ${draftWins[x.id]?"active":""}" data-id="${encodeURIComponent(x.id)}">${draftWins[x.id]?tr("✓ 已取得勝利"):tr("＋ 記錄一勝")}</button></div>`).join("");
  $("comboList").querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{const id=decodeURIComponent(btn.dataset.id);draftWins[id]=!draftWins[id];renderCombos();}));}
 function saveCurrent(){const cfg=readDraft();if(cfg.mode==="combination"&&(!cfg.move1.length||!cfg.move2.length)){alert("自動組合模式下，技能一與技能二都至少需要一個選項。");return;}if((cfg.mode==="single"||cfg.mode==="paths")&&!cfg.move1.length){alert(cfg.mode==="paths"?"固定流派模式至少需要填寫一套完整技能搭配。":"單一勝利模式至少需要填寫一個技能名稱。");return;}if(cfg.move1.length>8||cfg.move2.length>4){alert("最多可填 8 個技能選項或固定流派。");return;}const valid=new Set(combos(cfg).map(x=>x.id)),wins={};Object.keys(draftWins).forEach(k=>{if(valid.has(k)&&draftWins[k])wins[k]=true;});state[activeName]={...cfg,wins};save();closeModal();render();toast("已儲存 "+activeName+" 的設定");}
-function toast(msg){$("toast").textContent=msg;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1800);}
+function toast(msg){$("toast").textContent=tr(msg);$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1800);}
 function loadUserData(){
  try{favorites=new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY)||"[]").filter(n=>roster.includes(n)));}catch{favorites=new Set();}
  try{collection=new Set(JSON.parse(localStorage.getItem(COLLECTION_KEY)||"[]").filter(n=>roster.includes(n)));}catch{collection=new Set();}
@@ -282,12 +283,12 @@ function drawSmartChallenges(){
  const result=pool.slice(0,quantity);
  if(!result.length){toast("沒有符合條件的未完成角色，請調整篩選條件。");return;}
  $("randomResults").classList.remove("hidden");
- $("randomResults").innerHTML=`<div class="random-result-head"><strong>抽選結果</strong><span>${result.length} / ${quantity} 個目標</span></div>`+result.map((item,index)=>`<button type="button" class="random-result-item" data-name="${escapeHtml(item.name)}" data-combo="${encodeURIComponent(item.id)}"><span class="random-result-index">${index+1}</span><span class="random-result-info"><b>${escapeHtml(displayPokemonName(item.name))}</b><small>${escapeHtml(item.label)} · ${item.won}/${item.total} 勝</small></span><span class="random-result-open">開啟 ›</span></button>`).join("");
+ $("randomResults").innerHTML=`<div class="random-result-head"><strong>${tr("抽選結果")}</strong><span>${result.length} / ${quantity} 個目標</span></div>`+result.map((item,index)=>`<button type="button" class="random-result-item" data-name="${escapeHtml(item.name)}" data-combo="${encodeURIComponent(item.id)}"><span class="random-result-index">${index+1}</span><span class="random-result-info"><b>${escapeHtml(displayPokemonName(item.name))}</b><small>${escapeHtml(item.label)} · ${item.won}/${item.total} 勝</small></span><span class="random-result-open">開啟 ›</span></button>`).join("");
  $("randomResults").querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{
   const name=btn.dataset.name,id=decodeURIComponent(btn.dataset.combo);
   closeRandomModal();$("search").value="";$("filter").value="all";$("roleFilter").value="all";$("savedFilter").value="all";render();openModal(name);
   setTimeout(()=>{const row=[...$("comboList").querySelectorAll(".combo-row")].find(el=>el.querySelector("button")?.dataset.id===encodeURIComponent(id));if(row){row.classList.add("random-highlight");row.scrollIntoView({behavior:preferences.animations?"smooth":"auto",block:"center"});}},80);
-  toast(`挑戰目標：${name}`);
+  toast(`挑戰目標：${displayPokemonName(name)}`);
  }));
  if(result.length<quantity)toast(`符合條件的角色只有 ${result.length} 隻，已全部列出。`);
 }
@@ -619,4 +620,4 @@ window.addEventListener("storage",e=>{
 
 if(new URLSearchParams(location.search).get("mode")==="overlay"){setInterval(()=>{if(data&&roster.length)renderOverlay();},2000);}
 
-window.addEventListener("app-language-change",()=>{if(window.__pokemonNameMap&&nameMap&&Object.keys(nameMap).length)window.__pokemonNameMap=nameMap;if(activeName&&!$("modal").classList.contains("hidden")){$("modalTitle").textContent=displayPokemonName(activeName);renderCombos();}if(roster.length&&new URLSearchParams(location.search).get("mode")!=="overlay")render();});
+window.addEventListener("app-language-change",()=>{if(window.__pokemonNameMap&&nameMap&&Object.keys(nameMap).length)window.__pokemonNameMap=nameMap;if(activeName&&!$("modal").classList.contains("hidden")){$("modalTitle").textContent=displayPokemonName(activeName);renderCombos();}if(roster.length){if(new URLSearchParams(location.search).get("mode")==="overlay")renderOverlay();else render();}});
