@@ -70,59 +70,6 @@
 @media(max-width:700px){.backup-status{flex:1 1 100%;justify-content:center;min-height:34px}.backup-notice-card{padding:22px 18px}.backup-notice-card h2{font-size:19px}.backup-notice-actions button{flex:1 1 100%;}}
 
 
-/* OBS Chroma Key background: pure green, only active in overlay mode. */
-body.obs-mode {
-  background: #00FF00 !important;
-  color: #ffffff !important;
-  min-height: 100vh;
-  padding: 0 !important;
-}
-body.obs-mode .obs-wrap {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 10px 14px;
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-}
-body.obs-mode .obs-title {
-  color: #ffffff;
-  text-shadow: 0 2px 3px #000000, 0 0 2px #000000;
-  -webkit-text-stroke: 0.35px #07111f;
-  text-align: center;
-  margin-bottom: 8px;
-}
-body.obs-mode .obs-numbers {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-body.obs-mode .obs-number {
-  min-width: 0;
-  padding: 8px 6px;
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  text-align: center;
-}
-body.obs-mode .obs-number b {
-  color: #ffffff;
-  text-shadow: 0 2px 3px #000000, 0 0 2px #000000;
-  -webkit-text-stroke: 0.45px #07111f;
-}
-body.obs-mode .obs-number span {
-  color: #ffffff;
-  text-shadow: 0 2px 3px #000000, 0 0 2px #000000;
-  -webkit-text-stroke: 0.2px #07111f;
-}
-@media (max-width: 520px) {
-  body.obs-mode .obs-wrap { padding: 8px 6px; }
-  body.obs-mode .obs-numbers { gap: 4px; }
-  body.obs-mode .obs-number b { font-size: clamp(20px, 6vw, 34px); }
-  body.obs-mode .obs-number span { font-size: 10px; }
-}
-
 /* V27: Smart random challenge, favorites/collection and personal preferences */
 .card-markers{display:flex;gap:5px;justify-content:flex-end;margin-top:3px}
 .mark-btn{width:27px;height:25px;padding:0;border:1px solid #3a506c;border-radius:7px;background:#17283e;color:#a9bad0;font-size:15px;line-height:1;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
