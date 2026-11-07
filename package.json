@@ -23,6 +23,7 @@
       "index.html",
       "style.css",
       "app.js",
+      "i18n.js",
       "pokemon.json",
       "electron/**/*",
       "package.json"

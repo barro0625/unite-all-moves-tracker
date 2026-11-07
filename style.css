@@ -231,3 +231,10 @@ body.light-theme .welcome-tour-skip{color:#52657d}
  .welcome-tour-nav{width:100%;justify-content:flex-end}
  .welcome-tour-nav button{flex:1;min-width:0}
 }
+
+
+/* V35 multilingual controls */
+.language-picker{display:flex;align-items:center;gap:7px;margin-left:12px;color:var(--muted,#9aabc1);font-size:13px;}
+.language-picker select{min-width:112px;padding:9px 28px 9px 11px;border:1px solid var(--line,#2a3b53);border-radius:10px;background:var(--panel,#142033);color:var(--text,#eaf1fb);font:inherit;cursor:pointer;}
+.translation-disclaimer{display:inline-block;margin-top:7px;color:var(--muted,#9aabc1);font-size:12px;line-height:1.7;}
+@media(max-width:640px){.language-picker{margin-left:6px}.language-picker select{min-width:94px;padding:8px 22px 8px 8px;font-size:12px}.header-actions{gap:6px}}
