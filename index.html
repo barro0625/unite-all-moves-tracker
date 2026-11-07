@@ -9,9 +9,29 @@
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><div class="brand-mark">U</div><div><strong>全技能組一勝挑戰</strong><small>POKÉMON UNITE · PERSONAL CHALLENGE TRACKER · V27</small></div></div>
-  <a class="source-link" href="https://unite-db.com/" target="_blank" rel="noreferrer">UNITE-DB ↗</a>
+  <button type="button" class="menu-trigger" id="menuToggle" aria-label="開啟功能選單" aria-expanded="false">☰</button><div class="brand"><div class="brand-mark">U</div><div><strong>全技能組一勝挑戰</strong><small>POKÉMON UNITE · PERSONAL CHALLENGE TRACKER · V30</small></div></div>
+  <div class="header-actions"><a class="source-link" href="https://unite-db.com/" target="_blank" rel="noreferrer">UNITE-DB ↗</a></div>
 </header>
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="side-drawer" id="sideDrawer" aria-label="功能選單" aria-hidden="true">
+  <div class="drawer-head"><div><strong>功能選單</strong><small>挑戰工具與管理功能</small></div><button type="button" class="drawer-close" id="drawerClose" aria-label="關閉選單">×</button></div>
+  <div class="drawer-content">
+    <details class="tool-group challenge-tools">
+      <summary><span class="tool-group-icon">🎲</span><span><b>挑戰工具</b><small>隨機抽選與挑戰安排</small></span><span class="tool-chevron">⌄</span></summary>
+      <div class="tool-group-content"><button class="primary" id="randomBtn">智慧隨機挑戰 2.0</button></div>
+    </details>
+    <details class="tool-group management-tools">
+      <summary><span class="tool-group-icon">⚙</span><span><b>管理與顯示</b><small>設定、備份及 OBS</small></span><span class="tool-chevron">⌄</span></summary>
+      <div class="tool-group-content">
+        <details class="tool-subgroup"><summary>個人化設定</summary><div class="tool-subgroup-content"><button class="secondary" id="settingsBtn">⚙ 開啟個人化設定</button></div></details>
+        <details class="tool-subgroup"><summary>備份與還原</summary><div class="tool-subgroup-content"><button class="secondary" id="exportBtn">匯出備份（自訂檔名）</button><button class="secondary" id="quickExportBtn">快速備份（自動命名）</button><button class="secondary" id="importBtn">匯入備份</button><span class="backup-status" id="lastBackupText" role="status" aria-live="polite">上次匯出：尚未匯出</span></div></details>
+        <details class="tool-subgroup"><summary>實況擷取</summary><div class="tool-subgroup-content"><button class="secondary" id="obsBtn">OBS 實況模式</button></div></details>
+      </div>
+    </details>
+  </div>
+  <button type="button" class="drawer-changelog-btn" id="changelogToggle">📋 查看更新日誌</button>
+  <div class="drawer-foot">常用篩選功能仍保留在主畫面。</div>
+</aside>
 <main>
   <section class="hero">
     <div><p class="eyebrow">YOUR CHALLENGE, YOUR RECORD</p><h1>每一種技能組，<span>都拿下一勝。</span></h1>
@@ -47,21 +67,9 @@
     <select id="filter" aria-label="依挑戰進度篩選"><option value="all">全部進度</option><option value="progress">進行中</option><option value="done">已全數完成</option><option value="not">尚未開始／未設定</option><option value="unconfigured">待設定</option></select>
     <select id="savedFilter" aria-label="依收藏狀態篩選"><option value="all">全部角色</option><option value="favorites">★ 我的最愛</option><option value="collection">▣ 我的收藏</option></select>
     <select id="sortOrder" aria-label="角色排序"><option value="original">原始順序</option><option value="name">名稱排序</option><option value="progress-desc">完成度由高至低</option><option value="progress-asc">完成度由低至高</option><option value="favorites">最愛優先</option></select>
-    <details class="tool-group challenge-tools">
-      <summary><span class="tool-group-icon">🎲</span><span><b>挑戰工具</b><small>隨機抽選與挑戰安排</small></span><span class="tool-chevron">⌄</span></summary>
-      <div class="tool-group-content"><button class="primary" id="randomBtn">智慧隨機挑戰 2.0</button></div>
-    </details>
-    <details class="tool-group management-tools">
-      <summary><span class="tool-group-icon">⚙</span><span><b>管理與顯示</b><small>設定、備份及 OBS</small></span><span class="tool-chevron">⌄</span></summary>
-      <div class="tool-group-content">
-        <details class="tool-subgroup"><summary>個人化設定</summary><div class="tool-subgroup-content"><button class="secondary" id="settingsBtn">⚙ 開啟個人化設定</button></div></details>
-        <details class="tool-subgroup"><summary>備份與還原</summary><div class="tool-subgroup-content"><button class="secondary" id="exportBtn">匯出備份（自訂檔名）</button><button class="secondary" id="quickExportBtn">快速備份（自動命名）</button><button class="secondary" id="importBtn">匯入備份</button><span class="backup-status" id="lastBackupText" role="status" aria-live="polite">上次匯出：尚未匯出</span></div></details>
-        <details class="tool-subgroup"><summary>實況擷取</summary><div class="tool-subgroup-content"><button class="secondary" id="obsBtn">OBS 實況模式</button></div></details>
-      </div>
-    </details>
     <input id="importFile" type="file" accept="application/json" hidden>
   </section>
-  <div class="section-head"><div><h2>寶可夢列表</h2><p>V27：支援智慧隨機挑戰、最愛與收藏、個人化設定、備份安全及 OBS 三項統計精簡顯示。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
+  <div class="section-head"><div><h2>寶可夢列表</h2><p>V29：新增漢堡側邊選單與完整功能說明，並保留原有挑戰工具、最愛與收藏、個人化設定、備份安全及 OBS 三項統計精簡顯示。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
   <section id="grid" class="pokemon-grid"></section>
   <footer>紀錄儲存在目前瀏覽器；建議定期使用 JSON 匯出備份。<br>非官方粉絲工具，與 Nintendo、The Pokémon Company 或 TiMi Studio Group 無關。</footer>
 </main>
@@ -134,6 +142,76 @@
   </div>
  </section>
 </div>
+<button type="button" class="help-trigger" id="helpToggle" aria-label="開啟功能說明" title="功能使用說明">?</button>
+<div id="helpModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="helpModalTitle">
+ <div class="modal-backdrop" data-help-close="1"></div>
+ <section class="dialog help-dialog">
+  <div class="dialog-head"><div><p class="eyebrow">QUICK GUIDE</p><h2 id="helpModalTitle">功能使用說明</h2></div><button class="icon-btn" id="closeHelpModal" aria-label="關閉說明">×</button></div>
+  <p class="hint">這裡整理各區塊的用途，第一次使用時可以從上往下看。</p>
+  <div class="help-sections">
+   <article><h3>☰ 功能選單</h3><p>集中放置較少使用的操作，點擊左上角三條線展開，點選遮罩、右上角 × 或再次點擊即可收起。</p></article>
+   <article><h3>🎲 智慧隨機挑戰</h3><p>從尚未完成的技能組中抽選目標，可設定角色定位、抽選數量、抽選策略與排除條件。</p></article>
+   <article><h3>⚙ 個人化設定</h3><p>調整深淺色主題、角色卡片密度、預設排序與篩選條件，以及 OBS 數字大小和顯示選項。</p></article>
+   <article><h3>💾 備份與還原</h3><p>匯出備份可保存目前挑戰紀錄；快速備份會自動命名。匯入備份可還原 JSON 檔案，匯入前會先保護現有資料。</p></article>
+   <article><h3>📺 OBS 實況模式</h3><p>開啟精簡統計畫面，可用於直播擷取，顯示勝利數、剩餘技能組與已完成寶可夢等進度。</p></article>
+   <article><h3>🔎 搜尋與篩選</h3><p>主畫面上的搜尋、定位、進度、收藏和排序可以快速縮小寶可夢列表，不需要打開功能選單。</p></article>
+   <article><h3>📊 挑戰總覽與未完成清單</h3><p>點擊各區塊標題即可展開或收起。未完成清單中的項目可直接跳到對應角色紀錄。</p></article>
+   <article><h3>🃏 寶可夢卡片</h3><p>點擊卡片可設定技能選項並記錄各技能組勝利；星號與收藏按鈕可標記常用或想追蹤的角色。</p></article>
+  </div>
+  <div class="dialog-actions"><button class="primary" id="helpDone">知道了</button></div>
+ </section>
+</div>
+<div id="changelogModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="changelogModalTitle">
+ <div class="modal-backdrop" data-changelog-close="1"></div>
+ <section class="dialog changelog-dialog">
+  <div class="dialog-head"><div><p class="eyebrow">PROJECT HISTORY</p><h2 id="changelogModalTitle">網站更新日誌</h2></div><button class="icon-btn" id="closeChangelogModal" aria-label="關閉更新日誌">×</button></div>
+  <p class="hint">整理每次版本的重要調整。最新版本會顯示在最上方。</p>
+  <div class="changelog-list">
+   <article class="changelog-entry latest"><div class="changelog-version"><b>V30</b><span>目前版本</span></div><div><h3>功能說明常駐入口與更新日誌</h3><ul><li>問號改為固定在畫面右下角，捲動畫面時也能隨時開啟。</li><li>新增網站內的更新日誌視窗，可直接查看版本改動。</li><li>在三條線選單加入「查看更新日誌」入口。</li></ul></div></article>
+   <article class="changelog-entry"><div class="changelog-version"><b>V29</b></div><div><h3>漢堡選單與功能說明</h3><ul><li>使用左上角三條線集中管理挑戰工具、個人化設定、備份還原與 OBS 模式。</li><li>新增功能說明視窗，集中介紹各區塊用途。</li></ul></div></article>
+   <article class="changelog-entry"><div class="changelog-version"><b>V28</b></div><div><h3>可收合的工具列</h3><ul><li>將較少使用的操作分組收合，減少主畫面工具按鈕的擁擠感。</li><li>保留搜尋、職業、進度、收藏與排序等常用篩選。</li></ul></div></article>
+   <article class="changelog-entry"><div class="changelog-version"><b>V27</b></div><div><h3>挑戰工具與資料保護調整</h3><ul><li>加入智慧隨機挑戰、最愛標記與個人化顯示設定。</li><li>加強備份匯出與匯入檢查，匯入前先保護現有紀錄。</li><li>OBS 統計簡化為勝利數、剩餘技能組與已完成寶可夢。</li></ul></div></article>
+  </div>
+  <div class="dialog-actions"><button class="primary" id="changelogDone">關閉</button></div>
+ </section>
+</div>
 <div id="toast" class="toast"></div>
+<script>
+(() => {
+  const drawer = document.getElementById('sideDrawer');
+  const backdrop = document.getElementById('drawerBackdrop');
+  const menu = document.getElementById('menuToggle');
+  const close = document.getElementById('drawerClose');
+  const help = document.getElementById('helpModal');
+  const changelog = document.getElementById('changelogModal');
+  const setDrawer = (open) => {
+    drawer.classList.toggle('open', open);
+    backdrop.classList.toggle('open', open);
+    drawer.setAttribute('aria-hidden', String(!open));
+    menu.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-label', open ? '關閉功能選單' : '開啟功能選單');
+    document.body.classList.toggle('drawer-open', open);
+  };
+  menu.addEventListener('click', () => setDrawer(!drawer.classList.contains('open')));
+  close.addEventListener('click', () => setDrawer(false));
+  backdrop.addEventListener('click', () => setDrawer(false));
+  drawer.querySelectorAll('button').forEach(button => button.addEventListener('click', () => {
+    if (!button.closest('details')) setDrawer(false);
+  }));
+  const setHelp = (open) => help.classList.toggle('hidden', !open);
+  document.getElementById('helpToggle').addEventListener('click', () => setHelp(true));
+  document.getElementById('closeHelpModal').addEventListener('click', () => setHelp(false));
+  document.getElementById('helpDone').addEventListener('click', () => setHelp(false));
+  help.querySelector('[data-help-close]').addEventListener('click', () => setHelp(false));
+  const setChangelog = (open) => changelog.classList.toggle('hidden', !open);
+  document.getElementById('changelogToggle').addEventListener('click', () => setChangelog(true));
+  document.getElementById('closeChangelogModal').addEventListener('click', () => setChangelog(false));
+  document.getElementById('changelogDone').addEventListener('click', () => setChangelog(false));
+  changelog.querySelector('[data-changelog-close]').addEventListener('click', () => setChangelog(false));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') { setDrawer(false); setHelp(false); setChangelog(false); }
+  });
+})();
+</script>
 <script src="app.js"></script>
 </body></html>
