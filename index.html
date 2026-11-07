@@ -45,15 +45,20 @@
     <label class="search"><span>⌕</span><input id="search" type="search" placeholder="搜尋寶可夢名稱…"></label>
     <select id="roleFilter" aria-label="依角色定位篩選"><option value="all">全部定位</option><option value="攻擊型">攻擊型</option><option value="防禦型">防禦型</option><option value="敏捷型">敏捷型</option><option value="平衡型">平衡型</option><option value="輔助型">輔助型</option></select>
     <select id="filter" aria-label="依挑戰進度篩選"><option value="all">全部進度</option><option value="progress">進行中</option><option value="done">已全數完成</option><option value="not">尚未開始／未設定</option><option value="unconfigured">待設定</option></select>
-    <button class="primary" id="randomBtn">🎲 智慧隨機挑戰</button>
     <select id="savedFilter" aria-label="依收藏狀態篩選"><option value="all">全部角色</option><option value="favorites">★ 我的最愛</option><option value="collection">▣ 我的收藏</option></select>
     <select id="sortOrder" aria-label="角色排序"><option value="original">原始順序</option><option value="name">名稱排序</option><option value="progress-desc">完成度由高至低</option><option value="progress-asc">完成度由低至高</option><option value="favorites">最愛優先</option></select>
-    <button class="secondary" id="settingsBtn">⚙ 個人化設定</button>
-    <button class="secondary" id="exportBtn">匯出備份（自訂檔名）</button>
-    <button class="secondary" id="quickExportBtn">快速備份（自動命名）</button>
-    <button class="secondary" id="importBtn">匯入備份</button>
-    <span class="backup-status" id="lastBackupText" role="status" aria-live="polite">上次匯出：尚未匯出</span>
-    <button class="secondary" id="obsBtn">OBS 實況模式</button>
+    <details class="tool-group challenge-tools">
+      <summary><span class="tool-group-icon">🎲</span><span><b>挑戰工具</b><small>隨機抽選與挑戰安排</small></span><span class="tool-chevron">⌄</span></summary>
+      <div class="tool-group-content"><button class="primary" id="randomBtn">智慧隨機挑戰 2.0</button></div>
+    </details>
+    <details class="tool-group management-tools">
+      <summary><span class="tool-group-icon">⚙</span><span><b>管理與顯示</b><small>設定、備份及 OBS</small></span><span class="tool-chevron">⌄</span></summary>
+      <div class="tool-group-content">
+        <details class="tool-subgroup"><summary>個人化設定</summary><div class="tool-subgroup-content"><button class="secondary" id="settingsBtn">⚙ 開啟個人化設定</button></div></details>
+        <details class="tool-subgroup"><summary>備份與還原</summary><div class="tool-subgroup-content"><button class="secondary" id="exportBtn">匯出備份（自訂檔名）</button><button class="secondary" id="quickExportBtn">快速備份（自動命名）</button><button class="secondary" id="importBtn">匯入備份</button><span class="backup-status" id="lastBackupText" role="status" aria-live="polite">上次匯出：尚未匯出</span></div></details>
+        <details class="tool-subgroup"><summary>實況擷取</summary><div class="tool-subgroup-content"><button class="secondary" id="obsBtn">OBS 實況模式</button></div></details>
+      </div>
+    </details>
     <input id="importFile" type="file" accept="application/json" hidden>
   </section>
   <div class="section-head"><div><h2>寶可夢列表</h2><p>V27：支援智慧隨機挑戰、最愛與收藏、個人化設定、備份安全及 OBS 三項統計精簡顯示。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
