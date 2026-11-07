@@ -11,7 +11,12 @@
   };
   // V36: additional dynamic interface strings used by cards, dialogs, statistics and OBS.
   Object.assign(translations.en, {
-    '共':'Total ','隻角色':' Pokémon','已設定':'Configured ','隻':' Pokémon','% 完成':'% complete','角色完成':'Pokémon completed','組勝利':' moveset wins','組':' sets','勝':' wins','種組合':' combinations','尚未設定，不計入統計':'Not configured; excluded from statistics','此角色的技能資料尚未設定。確認遊戲內技能後，再選擇計算方式。':'Move data is not configured. Confirm the in-game moves before choosing a tracking method.','請先填入技能名稱，每行一個選項。':'Enter move names, one option per line.','✓ 已取得勝利':'✓ Win recorded','＋ 記錄一勝':'＋ Record a win','已儲存 ':'Saved ',' 的設定':' settings','已將 ':'Added ',' 加入最愛':' to Favorites','已取消 ':'Removed ',' 的最愛':' from Favorites',' 加入收藏':' to Collection',' 移出收藏':' from Collection','挑戰目標：':'Challenge target: ','抽選結果':'Selection Results',' 個目標':' targets','沒有符合條件的未完成角色，請調整篩選條件。':'No unfinished Pokémon match these conditions. Adjust your filters.','符合條件的角色只有 ':'Only ',' 隻，已全部列出。':' Pokémon match; all are shown.','上次匯出：尚未匯出':'Last export: Not yet exported','上次匯出：':'Last export: ','日期資料無法辨識':'Date could not be read','所有已設定的技能組都完成了！':'All configured movesets are complete!','找不到符合條件的寶可夢。':'No Pokémon match your filters.','技能資料尚未設定':'Move data not configured','已完成':'Completed','未開始':'Not Started','進行中':'In Progress','待設定':'Needs Setup','未分類':'Unclassified','未開始／未設定':'Not Started / Unconfigured','抽選結果':'Selection Results','開啟':'Open','角色':'Pokémon','技能':'Move','固定流派（每行一套完整技能搭配）':'Fixed Builds (one complete moveset per line)','技能名稱（僅供參考）':'Move Names (reference only)','技能一選項':'Move 1 Options','例如：一擊流：技能A＋技能B':'Example: Single-Strike Style: Move A + Move B','每行一個技能名稱':'One move name per line','每行一個技能選項':'One move option per line','自動組合模式下，技能一與技能二都至少需要一個選項。':'In Combination mode, enter at least one option for both Move 1 and Move 2.','固定流派模式至少需要填寫一套完整技能搭配。':'Enter at least one complete moveset in Fixed Builds mode.','單一勝利模式至少需要填寫一個技能名稱。':'Enter at least one move name in Single Win mode.','最多可填 8 個技能選項或固定流派。':'You can enter up to 8 move options or fixed builds.','個人化設定已儲存':'Preferences saved','設定儲存失敗，原本設定仍會保留。':'Could not save preferences. Your previous settings were kept.','無法儲存收藏設定，請檢查瀏覽器網站儲存空間。':'Could not save favorites. Check this browser’s site storage.','已儲存':'Saved','匯出備份':'Export Backup','匯入備份':'Import Backup','語言':'Language'
+    '共':'Total ','隻角色':' Pokémon','已設定':'Configured ','隻':' Pokémon','% 完成':'% complete','角色完成':'Pokémon completed','組勝利':' moveset wins','組':' sets','勝':' wins','種組合':' combinations','尚未設定，不計入統計':'Not configured; excluded from statistics','此角色的技能資料尚未設定。確認遊戲內技能後，再選擇計算方式。':'Move data is not configured. Confirm the in-game moves before choosing a tracking method.','請先填入技能名稱，每行一個選項。':'Enter move names, one option per line.','✓ 已取得勝利':'✓ Win recorded','＋ 記錄一勝':'＋ Record a win','已儲存 ':'Saved ',' 的設定':' settings','已將 ':'Added ',' 加入最愛':' to Favorites','已取消 ':'Removed ',' 的最愛':' from Favorites',' 加入收藏':' to Collection',' 移出收藏':' from Collection','挑戰目標：':'Challenge target: ','抽選結果':'Selection Results',' 個目標':' targets','沒有符合條件的未完成角色，請調整篩選條件。':'No unfinished Pokémon match these conditions. Adjust your filters.','符合條件的角色只有 ':'Only ',' 隻，已全部列出。':' Pokémon match; all are shown.','上次匯出：尚未匯出':'Last export: Not yet exported','上次匯出：':'Last export: ','日期資料無法辨識':'Date could not be read','所有已設定的技能組都完成了！':'All configured movesets are complete!',
+    '備份檔最外層必須是 JSON 物件。':'The backup file must be a JSON object.',
+    '找不到有效的 state 挑戰紀錄資料。':'No valid challenge record data was found in the state field.',
+    '角色名稱格式不正確。':'The Pokémon name has an invalid format.',
+    '個人化資料格式不正確。':'Personalization data has an invalid format.',
+    '個人化設定必須是 JSON 物件。':'Preferences must be a JSON object.','找不到符合條件的寶可夢。':'No Pokémon match your filters.','技能資料尚未設定':'Move data not configured','已完成':'Completed','未開始':'Not Started','進行中':'In Progress','待設定':'Needs Setup','未分類':'Unclassified','未開始／未設定':'Not Started / Unconfigured','抽選結果':'Selection Results','開啟':'Open','角色':'Pokémon','技能':'Move','固定流派（每行一套完整技能搭配）':'Fixed Builds (one complete moveset per line)','技能名稱（僅供參考）':'Move Names (reference only)','技能一選項':'Move 1 Options','例如：一擊流：技能A＋技能B':'Example: Single-Strike Style: Move A + Move B','每行一個技能名稱':'One move name per line','每行一個技能選項':'One move option per line','自動組合模式下，技能一與技能二都至少需要一個選項。':'In Combination mode, enter at least one option for both Move 1 and Move 2.','固定流派模式至少需要填寫一套完整技能搭配。':'Enter at least one complete moveset in Fixed Builds mode.','單一勝利模式至少需要填寫一個技能名稱。':'Enter at least one move name in Single Win mode.','最多可填 8 個技能選項或固定流派。':'You can enter up to 8 move options or fixed builds.','個人化設定已儲存':'Preferences saved','設定儲存失敗，原本設定仍會保留。':'Could not save preferences. Your previous settings were kept.','無法儲存收藏設定，請檢查瀏覽器網站儲存空間。':'Could not save favorites. Check this browser’s site storage.','已儲存':'Saved','匯出備份':'Export Backup','匯入備份':'Import Backup','語言':'Language'
   });
   Object.assign(translations.ja, {
     '共':'合計 ','隻角色':'匹','已設定':'設定済み ','隻':'匹','% 完成':'%達成','角色完成':'ポケモン達成','組勝利':'セット勝利','組':'セット','勝':'勝','種組合':'種類の組み合わせ','尚未設定，不計入統計':'未設定（統計対象外）','此角色的技能資料尚未設定。確認遊戲內技能後，再選擇計算方式。':'このポケモンのわざデータは未設定です。ゲーム内のわざを確認してから記録方法を選択してください。','請先填入技能名稱，每行一個選項。':'わざの名前を1行に1つ入力してください。','✓ 已取得勝利':'✓ 勝利を記録済み','＋ 記錄一勝':'＋ 1勝を記録','已儲存 ':'保存しました：',' 的設定':'の設定','已將 ':'追加しました：',' 加入最愛':'をお気に入りに追加','已取消 ':'解除しました：',' 的最愛':'のお気に入り',' 加入收藏':'をコレクションに追加',' 移出收藏':'をコレクションから削除','挑戰目標：':'チャレンジ目標：','抽選結果':'選択結果',' 個目標':'件','沒有符合條件的未完成角色，請調整篩選條件。':'条件に一致する未達成のポケモンがいません。絞り込み条件を変更してください。','符合條件的角色只有 ':'条件に一致するポケモンは',' 隻，已全部列出。':'匹です。すべて表示しました。','上次匯出：尚未匯出':'前回の書き出し：まだありません','上次匯出：':'前回の書き出し：','日期資料無法辨識':'日付を読み取れません','所有已設定的技能組都完成了！':'設定済みのわざセットをすべて達成しました！','找不到符合條件的寶可夢。':'条件に一致するポケモンがいません。','技能資料尚未設定':'わざデータ未設定','已完成':'達成済み','未開始':'未開始','進行中':'進行中','待設定':'未設定','未分類':'未分類','未開始／未設定':'未開始／未設定','開啟':'開く','角色':'ポケモン','技能':'わざ','固定流派（每行一套完整技能搭配）':'固定ビルド（1行に1つの完全なわざセット）','技能名稱（僅供參考）':'わざ名（参考）','技能一選項':'わざ1の候補','例如：一擊流：技能A＋技能B':'例：いちげきスタイル：わざA＋わざB','每行一個技能名稱':'1行にわざ名を1つ入力','每行一個技能選項':'1行にわざを1つ入力','自動組合模式下，技能一與技能二都至少需要一個選項。':'組み合わせモードでは、わざ1とわざ2にそれぞれ1つ以上入力してください。','固定流派模式至少需要填寫一套完整技能搭配。':'固定ビルドモードでは、完全なわざセットを1つ以上入力してください。','單一勝利模式至少需要填寫一個技能名稱。':'1勝モードでは、わざ名を1つ以上入力してください。','最多可填 8 個技能選項或固定流派。':'わざ候補または固定ビルドは最大8件まで入力できます。','個人化設定已儲存':'個人設定を保存しました','設定儲存失敗，原本設定仍會保留。':'設定を保存できませんでした。以前の設定は保持されています。','無法儲存收藏設定，請檢查瀏覽器網站儲存空間。':'お気に入りを保存できません。ブラウザーの保存領域を確認してください。','已儲存':'保存しました','匯出備份':'バックアップを書き出す','匯入備份':'バックアップを読み込む','語言':'言語'
@@ -189,6 +194,135 @@
     '依使用者提供的 UTF-8 CSV 補齊原先以繁體中文代替的英文及日文技能名稱。':'ユーザー提供のUTF-8 CSVを使用し、繁体字中国語で代用されていた英語・日本語のわざ名を補完しました。',
     '保留使用者已修改的名稱；無法可靠對應的項目標記待核對。':'ユーザーが修正した名称を維持し、確実に対応付けられない項目は確認待ちとして表示します。'
   });
+  // V37.5: multilingual role-color and dynamic-label fixes.
+  Object.assign(translations.en, {
+    '多語言顯示與定位色彩修正':'Multilingual Display and Role Color Fixes',
+    '修正英文與日文介面切換後，寶可夢卡片定位顏色消失的問題。':'Fixed Pokémon card role colors disappearing after switching to English or Japanese.',
+    '修正淺色主題的定位底色，保留五種定位的柔和色彩識別。':'Adjusted role backgrounds in the light theme to preserve the five soft role-color distinctions.',
+    '補齊卡片數量、挑戰進度、隨機挑戰結果及備份時間等動態文字的語言切換。':'Localized dynamic text for card counts, challenge progress, unfinished lists, random challenge results, and backup timestamps.',
+    '修正初始以英文開啟時，寶可夢英文名稱對照可能尚未載入的時序問題。':'Fixed a timing issue that could leave English Pokémon names unavailable when the app initially opened in English.',
+    '補齊新手導覽、備份確認、驗證錯誤及常見操作提示的英文與日文內容。':'Localized the first-run tour, backup confirmations, validation errors, and common operation prompts in English and Japanese.',
+    '修正固定流派名稱在未完成清單與隨機挑戰結果中的多語言顯示。':'Fixed multilingual display of fixed-build names in unfinished lists and random challenge results.',
+    'V37.5：修正多語言介面定位色彩及動態文字顯示。':'V37.5: Fixed role colors and dynamic text in the multilingual interface.'
+  });
+  Object.assign(translations.ja, {
+    '多語言顯示與定位色彩修正':'多言語表示とバトルスタイル色の修正',
+    '修正英文與日文介面切換後，寶可夢卡片定位顏色消失的問題。':'英語または日本語に切り替えた後、ポケモンカードのバトルスタイル色が消える問題を修正しました。',
+    '修正淺色主題的定位底色，保留五種定位的柔和色彩識別。':'ライトテーマの背景色を調整し、5種類のバトルスタイルを淡い色で区別できるようにしました。',
+    '補齊卡片數量、挑戰進度、隨機挑戰結果及備份時間等動態文字的語言切換。':'カード数、チャレンジ進捗、未達成リスト、ランダムチャレンジ結果、バックアップ時刻などの動的テキストを多言語化しました。',
+    '修正初始以英文開啟時，寶可夢英文名稱對照可能尚未載入的時序問題。':'英語で起動した際にポケモンの英語名データが未読み込みになる可能性があるタイミングの問題を修正しました。',
+    '補齊新手導覽、備份確認、驗證錯誤及常見操作提示的英文與日文內容。':'初回ガイド、バックアップ確認、入力エラー、一般的な操作メッセージを英語と日本語に対応しました。',
+    '修正固定流派名稱在未完成清單與隨機挑戰結果中的多語言顯示。':'未達成リストとランダムチャレンジ結果で、固定ビルド名が選択言語で表示されるよう修正しました。',
+    'V37.5：修正多語言介面定位色彩及動態文字顯示。':'V37.5：多言語画面のバトルスタイル色と動的テキスト表示を修正しました。'
+  });
+  // V37.5: localized welcome-tour content, which is rendered dynamically by app.js.
+  Object.assign(translations.en, {
+    '歡迎使用全技能組一勝挑戰':'Welcome to the All Moveset Wins Challenge',
+    '這個網站用來記錄每隻寶可夢不同技能搭配的勝利進度。完成設定、取得勝利，再回來勾選紀錄，就能逐步完成整份挑戰。':'Use this app to track wins for different movesets on each Pokémon. Configure a moveset, win a match, then return to record the result and work through the full challenge.',
+    '設定技能組':'Configure movesets','取得對戰勝利':'Win a match','回來記錄進度':'Record your progress',
+    '整個導覽約一分鐘，也可以隨時按「跳過導覽」。':'The tour takes about a minute. You can skip it at any time.',
+    '先看整體挑戰進度':'Review your overall challenge progress',
+    '頁面上方會統計已完成技能組、總技能組、剩餘技能組與已完成寶可夢。下方兩個區塊可以查看定位分布，以及還有哪些技能組尚未完成。':'The top of the page shows movesets won, total movesets, movesets remaining, and completed Pokémon. The two sections below show role distribution and unfinished movesets.',
+    '已完成技能組':'Movesets Won','總技能組':'Total Movesets','剩餘技能組':'Movesets Remaining','已完成寶可夢':'Pokémon Completed',
+    '點擊「全角色挑戰總覽」或「尚未完成的技能組」標題，可以展開或收起內容。':'Click the Challenge Overview or Unfinished Movesets heading to expand or collapse each section.',
+    '搜尋、篩選並開啟角色卡片':'Search, filter, and open Pokémon cards',
+    '使用搜尋欄查找寶可夢，也能依角色定位、挑戰進度、最愛或收藏狀態篩選。點擊寶可夢卡片，就能設定技能選項及勝利紀錄。':'Search for Pokémon or filter by role, challenge progress, favorites, or collection status. Select a Pokémon card to configure moves and record wins.',
+    '搜尋寶可夢':'Search Pokémon','依定位與進度篩選':'Filter by role and progress','點擊卡片管理技能組':'Select a card to manage movesets',
+    '星號可加入最愛，收藏按鈕則能標記想追蹤的角色。':'Use the star to add a favorite and the collection button to mark Pokémon you want to track.',
+    '用智慧隨機挑戰決定下一個目標':'Choose your next target with Smart Random Challenge',
+    '點擊左上角三條線，打開功能選單並展開「挑戰工具」，即可使用智慧隨機挑戰。你可以選擇定位、抽選數量、策略，或排除指定角色。':'Click the menu icon in the upper-left corner and expand Challenge Tools to open Smart Random Challenge. Choose roles, the number of picks, a strategy, or Pokémon to exclude.',
+    '左上角功能選單':'Menu in the upper-left','挑戰工具':'Challenge Tools','智慧隨機挑戰 2.0':'Smart Random Challenge 2.0',
+    '想自己安排目標，也可以直接使用主畫面的搜尋與篩選功能。':'You can also choose your own targets using Search and Filters on the main screen.',
+    '設定、備份與直播顯示':'Settings, backups, and stream display',
+    '功能選單中的「管理與顯示」包含個人化設定、備份與還原，以及 OBS 實況模式。紀錄存在目前瀏覽器，換電腦或清除網站資料前，請先匯出 JSON 備份。':'The Management & Display menu contains preferences, backup and restore, and OBS Overlay. Records are stored locally. Export a JSON backup before changing computers or clearing site data.',
+    '個人化設定':'Preferences','備份與還原':'Backup & Restore','OBS 實況模式':'OBS Overlay',
+    '導覽結束後就可以開始挑戰。需要時，也能從右下角「功能說明」重新查看各功能。':'You are ready to start after the tour. You can review the guide anytime using Help Guide in the lower-right corner.',
+    '開始使用':'Get Started','下一步':'Next','上一步':'Previous','跳過導覽':'Skip Tour'
+  });
+  Object.assign(translations.ja, {
+    '歡迎使用全技能組一勝挑戰':'全わざセット1勝チャレンジへようこそ',
+    '這個網站用來記錄每隻寶可夢不同技能搭配的勝利進度。完成設定、取得勝利，再回來勾選紀錄，就能逐步完成整份挑戰。':'このアプリでは、ポケモンごとの異なるわざセットの勝利数を記録できます。わざセットを設定して対戦に勝利し、結果を記録しながらチャレンジを進めましょう。',
+    '設定技能組':'わざセットを設定','取得對戰勝利':'対戦に勝利','回來記錄進度':'進捗を記録',
+    '整個導覽約一分鐘，也可以隨時按「跳過導覽」。':'ガイドは約1分で完了します。いつでもスキップできます。',
+    '先看整體挑戰進度':'チャレンジ全体の進捗を確認',
+    '頁面上方會統計已完成技能組、總技能組、剩餘技能組與已完成寶可夢。下方兩個區塊可以查看定位分布，以及還有哪些技能組尚未完成。':'画面上部には達成したわざセット数、合計、残りのわざセット数、達成したポケモン数が表示されます。下の2つのセクションでは、バトルスタイル別の分布と未達成のわざセットを確認できます。',
+    '已完成技能組':'達成したわざセット','總技能組':'わざセット合計','剩餘技能組':'残りのわざセット','已完成寶可夢':'達成したポケモン',
+    '點擊「全角色挑戰總覽」或「尚未完成的技能組」標題，可以展開或收起內容。':'「チャレンジ概要」または「未達成のわざセット」の見出しをクリックすると、内容を展開／折りたたみできます。',
+    '搜尋、篩選並開啟角色卡片':'検索・絞り込みからポケモンカードを開く',
+    '使用搜尋欄查找寶可夢，也能依角色定位、挑戰進度、最愛或收藏狀態篩選。點擊寶可夢卡片，就能設定技能選項及勝利紀錄。':'検索欄でポケモンを探したり、バトルスタイル、進捗、お気に入り、コレクションで絞り込めます。カードを選ぶと、わざ候補の設定や勝利記録ができます。',
+    '搜尋寶可夢':'ポケモンを検索','依定位與進度篩選':'スタイルと進捗で絞り込む','點擊卡片管理技能組':'カードを選んでわざセットを管理',
+    '星號可加入最愛，收藏按鈕則能標記想追蹤的角色。':'星印でお気に入りに追加し、コレクションボタンで追跡したいポケモンを登録できます。',
+    '用智慧隨機挑戰決定下一個目標':'スマートランダムチャレンジで次の目標を選ぶ',
+    '點擊左上角三條線，打開功能選單並展開「挑戰工具」，即可使用智慧隨機挑戰。你可以選擇定位、抽選數量、策略，或排除指定角色。':'左上のメニューを開き、「チャレンジツール」を展開するとスマートランダムチャレンジを利用できます。バトルスタイル、選択数、方法、除外するポケモンを設定できます。',
+    '左上角功能選單':'左上のメニュー','挑戰工具':'チャレンジツール','智慧隨機挑戰 2.0':'スマートランダムチャレンジ 2.0',
+    '想自己安排目標，也可以直接使用主畫面的搜尋與篩選功能。':'自分で目標を選びたい場合は、メイン画面の検索と絞り込みを利用してください。',
+    '設定、備份與直播顯示':'設定・バックアップ・配信表示',
+    '功能選單中的「管理與顯示」包含個人化設定、備份與還原，以及 OBS 實況模式。紀錄存在目前瀏覽器，換電腦或清除網站資料前，請先匯出 JSON 備份。':'メニューの「管理・表示」には、個人設定、バックアップと復元、OBS配信モードがあります。記録はこのブラウザーに保存されます。パソコンの変更やサイトデータの削除前にJSONバックアップを書き出してください。',
+    '個人化設定':'個人設定','備份與還原':'バックアップと復元','OBS 實況模式':'OBS配信モード',
+    '導覽結束後就可以開始挑戰。需要時，也能從右下角「功能說明」重新查看各功能。':'ガイド終了後、チャレンジを開始できます。右下の「機能ガイド」からいつでも見直せます。',
+    '開始使用':'開始','下一步':'次へ','上一步':'戻る','跳過導覽':'ガイドをスキップ'
+  });
+  // V37.5: localize validation, confirmation, and backup messages that are created at runtime.
+  Object.assign(translations.en, {
+    '自動組合模式下，技能一與技能二都至少需要一個選項。':'Combination mode requires at least one option for both Move 1 and Move 2.',
+    '固定流派模式至少需要填寫一套完整技能搭配。':'Enter at least one complete moveset in Fixed Builds mode.',
+    '單一勝利模式至少需要填寫一個技能名稱。':'Enter at least one move name in Single Win mode.',
+    '最多可填 8 個技能選項或固定流派。':'You can enter up to 8 move options or fixed builds.',
+    '無法儲存收藏設定，請檢查瀏覽器網站儲存空間。':'Could not save favorites. Check the browser site storage.',
+    '設定儲存失敗，原本設定仍會保留。':'Could not save preferences. Your previous settings were kept.',
+    '請輸入備份檔名（可自行修改，不需要輸入 .json）':'Enter a backup filename (you can edit it; do not include .json).',
+    '無法建立備份檔，請檢查瀏覽器下載設定後重試。':'Could not create the backup. Check your browser download settings and try again.',
+    '備份已匯出：':'Backup exported: ','快速備份已匯出，請妥善保存檔案。':'Quick backup exported. Keep the file somewhere safe.',
+    '確定要清除此寶可夢的所有設定與勝利紀錄？':'Are you sure you want to clear all settings and win records for this Pokémon?',
+    '備份檔格式驗證通過。\n\n匯入會取代目前瀏覽器中的挑戰紀錄。為保護現有資料，按「確定」會先自動下載一份目前紀錄的備份，再繼續匯入；按「取消」則完全不變更資料。\n\n確定要繼續嗎？':'The backup file passed validation.\n\nImporting will replace the challenge records in this browser. To protect your current data, choosing OK will first download a backup of the current records, then continue the import. Choosing Cancel will leave everything unchanged.\n\nDo you want to continue?',
+    '備份檔超過 5 MB，已取消匯入。':'The backup file is larger than 5 MB. Import cancelled.',
+    '匯入前備份下載失敗，為避免資料遺失，已取消匯入。原有紀錄沒有變更。':'The pre-import backup could not be downloaded. Import was cancelled to prevent data loss. Your current records were not changed.',
+    '無法儲存匯入資料（可能是瀏覽器儲存空間不足或權限受限）。系統已嘗試還原原資料，請重新整理後確認紀錄。':'Could not save the imported data (browser storage may be full or access may be restricted). The app attempted to restore the previous data. Refresh and check your records.',
+    '備份匯入成功，原紀錄已先備份。':'Backup imported successfully. Your previous records were backed up first.',
+    '備份檔無法讀取或格式不正確。原有紀錄沒有變更。':'The backup file could not be read or has an invalid format. Your current records were not changed.',
+    '無法建立備份檔，請稍後再試。':'Could not create the backup. Please try again later.',
+    '備份檔最外層必須是 JSON 物件。':'The backup file must be a JSON object.',
+    '找不到有效的 state 挑戰紀錄資料。':'No valid challenge record data was found in the state field.',
+    '角色名稱格式不正確。':'The Pokémon name has an invalid format.',
+    '個人化資料格式不正確。':'Personalization data has an invalid format.',
+    '個人化設定必須是 JSON 物件。':'Preferences must be a JSON object.',
+    '所有已設定的技能組都完成了！':'All configured movesets are complete!',
+    '備份檔最外層必須是 JSON 物件。':'The backup file must be a JSON object.',
+    '找不到有效的 state 挑戰紀錄資料。':'No valid challenge record data was found in the state field.',
+    '角色名稱格式不正確。':'The Pokémon name has an invalid format.',
+    '個人化資料格式不正確。':'Personalization data has an invalid format.',
+    '個人化設定必須是 JSON 物件。':'Preferences must be a JSON object.',
+    '一擊流':'Single-Strike Style','連擊流':'Rapid-Strike Style',
+    '依挑戰進度篩選':'Filter by challenge progress','依收藏狀態篩選':'Filter by collection status','依角色定位篩選':'Filter by Pokémon role','角色排序':'Sort Pokémon','開啟功能選單':'Open menu','關閉功能選單':'Close menu','關閉選單':'Close menu','例如：皮卡丘、噴火龍':'e.g. Pikachu, Charizard','技能圖示':'Move icon',
+    'WELCOME':'WELCOME','YOUR PROGRESS':'YOUR PROGRESS','FIND A POKÉMON':'FIND A POKÉMON','CHALLENGE TOOLS':'CHALLENGE TOOLS','SETTINGS & BACKUP':'SETTINGS & BACKUP'
+  });
+  Object.assign(translations.ja, {
+    '自動組合模式下，技能一與技能二都至少需要一個選項。':'組み合わせモードでは、わざ1とわざ2にそれぞれ1つ以上入力してください。',
+    '固定流派模式至少需要填寫一套完整技能搭配。':'固定ビルドモードでは、完全なわざセットを1つ以上入力してください。',
+    '單一勝利模式至少需要填寫一個技能名稱。':'1勝モードでは、わざ名を1つ以上入力してください。',
+    '最多可填 8 個技能選項或固定流派。':'わざ候補または固定ビルドは最大8件まで入力できます。',
+    '無法儲存收藏設定，請檢查瀏覽器網站儲存空間。':'お気に入りを保存できません。ブラウザーの保存領域を確認してください。',
+    '設定儲存失敗，原本設定仍會保留。':'個人設定を保存できませんでした。以前の設定は保持されています。',
+    '請輸入備份檔名（可自行修改，不需要輸入 .json）':'バックアップファイル名を入力してください（変更できます。.json は不要です）。',
+    '無法建立備份檔，請檢查瀏覽器下載設定後重試。':'バックアップを作成できません。ブラウザーのダウンロード設定を確認して再試行してください。',
+    '備份已匯出：':'バックアップを書き出しました：','快速備份已匯出，請妥善保存檔案。':'クイックバックアップを書き出しました。安全な場所に保存してください。',
+    '確定要清除此寶可夢的所有設定與勝利紀錄？':'このポケモンの設定と勝利記録をすべて削除してもよろしいですか？',
+    '備份檔格式驗證通過。\n\n匯入會取代目前瀏覽器中的挑戰紀錄。為保護現有資料，按「確定」會先自動下載一份目前紀錄的備份，再繼續匯入；按「取消」則完全不變更資料。\n\n確定要繼續嗎？':'バックアップファイルの検証に成功しました。\n\n読み込むと、このブラウザーのチャレンジ記録が置き換わります。現在のデータを保護するため、「OK」を選ぶと現在の記録を先にバックアップしてから読み込みます。「キャンセル」を選ぶと何も変更しません。\n\n続行しますか？',
+    '備份檔超過 5 MB，已取消匯入。':'バックアップファイルが5 MBを超えているため、読み込みを中止しました。',
+    '匯入前備份下載失敗，為避免資料遺失，已取消匯入。原有紀錄沒有變更。':'読み込み前のバックアップをダウンロードできなかったため、データ損失を防ぐために読み込みを中止しました。現在の記録は変更されていません。',
+    '無法儲存匯入資料（可能是瀏覽器儲存空間不足或權限受限）。系統已嘗試還原原資料，請重新整理後確認紀錄。':'読み込んだデータを保存できませんでした（ブラウザーの保存領域不足、またはアクセス制限の可能性があります）。元のデータの復元を試みました。再読み込みして記録を確認してください。',
+    '備份匯入成功，原紀錄已先備份。':'バックアップを読み込みました。元の記録は事前にバックアップされています。',
+    '備份檔無法讀取或格式不正確。原有紀錄沒有變更。':'バックアップファイルを読み取れないか、形式が正しくありません。現在の記録は変更されていません。',
+    '無法建立備份檔，請稍後再試。':'バックアップを作成できません。後でもう一度お試しください。',
+    '備份檔最外層必須是 JSON 物件。':'バックアップファイルはJSONオブジェクトである必要があります。',
+    '找不到有效的 state 挑戰紀錄資料。':'有効なチャレンジ記録データが見つかりません。',
+    '角色名稱格式不正確。':'ポケモン名の形式が正しくありません。',
+    '個人化資料格式不正確。':'個人データの形式が正しくありません。',
+    '個人化設定必須是 JSON 物件。':'個人設定はJSONオブジェクトである必要があります。',
+    '一擊流':'いちげきのかた','連擊流':'れんげきのかた',
+    '依挑戰進度篩選':'チャレンジ進捗で絞り込む','依收藏狀態篩選':'コレクション状態で絞り込む','依角色定位篩選':'バトルスタイルで絞り込む','角色排序':'ポケモンの並び順','開啟功能選單':'メニューを開く','關閉功能選單':'メニューを閉じる','關閉選單':'メニューを閉じる','例如：皮卡丘、噴火龍':'例：ピカチュウ、リザードン','技能圖示':'わざアイコン',
+    'WELCOME':'ようこそ','YOUR PROGRESS':'進捗状況','FIND A POKÉMON':'ポケモンを探す','CHALLENGE TOOLS':'チャレンジツール','SETTINGS & BACKUP':'設定とバックアップ'
+  });
   // Japanese Pokémon names are only populated where the official Japanese spelling is confidently mapped.
   const jaNames = {
     '阿勃梭魯':'アブソル','堅盾劍怪':'ギルガルド','霜奶仙':'マホイップ','紅蓮鎧騎':'グレンアルマ','急凍鳥':'フリーザー','瑪力露麗':'マリルリ','水箭龜':'カメックス','火焰雞':'バシャーモ','幸福蛋':'ハピナス','爆肌蚊':'マッシブーン','蒼炎刃鬼':'ソウブレイズ','水晶燈火靈':'シャンデラ','噴火龍':'リザードン','超級噴火龍 X':'メガリザードンX','超級噴火龍 Y':'メガリザードンY','閃焰王牌':'エースバーン','皮可西':'ピクシー','花療環環':'キュワワー','古月鳥':'ウッウ','岩殿居蟹':'イワパレス','達克萊伊':'ダークライ','狙射樹梟':'ジュナイパー','妖火紅狐':'マフォクシー','破破舵輪':'ダダリン','嘟嘟利':'ドードリオ','多龍巴魯托':'ドラパルト','快龍':'カイリュー','鋁鋼龍':'ジュラルドン','白蓬蓬':'ワタシラガ','帝王拿波':'エンペルト','太陽伊布':'エーフィ','列陣兵':'タイレーツ','大力鱷':'オーダイル','火伊布':'ブースター','烈咬陸鯊':'ガブリアス','沙奈朵':'サーナイト','耿鬼':'ゲンガー','冰伊布':'グレイシア','黏美龍':'ヌメルゴン','藏飽栗鼠':'ヨクバリス','甲賀忍蛙':'ゲッコウガ','暴鯉龍':'ギャラドス','超級暴鯉龍':'メガギャラドス','鳳王':'ホウオウ','胡帕':'フーパ','千面避役':'インテレオン','雷伊布':'サンダース','拉普拉斯':'ラプラス','拉帝亞斯':'ラティアス','拉帝歐斯':'ラティオス','葉伊布':'リーフィア','路卡利歐':'ルカリオ','超級路卡利歐':'メガルカリオ','怪力':'カイリキー','象牙豬':'マンムー','大竺葵':'メガニウム','魔幻假面喵':'マスカーニャ','喵喵':'ニャース','巨金怪':'メタグロス','夢幻':'ミュウ','謎擬Ｑ':'ミミッキュ','密勒頓':'ミライドン','火焰鳥':'ファイヤー','莫魯貝可':'モルペコ','魔牆人偶':'バリヤード','阿羅拉九尾':'アローラキュウコン','帕路奇亞':'パルキア','巴布土撥':'パーモット','皮卡丘':'ピカチュウ','可達鴨':'コダック','狂歡浪舞鴨':'ウェーニバル','阿羅拉雷丘':'アローラライチュウ','伽勒爾烈焰馬':'ガラルギャロップ','萊希拉姆':'レシラム','勾魂眼':'ヤミラミ','巨鉗螳螂':'ハッサム','蔥遊兵':'ネギガナイト','骨紋巨聲鱷':'ラウドボーン','呆殼獸':'ヤドラン','卡比獸':'カビゴン','索爾迦雷歐':'ソルガレオ','水君':'スイクン','仙子伊布':'ニンフィア','烈箭鷹':'ファイアロー','巨鍛匠':'デカヌチャン','顫弦蠑螈':'ストリンダー','朽木妖':'オーロット','甜冷美后':'アマージョ','火爆獸':'バクフーン','班基拉斯':'バンギラス','月亮伊布':'ブラッキー','武道熊師':'ウーラオス','水伊布':'シャワーズ','妙蛙花':'フシギバナ','胖可丁':'プクリン','伊裴爾塔爾':'イベルタル','蒼響':'ザシアン','閃電鳥':'サンダー','捷拉奧拉':'ゼラオラ','索羅亞克':'ゾロアーク'
@@ -214,7 +348,7 @@
   }
   function displayPokemonName(zh){ if(lang==='en') return window.__pokemonNameMap?.[zh] || zh; if(lang==='ja') return jaNames[zh] || zh; return zh; }
   function switchLanguage(next){ lang=['zh','en','ja'].includes(next)?next:'zh'; localStorage.setItem(LANG_KEY,lang); document.documentElement.lang=lang==='zh'?'zh-Hant':lang; const select=document.getElementById('languageSelect'); if(select)select.value=lang; document.querySelectorAll('option[data-role-value]').forEach(o=>o.textContent=t(o.dataset.roleValue)); translateTree(); window.dispatchEvent(new CustomEvent('app-language-change',{detail:{lang}})); }
-  function addSelector(){const host=document.querySelector('.header-actions'); if(!host||document.getElementById('languageSelect'))return; const wrap=document.createElement('label');wrap.className='language-picker';wrap.innerHTML='<span>🌐</span><select id="languageSelect" aria-label="Language"><option value="zh">繁體中文</option><option value="en">English</option><option value="ja">日本語</option></select>';host.prepend(wrap);wrap.querySelector('select').addEventListener('change',e=>switchLanguage(e.target.value));}
+  function addSelector(){const host=document.querySelector('.header-actions'); if(!host||document.getElementById('languageSelect'))return; const wrap=document.createElement('label');wrap.className='language-picker';wrap.innerHTML='<span>🌐</span><select id="languageSelect" aria-label="語言"><option value="zh">繁體中文</option><option value="en">English</option><option value="ja">日本語</option></select>';host.prepend(wrap);wrap.querySelector('select').addEventListener('change',e=>switchLanguage(e.target.value));}
   window.__i18n={get lang(){return lang;},t,displayPokemonName,switchLanguage,labels,jaNames};
   window.__pokemonNameMap={};
   document.addEventListener('DOMContentLoaded',()=>{addSelector();switchLanguage(lang);const observer=new MutationObserver(records=>records.forEach(r=>{r.addedNodes.forEach(n=>{if(n.nodeType===Node.TEXT_NODE)translateTree(n.parentElement||document.body);else if(n.nodeType===Node.ELEMENT_NODE)translateTree(n);} );}));observer.observe(document.body,{childList:true,subtree:true,characterData:true});});

@@ -108,6 +108,12 @@ body.light-theme .stats article,body.light-theme .overview-panel,body.light-them
 body.light-theme .search,body.light-theme .toolbar select,body.light-theme .secondary{background:#ffffff;color:#172538;border-color:#cbd6e4}
 body.light-theme .search input{color:#172538}
 body.light-theme .pokemon-card{background:#ffffff!important;border-color:#d4deea;box-shadow:0 3px 12px #1b355012}
+/* Keep role colors visible in light theme instead of flattening every card to white. */
+body.light-theme .pokemon-card.role-attacker{background:linear-gradient(145deg,#fff0f1,#ffffff)!important}
+body.light-theme .pokemon-card.role-defender{background:linear-gradient(145deg,#eafaf1,#ffffff)!important}
+body.light-theme .pokemon-card.role-speedster{background:linear-gradient(145deg,#edf6ff,#ffffff)!important}
+body.light-theme .pokemon-card.role-allrounder{background:linear-gradient(145deg,#f5efff,#ffffff)!important}
+body.light-theme .pokemon-card.role-supporter{background:linear-gradient(145deg,#fff8e7,#ffffff)!important}
 body.light-theme .pokemon-card .pokemon-name,body.light-theme .card-bottom b{color:#172538}
 body.light-theme .role-tag{filter:saturate(.8)}
 body.light-theme .overview-role,body.light-theme .unfinished-item{background:#f5f8fc;border-color:#d5dfeb;color:#172538}

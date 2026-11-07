@@ -1,0 +1,35 @@
+Pokémon UNITE Tracker - Desktop Update 1.0.2
+Website data version: V37.5
+
+This package updates the Electron desktop application's bundled website files to the current V37.5 project content.
+
+Included updates:
+- Integrates the V37.5 Traditional Chinese / English / Japanese interface and help/changelog content.
+- Integrates the current pokemon.json data, including the four Japanese display-name mappings for Urshifu:
+  暗冥強擊 -> あんこくきょうだ
+  地獄突刺 -> じごくづき
+  水流連打 -> すいりゅうれんだ
+  流水裂破 -> アクアブレイク
+- Updates the desktop package version from 1.0.1 to 1.0.2.
+- Updates the in-app header label from V37.2 to V37.5.
+- Keeps the existing Electron app ID and local data storage behavior unchanged.
+
+Build on Windows:
+1. Install Node.js 20 or newer.
+2. Extract the complete project folder.
+3. Double-click BUILD-WINDOWS-v1.0.2.bat.
+4. The new installer will be created in dist as:
+   Pokemon-Unite-Tracker-Setup-1.0.2.exe
+5. Before installing, export a JSON backup from the existing desktop application as a precaution.
+6. Run the new installer and install over the existing application.
+
+Important:
+- The existing 1.0.1 installer is not modified by this source update.
+- A new Windows EXE was not produced in this environment because npm dependency downloads failed with DNS error EAI_AGAIN.
+- The provided BAT file builds the installer on a Windows machine with npm registry access.
+
+- Fixes Pokémon role-card colors in English and Japanese, and retains role colors in the light theme.
+- Localizes dynamic counters, random challenge result details, and backup timestamps.
+- Synchronizes the Pokémon English-name map immediately after catalogue loading.
+- Localizes the first-run tour, backup confirmation dialogs, common validation messages, and operation prompts.
+- Translates fixed-build style labels and move names in unfinished lists and random challenge results.
