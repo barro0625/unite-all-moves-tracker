@@ -150,7 +150,36 @@ $("search").addEventListener("input",render);$("filter").addEventListener("chang
 $("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
 $("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
 $("resetPokemon").onclick=()=>{if(confirm("確定要清除此寶可夢的所有設定與勝利紀錄？")){draftWins={};draftMove1=[];draftMove2=[];$("countMode").value="unconfigured";syncModeUI();renderCombos();}};
-$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({version:21,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="unite-moves-win-backup-v20.json";a.click();URL.revokeObjectURL(a.href);toast("備份檔已匯出");};
+function makeBackupDefaultName(){
+ const now=new Date();
+ const pad=n=>String(n).padStart(2,"0");
+ return `pokemon-unite-challenge-backup_${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}-${pad(now.getMinutes())}`;
+}
+function exportBackup(){
+ const defaultName=makeBackupDefaultName();
+ const input=prompt("請輸入備份檔名（不需要輸入 .json）",defaultName);
+ if(input===null)return;
+ // Remove characters that are not allowed in common desktop filenames.
+ let filename=input.trim()
+  .replace(/\.json$/i,"")
+  .replace(/[<>:"/\\|?*\u0000-\u001F]/g,"-")
+  .replace(/\s+/g,"-")
+  .replace(/-+/g,"-")
+  .replace(/^\.+|\.+$/g,"");
+ if(!filename)filename=defaultName;
+ filename += ".json";
+ const blob=new Blob([JSON.stringify({version:21,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download=filename;
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+ toast(`備份已匯出：${filename}`);
+}
+$("exportBtn").onclick=exportBackup;
 $("importBtn").onclick=()=>$("importFile").click();$("obsBtn").onclick=()=>window.open(location.pathname+"?mode=overlay","unite-obs-overlay","width=900,height=500");
 $("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前挑戰紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
 
