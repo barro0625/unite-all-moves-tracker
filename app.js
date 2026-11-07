@@ -243,7 +243,7 @@ function uniteDbMoveIconUrl(name, move){
  return url || "";
 }
 function legacyMoveIconUrl(name, move){
- const direct=directMoveIconUrls[name]?.[move];
+ const direct=(typeof directMoveIconUrls!=="undefined" && directMoveIconUrls[name]?.[move]) || "";
  if(direct)return direct;
  const en=nameMap[name],slug=moveIcons[name]?.[move];
  if(!en||!slug)return "";
