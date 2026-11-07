@@ -160,25 +160,40 @@ function renderBackupStatus(){
  try{last=localStorage.getItem(LAST_BACKUP_KEY)||"";}catch{}
  el.textContent=last?`上次匯出：${formatBackupDate(last)}`:"上次匯出：尚未匯出";
 }
-function downloadBackup(reason="manual"){
- const now=new Date();
+function makeBackupTimestamp(date=new Date()){
  const pad=n=>String(n).padStart(2,"0");
- const stamp=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
- const prefix=reason==="before-import"?"pokemon-unite-before-import-backup":"pokemon-unite-challenge-backup";
- const payload={format:"pokemon-unite-challenge-backup",version:23,exportedAt:now.toISOString(),state};
+ return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}_${pad(date.getHours())}-${pad(date.getMinutes())}-${pad(date.getSeconds())}`;
+}
+function makeBackupPayload(now=new Date()){
+ return {format:"pokemon-unite-challenge-backup",version:23,exportedAt:now.toISOString(),state};
+}
+function sanitizeBackupFilename(input,fallback){
+ let name=String(input??"").trim();
+ name=name.replace(/\.json$/i,"")
+  .replace(/[<>:"/\\|?*\u0000-\u001F]/g,"-")
+  .replace(/\s+/g,"-")
+  .replace(/-+/g,"-")
+  .replace(/^\.+|\.+$/g,"")
+  .slice(0,120)
+  .replace(/[. -]+$/g,"");
+ if(!name)name=fallback;
+ return `${name}.json`;
+}
+function startBackupDownload(filename){
+ const now=new Date();
  let url="";
  try{
-  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"});
+  const blob=new Blob([JSON.stringify(makeBackupPayload(now),null,2)],{type:"application/json;charset=utf-8"});
   url=URL.createObjectURL(blob);
   const a=document.createElement("a");
   a.href=url;
-  a.download=`${prefix}_${stamp}.json`;
+  a.download=filename;
   a.style.display="none";
   document.body.appendChild(a);
   a.click();
   a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),1500);
-  try{localStorage.setItem(LAST_BACKUP_KEY,now.toISOString());}catch{}
+  try{localStorage.setItem(LAST_BACKUP_KEY,now.toISOString());}catch(storageError){console.warn("Could not save last backup timestamp:",storageError);}
   renderBackupStatus();
   return true;
  }catch(error){
@@ -187,6 +202,25 @@ function downloadBackup(reason="manual"){
   return false;
  }
 }
+// One-click export: a timestamped filename is generated automatically.
+function downloadBackup(reason="quick"){
+ const prefix=reason==="before-import"?"pokemon-unite-before-import-backup":"pokemon-unite-challenge-backup";
+ return startBackupDownload(`${prefix}_${makeBackupTimestamp()}.json`);
+}
+// Manual export: retain the original editable-filename workflow.
+function exportBackupWithCustomName(){
+ const suggested=`pokemon-unite-challenge-backup_${makeBackupTimestamp()}`;
+ const input=prompt("請輸入備份檔名（可自行修改，不需要輸入 .json）",suggested);
+ if(input===null)return false;
+ const filename=sanitizeBackupFilename(input,suggested);
+ if(!startBackupDownload(filename)){
+  alert("無法建立備份檔，請檢查瀏覽器下載設定後重試。");
+  return false;
+ }
+ toast(`備份已匯出：${filename}`);
+ return true;
+}
+
 function validateBackupPayload(obj){
  if(!obj||typeof obj!=="object"||Array.isArray(obj))throw new Error("備份檔最外層必須是 JSON 物件。");
  if(!obj.state||typeof obj.state!=="object"||Array.isArray(obj.state))throw new Error("找不到有效的 state 挑戰紀錄資料。");
@@ -229,7 +263,8 @@ $("search").addEventListener("input",render);$("filter").addEventListener("chang
 $("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
 $("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
 $("resetPokemon").onclick=()=>{if(confirm("確定要清除此寶可夢的所有設定與勝利紀錄？")){draftWins={};draftMove1=[];draftMove2=[];$("countMode").value="unconfigured";syncModeUI();renderCombos();}};
-$("exportBtn").onclick=()=>{if(downloadBackup())toast("備份已匯出，請妥善保存檔案。");else alert("無法建立備份檔，請檢查瀏覽器下載設定後重試。");};
+$("exportBtn").onclick=exportBackupWithCustomName;
+$("quickExportBtn").onclick=()=>{if(downloadBackup())toast("快速備份已匯出，請妥善保存檔案。");else alert("無法建立備份檔，請檢查瀏覽器下載設定後重試。");};
 $("importBtn").onclick=()=>$("importFile").click();$("obsBtn").onclick=()=>window.open(location.pathname+"?mode=overlay","unite-obs-overlay","width=900,height=500");
 $("importFile").onchange=async e=>{
  const file=e.target.files?.[0];
@@ -261,7 +296,7 @@ $("importFile").onchange=async e=>{
  }
 };
 $("backupNoticeDismiss").onclick=dismissFirstBackupNotice;
-$("backupNoticeExport").onclick=()=>{if(downloadBackup()){dismissFirstBackupNotice();toast("備份已匯出，請妥善保存檔案。");}else alert("無法建立備份檔，請稍後再試。");};
+$("backupNoticeExport").onclick=()=>{if(downloadBackup()){dismissFirstBackupNotice();toast("快速備份已匯出，請妥善保存檔案。");}else alert("無法建立備份檔，請稍後再試。");};
 
 // V11 隨機挑戰：從所有尚未取得勝利的技能組中抽選。
 $("randomBtn").onclick=()=>{
