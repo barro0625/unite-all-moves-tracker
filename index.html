@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="topbar">
-  <button type="button" class="menu-trigger" id="menuToggle" aria-label="開啟功能選單" aria-expanded="false">☰</button><div class="brand"><div class="brand-mark">U</div><div><strong>全技能組一勝挑戰</strong><small>POKÉMON UNITE · PERSONAL CHALLENGE TRACKER · V35</small></div></div>
+  <button type="button" class="menu-trigger" id="menuToggle" aria-label="開啟功能選單" aria-expanded="false">☰</button><div class="brand"><div class="brand-mark">U</div><div><strong>全技能組一勝挑戰</strong><small>POKÉMON UNITE · PERSONAL CHALLENGE TRACKER · V37.2</small></div></div>
   <div class="header-actions"><a class="source-link" href="https://unite-db.com/" target="_blank" rel="noreferrer">UNITE-DB ↗</a></div>
 </header>
 <div class="drawer-backdrop" id="drawerBackdrop"></div>
@@ -70,7 +70,7 @@
     <select id="sortOrder" aria-label="角色排序"><option value="original">原始順序</option><option value="name">名稱排序</option><option value="progress-desc">完成度由高至低</option><option value="progress-asc">完成度由低至高</option><option value="favorites">最愛優先</option></select>
     <input id="importFile" type="file" accept="application/json" hidden>
   </section>
-  <div class="section-head"><div><h2>寶可夢列表</h2><p>V32：新增首次進站新手導覽，可逐步認識主要功能，也能隨時跳過或日後重新觀看。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
+  <div class="section-head"><div><h2>寶可夢列表</h2><p>V37.2：整合繁體中文、英文與日文技能名稱，並持續擴充多語言介面。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
   <section id="grid" class="pokemon-grid"></section>
   <footer>紀錄儲存在目前瀏覽器；建議定期使用 JSON 匯出備份。<br>非官方粉絲工具，與 Nintendo、The Pokémon Company 或 TiMi Studio Group 無關。<br><span class="translation-disclaimer">英文及日文內容可能包含機器翻譯，或有翻譯錯誤；寶可夢與技能名稱以官方遊戲資料為準。</span></footer>
 </main>
@@ -168,7 +168,13 @@
   <div class="dialog-head"><div><p class="eyebrow">PROJECT HISTORY</p><h2 id="changelogModalTitle">網站更新日誌</h2></div><button class="icon-btn" id="closeChangelogModal" aria-label="關閉更新日誌">×</button></div>
   <p class="hint">整理每次版本的重要調整。最新版本會顯示在最上方。</p>
   <div class="changelog-list">
-   <article class="changelog-entry latest"><div class="changelog-version"><b>V32</b><span>目前版本</span></div><div><h3>首次進站新手導覽</h3><ul><li>首次進入網站時自動顯示分步導覽，介紹進度總覽、搜尋篩選、寶可夢卡片與管理工具。</li><li>每一步都可以選擇上一步、下一步或直接跳過。</li><li>完成或跳過後不再自動出現，也可從功能說明重新觀看。</li></ul></div></article>
+   <article class="changelog-entry latest"><div class="changelog-version"><b>V37.2</b><span>目前版本</span></div><div><h3>多語言技能名稱整合</h3><ul><li>將技能英文與日文名稱整合至寶可夢資料，切換語言時同步顯示對應技能名稱。</li><li>保留繁體中文原始名稱、寶可夢與技能組識別碼、勝場紀錄及既有備份格式。</li><li>暫時無法可靠對應的名稱會回退顯示繁體中文，不自行拼造譯名。</li><li>英文及日文名稱採暫用對照，尚未逐項由遊戲現行版本核實；請以遊戲內名稱為準。</li></ul></div></article>
+   <article class="changelog-entry"><div class="changelog-version"><b>V37.1</b></div><div><h3>技能名稱翻譯試行</h3><ul><li>以噴火龍作為中、英、日技能名稱對照試填範例。</li><li>確認一般招式與集結招式需要分別核對，未確認項目保留待確認狀態。</li></ul></div></article>
+   <article class="changelog-entry"><div class="changelog-version"><b>V36</b></div><div><h3>多語言介面第二階段</h3><ul><li>擴充英文與日文動態介面翻譯，涵蓋統計、角色定位、技能組紀錄、挑戰結果、狀態與提示訊息。</li><li>OBS 獨立畫面切換語言時同步更新統計標籤。</li><li>角色卡片、未完成清單、隨機挑戰與編輯視窗延續多語言顯示。</li><li>保留原有資料結構、儲存鍵、技能組 ID、備份格式及桌面版設定。</li></ul></div></article>
+   <article class="changelog-entry"><div class="changelog-version"><b>V35</b></div><div><h3>繁中、英文、日文介面</h3><ul><li>新增繁體中文、英文及日文切換，並記住上次選擇的語言。</li><li>以獨立 i18n.js 管理介面翻譯，語言切換不改動挑戰紀錄及備份格式。</li><li>英文及日文技能名稱尚未完整，未有可靠對照的項目保留繁體中文。</li></ul></div></article>
+   <article class="changelog-entry"><div class="changelog-version"><b>V34</b></div><div><h3>Windows 桌面版資料載入與備份修正</h3><ul><li>修正 Electron 桌面版讀取內建 pokemon.json 的路徑問題。</li><li>匯入備份時以內建完整角色與技能組資料為基礎合併勝利紀錄，避免部分備份造成角色或技能組資料缺漏。</li><li>保留收藏與個人化設定；桌面版版本號更新至 1.0.1。</li><li>完成程式語法、JSON、資料數量及匯入合併檢查；Windows 安裝後的實機測試需另行確認。</li></ul></div></article>
+   <article class="changelog-entry"><div class="changelog-version"><b>V33</b></div><div><h3>Windows Electron 桌面版</h3><ul><li>加入 Electron 桌面程式架構，可將既有網站包裝成 Windows x64 應用程式。</li><li>沿用網站的挑戰介面與 JSON 備份匯入／匯出，支援網站與桌面版之間手動搬移紀錄。</li><li>新增 GitHub Actions Windows 安裝檔建置流程及 GitHub Releases 發布入口。</li><li>網站與桌面版的本機儲存空間彼此獨立，不會自動同步。</li></ul></div></article>
+   <article class="changelog-entry"><div class="changelog-version"><b>V32</b></div><div><h3>首次進站新手導覽</h3><ul><li>首次進入網站時自動顯示五步驟導覽，介紹挑戰目標、進度總覽、搜尋篩選、智慧隨機挑戰及設定／備份／OBS。</li><li>每一步可使用上一步、下一步或跳過；完成或跳過後不再自動出現。</li><li>可從功能說明重新觀看，導覽狀態獨立儲存，不會修改挑戰紀錄。</li></ul></div></article>
    <article class="changelog-entry"><div class="changelog-version"><b>V31</b></div><div><h3>功能入口按鈕文字化</h3><ul><li>功能說明改為一般文字按鈕，不再使用問號符號。</li><li>更新日誌入口移除裝飾圖示，統一使用文字按鈕。</li><li>保留功能說明固定在畫面右下角，以及網站內更新日誌視窗。</li></ul></div></article>
    <article class="changelog-entry"><div class="changelog-version"><b>V30</b></div><div><h3>功能說明與更新日誌入口調整</h3><ul><li>功能說明改為固定在畫面右下角，捲動畫面時仍可開啟。</li><li>新增網站內更新日誌視窗，集中查看版本調整。</li></ul></div></article>
    <article class="changelog-entry"><div class="changelog-version"><b>V29</b></div><div><h3>漢堡選單與功能說明</h3><ul><li>使用左上角三條線集中管理挑戰工具、個人化設定、備份還原與 OBS 模式。</li><li>新增功能說明視窗，集中介紹各區塊用途。</li></ul></div></article>

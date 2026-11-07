@@ -2024,12 +2024,12 @@
       "status": "provisional"
     },
     "冰凍光束": {
-      "en": "冰凍光束",
+      "en": "Ice Beam",
       "ja": "れいとうビーム",
       "status": "provisional"
     },
     "暴風雪": {
-      "en": "暴風雪",
+      "en": "Blizzard",
       "ja": "ふぶき",
       "status": "provisional"
     },
@@ -2169,13 +2169,13 @@
       "status": "pilot-match"
     },
     "火焰拳＋閃焰衝鋒": {
-      "en": "火焰拳＋閃焰衝鋒",
-      "ja": "火焰拳＋閃焰衝鋒",
+      "en": "Fire Punch＋Flare Blitz",
+      "ja": "ほのおのパンチ＋フレアドライブ",
       "status": "needs-review"
     },
     "噴射火焰＋大字爆炎": {
-      "en": "噴射火焰＋大字爆炎",
-      "ja": "噴射火焰＋大字爆炎",
+      "en": "Flamethrower＋Fire Blast",
+      "ja": "かえんほうしゃ＋だいもんじ",
       "status": "needs-review"
     },
     "火焰球": {
@@ -2205,7 +2205,7 @@
     },
     "重力": {
       "en": "Gravity",
-      "ja": "重力",
+      "ja": "じゅうりょく",
       "status": "provisional"
     },
     "花療": {
@@ -2215,7 +2215,7 @@
     },
     "天使之吻": {
       "en": "Sweet Kiss",
-      "ja": "天使之吻",
+      "ja": "てんしのキッス",
       "status": "provisional"
     },
     "魔法葉": {
@@ -2230,7 +2230,7 @@
     },
     "潛水": {
       "en": "Dive",
-      "ja": "潛水",
+      "ja": "ダイビング",
       "status": "provisional"
     },
     "空氣斬": {
@@ -2264,67 +2264,67 @@
       "status": "provisional"
     },
     "詭計": {
-      "en": "詭計",
+      "en": "Nasty Plot",
       "ja": "わるだくみ",
       "status": "provisional"
     },
     "惡之波動": {
-      "en": "惡之波動",
+      "en": "Dark Pulse",
       "ja": "あくのはどう",
       "status": "provisional"
     },
     "暗黑洞": {
-      "en": "暗黑洞",
+      "en": "Dark Void",
       "ja": "ダークホール",
       "status": "provisional"
     },
     "縫影": {
-      "en": "縫影",
-      "ja": "縫影",
+      "en": "Spirit Shackle",
+      "ja": "かげぬい",
       "status": "needs-review"
     },
     "飛葉快刀": {
-      "en": "飛葉快刀",
+      "en": "Razor Leaf",
       "ja": "はっぱカッター",
       "status": "provisional"
     },
     "飛葉風暴": {
-      "en": "飛葉風暴",
-      "ja": "飛葉風暴",
+      "en": "Leaf Storm",
+      "ja": "リーフストーム",
       "status": "needs-review"
     },
     "影子偷襲": {
-      "en": "影子偷襲",
+      "en": "Shadow Sneak",
       "ja": "かげうち",
       "status": "provisional"
     },
     "魔法火焰": {
-      "en": "魔法火焰",
+      "en": "Mystical Fire",
       "ja": "マジカルフレイム",
       "status": "provisional"
     },
     "強力鞭打": {
-      "en": "強力鞭打",
-      "ja": "強力鞭打",
+      "en": "Power Whip",
+      "ja": "パワーウィップ",
       "status": "needs-review"
     },
-    "擲矛": {
-      "en": "擲矛",
-      "ja": "擲矛",
+    "擲錨": {
+      "en": "Anchor Shot",
+      "ja": "アンカーショット",
       "status": "needs-review"
     },
     "重磅衝撞": {
-      "en": "重磅衝撞",
+      "en": "Heavy Slam",
       "ja": "ヘビーボンバー",
       "status": "provisional"
     },
     "三重攻擊": {
-      "en": "三重攻擊",
+      "en": "Tri Attack",
       "ja": "トライアタック",
       "status": "provisional"
     },
     "啄鑽": {
-      "en": "啄鑽",
+      "en": "Drill Peck",
       "ja": "ドリルくちばし",
       "status": "provisional"
     },
@@ -2334,88 +2334,88 @@
       "status": "provisional"
     },
     "飛踢": {
-      "en": "飛踢",
+      "en": "Jump Kick",
       "ja": "とびげり",
       "status": "provisional"
     },
     "龍之舞": {
-      "en": "龍之舞",
+      "en": "Dragon Dance",
       "ja": "りゅうのまい",
       "status": "provisional"
     },
     "龍息": {
-      "en": "龍息",
+      "en": "Dragon Breath",
       "ja": "りゅうのいぶき",
       "status": "provisional"
     },
     "暗影球": {
-      "en": "暗影球",
+      "en": "Shadow Ball",
       "ja": "シャドーボール",
       "status": "provisional"
     },
     "神速": {
-      "en": "神速",
+      "en": "Extreme Speed",
       "ja": "しんそく",
       "status": "provisional"
     },
     "破壞光線": {
-      "en": "破壞光線",
+      "en": "Hyper Beam",
       "ja": "はかいこうせん",
       "status": "provisional"
     },
     "逆鱗": {
-      "en": "逆鱗",
+      "en": "Outrage",
       "ja": "げきりん",
       "status": "provisional"
     },
     "加農光炮": {
-      "en": "加農光炮",
-      "ja": "加農光炮",
+      "en": "Flash Cannon",
+      "ja": "ラスターカノン",
       "status": "needs-review"
     },
     "龍之波動": {
-      "en": "龍之波動",
+      "en": "Dragon Pulse",
       "ja": "りゅうのはどう",
       "status": "provisional"
     },
     "龍尾": {
-      "en": "龍尾",
+      "en": "Dragon Tail",
       "ja": "ドラゴンテール",
       "status": "provisional"
     },
     "花粉團": {
-      "en": "花粉團",
-      "ja": "花粉團",
+      "en": "Pollen Puff",
+      "ja": "かふんだんご",
       "status": "needs-review"
     },
     "青草攪拌器": {
-      "en": "青草攪拌器",
-      "ja": "青草攪拌器",
+      "en": "Leaf Tornado",
+      "ja": "グラスミキサー",
       "status": "needs-review"
     },
     "棉花防守": {
-      "en": "棉花防守",
+      "en": "Cotton Guard",
       "ja": "わたほうし",
       "status": "provisional"
     },
     "棉孢子": {
-      "en": "棉孢子",
+      "en": "Cotton Spore",
       "ja": "わたほうし",
       "status": "provisional"
     },
     "金屬爪": {
-      "en": "金屬爪",
+      "en": "Metal Claw",
       "ja": "メタルクロー",
       "status": "provisional"
     },
     "水流噴射": {
-      "en": "水流噴射",
-      "ja": "水流噴射",
+      "en": "Aqua Jet",
+      "ja": "アクアジェット",
       "status": "needs-review"
     },
     "幻象光線": {
-      "en": "幻象光線",
-      "ja": "幻象光線",
+      "en": "Psybeam",
+      "ja": "サイケこうせん",
       "status": "needs-review"
     },
     "預知未來": {
@@ -2425,7 +2425,7 @@
     },
     "輔助力量": {
       "en": "Stored Power",
-      "ja": "輔助力量",
+      "ja": "アシストパワー",
       "status": "provisional"
     },
     "精神衝擊": {
@@ -2434,52 +2434,47 @@
       "status": "provisional"
     },
     "超級角擊": {
-      "en": "超級角擊",
-      "ja": "超級角擊",
+      "en": "Megahorn",
+      "ja": "メガホーン",
       "status": "needs-review"
     },
     "背水一戰": {
-      "en": "背水一戰",
-      "ja": "背水一戰",
+      "en": "No Retreat",
+      "ja": "はいすいのじん",
       "status": "needs-review"
     },
     "圍攻": {
-      "en": "圍攻",
-      "ja": "圍攻",
+      "en": "Beat Up",
+      "ja": "ふくろだたき",
       "status": "needs-review"
     },
     "咬碎": {
-      "en": "咬碎",
-      "ja": "咬碎",
+      "en": "Crunch",
+      "ja": "かみくだく",
       "status": "needs-review"
     },
     "攀瀑": {
-      "en": "攀瀑",
-      "ja": "攀瀑",
-      "status": "needs-review"
-    },
-    "大字爆焰": {
-      "en": "大字爆焰",
-      "ja": "大字爆焰",
+      "en": "Waterfall",
+      "ja": "たきのぼり",
       "status": "needs-review"
     },
     "挖洞": {
-      "en": "挖洞",
-      "ja": "挖洞",
+      "en": "Dig",
+      "ja": "あなをほる",
       "status": "needs-review"
     },
     "龍之俯衝": {
-      "en": "龍之俯衝",
-      "ja": "龍之俯衝",
+      "en": "Dragon Rush",
+      "ja": "ドラゴンダイブ",
       "status": "needs-review"
     },
     "地震": {
-      "en": "地震",
+      "en": "Earthquake",
       "ja": "じしん",
       "status": "provisional"
     },
     "龍爪": {
-      "en": "龍爪",
+      "en": "Dragon Claw",
       "ja": "ドラゴンクロー",
       "status": "provisional"
     },
@@ -2494,283 +2489,283 @@
       "status": "provisional"
     },
     "禍不單行": {
-      "en": "禍不單行",
-      "ja": "禍不單行",
+      "en": "Hex",
+      "ja": "たたりめ",
       "status": "needs-review"
     },
     "食夢": {
-      "en": "食夢",
+      "en": "Dream Eater",
       "ja": "ゆめくい",
       "status": "provisional"
     },
     "冰凍之風": {
-      "en": "冰凍之風",
+      "en": "Icy Wind",
       "ja": "こごえるかぜ",
       "status": "provisional"
     },
     "冰錐": {
-      "en": "冰錐",
-      "ja": "冰錐",
+      "en": "Icicle Spear",
+      "ja": "つららばり",
       "status": "needs-review"
     },
     "冰礫": {
-      "en": "冰礫",
+      "en": "Ice Shard",
       "ja": "こおりのつぶて",
       "status": "provisional"
     },
     "冷凍乾燥": {
-      "en": "冷凍乾燥",
+      "en": "Freeze-Dry",
       "ja": "フリーズドライ",
       "status": "provisional"
     },
     "濁流": {
-      "en": "濁流",
-      "ja": "濁流",
+      "en": "Muddy Water",
+      "ja": "だくりゅう",
       "status": "needs-review"
     },
     "酸液炸彈": {
-      "en": "酸液炸彈",
-      "ja": "酸液炸彈",
+      "en": "Acid Spray",
+      "ja": "アシッドボム",
       "status": "needs-review"
     },
     "種子機關槍": {
-      "en": "種子機關槍",
-      "ja": "種子機關槍",
+      "en": "Bullet Seed",
+      "ja": "タネマシンガン",
       "status": "needs-review"
     },
     "打嗝": {
-      "en": "打嗝",
-      "ja": "打嗝",
+      "en": "Belch",
+      "ja": "ゲップ",
       "status": "needs-review"
     },
     "渴望": {
-      "en": "渴望",
-      "ja": "渴望",
+      "en": "Covet",
+      "ja": "ほしがる",
       "status": "needs-review"
     },
     "大快朵頤": {
-      "en": "大快朵頤",
-      "ja": "大快朵頤",
+      "en": "Stuff Cheeks",
+      "ja": "ほおばる",
       "status": "needs-review"
     },
     "飛水手裡劍": {
-      "en": "飛水手裡劍",
-      "ja": "飛水手裡劍",
+      "en": "Water Shuriken",
+      "ja": "みずしゅりけん",
       "status": "needs-review"
     },
     "影子分身": {
-      "en": "影子分身",
-      "ja": "影子分身",
+      "en": "Double Team",
+      "ja": "かげぶんしん",
       "status": "needs-review"
     },
     "煙幕": {
-      "en": "煙幕",
-      "ja": "煙幕",
+      "en": "Smokescreen",
+      "ja": "えんまく",
       "status": "needs-review"
     },
     "彈跳": {
-      "en": "彈跳",
-      "ja": "彈跳",
+      "en": "Splash",
+      "ja": "はねる",
       "status": "needs-review"
     },
     "龍息＋攀瀑": {
-      "en": "龍息＋攀瀑",
-      "ja": "龍息＋攀瀑",
+      "en": "Dragon Breath + Waterfall",
+      "ja": "りゅうのいぶき＋たきのぼり",
       "status": "needs-review"
     },
     "神聖之火": {
-      "en": "神聖之火",
-      "ja": "神聖之火",
+      "en": "Sacred Fire",
+      "ja": "せいなるほのお",
       "status": "needs-review"
     },
     "神鳥猛擊": {
-      "en": "神鳥猛擊",
+      "en": "Brave Bird",
       "ja": "ブレイブバード",
       "status": "provisional"
     },
     "戲法": {
-      "en": "戲法",
+      "en": "Trick",
       "ja": "トリック",
       "status": "provisional"
     },
     "異次元洞": {
-      "en": "異次元洞",
-      "ja": "異次元洞",
+      "en": "Hyperspace Hole",
+      "ja": "いじげんホール",
       "status": "needs-review"
     },
     "狙擊": {
-      "en": "狙擊",
-      "ja": "狙擊",
+      "en": "Snipe Shot",
+      "ja": "ねらいうち",
       "status": "needs-review"
     },
     "致命針刺": {
-      "en": "致命針刺",
-      "ja": "致命針刺",
+      "en": "Fell Stinger",
+      "ja": "とどめばり",
       "status": "needs-review"
     },
     "雜技": {
-      "en": "雜技",
-      "ja": "雜技",
+      "en": "Acrobatics",
+      "ja": "アクロバット",
       "status": "needs-review"
     },
     "飛彈針": {
-      "en": "飛彈針",
-      "ja": "飛彈針",
+      "en": "Pin Missile",
+      "ja": "ミサイルばり",
       "status": "needs-review"
     },
     "伏特替換": {
-      "en": "伏特替換",
+      "en": "Volt Switch",
       "ja": "ボルトチェンジ",
       "status": "provisional"
     },
     "泡沫光線": {
-      "en": "泡沫光線",
-      "ja": "泡沫光線",
+      "en": "Bubble Beam",
+      "ja": "バブルこうせん",
       "status": "needs-review"
     },
     "滅亡之歌": {
-      "en": "滅亡之歌",
-      "ja": "滅亡之歌",
+      "en": "Perish Song",
+      "ja": "ほろびのうた",
       "status": "needs-review"
     },
     "薄霧球": {
-      "en": "薄霧球",
-      "ja": "薄霧球",
+      "en": "Mist Ball",
+      "ja": "ミストボール",
       "status": "needs-review"
     },
     "龍聲鼓舞": {
-      "en": "龍聲鼓舞",
-      "ja": "龍聲鼓舞",
+      "en": "Dragon Cheer",
+      "ja": "ドラゴンエール",
       "status": "needs-review"
     },
     "流星群": {
-      "en": "流星群",
-      "ja": "流星群",
+      "en": "Draco Meteor",
+      "ja": "りゅうせいぐん",
       "status": "needs-review"
     },
     "意念移物": {
-      "en": "意念移物",
+      "en": "Telekinesis",
       "ja": "テレキネシス",
       "status": "provisional"
     },
     "潔淨光芒": {
-      "en": "潔淨光芒",
-      "ja": "潔淨光芒",
+      "en": "Purifying Light",
+      "ja": "せいなるちから",
       "status": "needs-review"
     },
     "日光刃": {
-      "en": "日光刃",
-      "ja": "日光刃",
+      "en": "Solar Blade",
+      "ja": "ソーラーブレード",
       "status": "needs-review"
     },
     "葉刃": {
-      "en": "葉刃",
-      "ja": "葉刃",
+      "en": "Leaf Blade",
+      "ja": "リーフブレード",
       "status": "needs-review"
     },
     "增強拳": {
-      "en": "增強拳",
-      "ja": "增強拳",
+      "en": "Power-Up Punch",
+      "ja": "グロウパンチ",
       "status": "needs-review"
     },
     "骨棒亂打": {
-      "en": "骨棒亂打",
-      "ja": "骨棒亂打",
+      "en": "Bone Rush",
+      "ja": "ボーンラッシュ",
       "status": "needs-review"
     },
     "近身戰": {
-      "en": "近身戰",
+      "en": "Close Combat",
       "ja": "インファイト",
       "status": "provisional"
     },
     "近身戰＋增強拳": {
-      "en": "近身戰＋增強拳",
-      "ja": "近身戰＋增強拳",
+      "en": "Close Combat + Power-Up Punch",
+      "ja": "インファイト＋グロウパンチ",
       "status": "needs-review"
     },
     "十字劈": {
-      "en": "十字劈",
+      "en": "Cross Chop",
       "ja": "クロスチョップ",
       "status": "provisional"
     },
     "爆裂拳": {
-      "en": "爆裂拳",
+      "en": "Dynamic Punch",
       "ja": "ばくれつパンチ",
       "status": "provisional"
     },
     "地獄翻滾": {
-      "en": "地獄翻滾",
+      "en": "Submission",
       "ja": "じごくぐるま",
       "status": "provisional"
     },
     "冰凍牙": {
-      "en": "冰凍牙",
+      "en": "Ice Fang",
       "ja": "こおりのキバ",
       "status": "provisional"
     },
     "冰柱墜擊": {
-      "en": "冰柱墜擊",
+      "en": "Icicle Crash",
       "ja": "つららおとし",
       "status": "provisional"
     },
     "十萬馬力": {
-      "en": "十萬馬力",
-      "ja": "十萬馬力",
+      "en": "High Horsepower",
+      "ja": "１０まんばりき",
       "status": "needs-review"
     },
     "落英繽紛": {
-      "en": "落英繽紛",
-      "ja": "落英繽紛",
+      "en": "Petal Blizzard",
+      "ja": "はなふぶき",
       "status": "needs-review"
     },
     "千變萬花": {
-      "en": "千變萬花",
-      "ja": "千變萬花",
+      "en": "Flower Trick",
+      "ja": "トリックフラワー",
       "status": "needs-review"
     },
     "起草": {
-      "en": "起草",
-      "ja": "起草",
+      "en": "Trailblaze",
+      "ja": "くさわけ",
       "status": "needs-review"
     },
     "聚寶功": {
-      "en": "聚寶功",
-      "ja": "聚寶功",
+      "en": "Pay Day",
+      "ja": "ネコにこばん",
       "status": "needs-review"
     },
     "亂抓": {
-      "en": "亂抓",
+      "en": "Fury Swipes",
       "ja": "みだれひっかき",
       "status": "provisional"
     },
     "出奇一擊": {
-      "en": "出奇一擊",
+      "en": "Feint Attack",
       "ja": "だましうち",
       "status": "provisional"
     },
     "惡意追擊": {
-      "en": "惡意追擊",
-      "ja": "惡意追擊",
+      "en": "Pursuit",
+      "ja": "おいうち",
       "status": "needs-review"
     },
     "彗星拳": {
-      "en": "彗星拳",
+      "en": "Meteor Mash",
       "ja": "コメットパンチ",
       "status": "provisional"
     },
     "陀螺球": {
-      "en": "陀螺球",
+      "en": "Gyro Ball",
       "ja": "ジャイロボール",
       "status": "provisional"
     },
     "意念頭槌": {
-      "en": "意念頭槌",
-      "ja": "意念頭槌",
+      "en": "Zen Headbutt",
+      "ja": "しねんのずつき",
       "status": "needs-review"
     },
     "電磁漂浮": {
-      "en": "電磁漂浮",
-      "ja": "電磁漂浮",
+      "en": "Magnet Rise",
+      "ja": "でんじふゆう",
       "status": "needs-review"
     },
     "電球": {
@@ -2785,7 +2780,7 @@
     },
     "指導": {
       "en": "Coaching",
-      "ja": "指導",
+      "ja": "コーチング",
       "status": "provisional"
     },
     "光牆": {
@@ -2794,33 +2789,33 @@
       "status": "provisional"
     },
     "精神擊破": {
-      "en": "精神擊破",
-      "ja": "精神擊破",
+      "en": "Psystrike",
+      "ja": "サイコブレイク",
       "status": "needs-review"
     },
     "瞬間移動": {
-      "en": "瞬間移動",
+      "en": "Teleport",
       "ja": "テレポート",
       "status": "provisional"
     },
     "戲法空間": {
-      "en": "戲法空間",
+      "en": "Trick Room",
       "ja": "トリックルーム",
       "status": "provisional"
     },
     "充電光束": {
-      "en": "充電光束",
-      "ja": "充電光束",
+      "en": "Charge Beam",
+      "ja": "チャージビーム",
       "status": "needs-review"
     },
     "閃電猛衝": {
-      "en": "閃電猛衝",
-      "ja": "閃電猛衝",
+      "en": "Wild Charge",
+      "ja": "ワイルドボルト",
       "status": "needs-review"
     },
     "拋物面充電": {
-      "en": "拋物面充電",
-      "ja": "拋物面充電",
+      "en": "Parabolic Charge",
+      "ja": "パラボラチャージ",
       "status": "needs-review"
     },
     "打雷": {
@@ -2829,58 +2824,58 @@
       "status": "provisional"
     },
     "熱風": {
-      "en": "熱風",
-      "ja": "熱風",
+      "en": "Heat Wave",
+      "ja": "ねっぷう",
       "status": "needs-review"
     },
     "電光": {
-      "en": "電光",
+      "en": "Spark",
       "ja": "スパーク",
       "status": "provisional"
     },
     "念力": {
-      "en": "念力",
+      "en": "Confusion",
       "ja": "ねんりき",
       "status": "provisional"
     },
     "屏障": {
-      "en": "屏障",
+      "en": "Barrier",
       "ja": "バリアー",
       "status": "provisional"
     },
     "力量互換": {
-      "en": "力量互換",
-      "ja": "力量互換",
+      "en": "Power Swap",
+      "ja": "パワースワップ",
       "status": "needs-review"
     },
     "雪崩": {
-      "en": "雪崩",
+      "en": "Avalanche",
       "ja": "ゆきなだれ",
       "status": "provisional"
     },
     "極光幕": {
-      "en": "極光幕",
-      "ja": "極光幕",
+      "en": "Aurora Veil",
+      "ja": "オーロラベール",
       "status": "needs-review"
     },
     "波導彈": {
-      "en": "波導彈",
-      "ja": "波導彈",
+      "en": "Aura Sphere",
+      "ja": "はどうだん",
       "status": "needs-review"
     },
     "音速拳": {
-      "en": "音速拳",
-      "ja": "音速拳",
+      "en": "Mach Punch",
+      "ja": "マッハパンチ",
       "status": "needs-review"
     },
     "閃電強襲": {
-      "en": "閃電強襲",
-      "ja": "閃電強襲",
+      "en": "Volt Tackle",
+      "ja": "ボルテッカー",
       "status": "needs-review"
     },
     "雷電拳": {
-      "en": "雷電拳",
-      "ja": "雷電拳",
+      "en": "Thunder Punch",
+      "ja": "かみなりパンチ",
       "status": "needs-review"
     },
     "伏特攻擊": {
@@ -2894,258 +2889,258 @@
       "status": "provisional"
     },
     "定身法": {
-      "en": "定身法",
-      "ja": "定身法",
+      "en": "Disable",
+      "ja": "かなしばり",
       "status": "needs-review"
     },
     "下盤踢": {
-      "en": "下盤踢",
-      "ja": "下盤踢",
+      "en": "Low Sweep",
+      "ja": "ローキック",
       "status": "needs-review"
     },
     "水流裂破": {
-      "en": "水流裂破",
+      "en": "Liquidation",
       "ja": "アクアブレイク",
       "status": "provisional"
     },
     "妖精之風": {
-      "en": "妖精之風",
+      "en": "Fairy Wind",
       "ja": "ようせいのかぜ",
       "status": "provisional"
     },
     "修長之角": {
-      "en": "修長之角",
-      "ja": "修長之角",
+      "en": "Smart Strike",
+      "ja": "スマートホーン",
       "status": "needs-review"
     },
     "青焰": {
-      "en": "青焰",
-      "ja": "青焰",
+      "en": "Blue Flare",
+      "ja": "あおいほのお",
       "status": "needs-review"
     },
     "拍落": {
-      "en": "拍落",
+      "en": "Knock Off",
       "ja": "はたきおとす",
       "status": "provisional"
     },
     "奇異之光": {
-      "en": "奇異之光",
+      "en": "Confuse Ray",
       "ja": "あやしいひかり",
       "status": "provisional"
     },
     "雙翼": {
       "en": "Dual Wingbeat",
-      "ja": "雙翼",
+      "ja": "ダブルウイング",
       "status": "provisional"
     },
     "子彈拳": {
       "en": "Bullet Punch",
-      "ja": "子彈拳",
+      "ja": "バレットパンチ",
       "status": "provisional"
     },
     "劍舞": {
       "en": "Swords Dance",
-      "ja": "劍舞",
+      "ja": "つるぎのまい",
       "status": "provisional"
     },
     "二連擊": {
       "en": "Double Hit",
-      "ja": "二連擊",
+      "ja": "ダブルアタック",
       "status": "provisional"
     },
     "連斬": {
-      "en": "連斬",
+      "en": "Fury Cutter",
       "ja": "れんぞくぎり",
       "status": "provisional"
     },
     "狂舞揮打": {
-      "en": "狂舞揮打",
-      "ja": "狂舞揮打",
+      "en": "Raging Fury",
+      "ja": "げきりん",
       "status": "needs-review"
     },
     "看穿": {
-      "en": "看穿",
-      "ja": "看穿",
+      "en": "Detect",
+      "ja": "みきり",
       "status": "needs-review"
     },
     "巨聲": {
-      "en": "巨聲",
+      "en": "Hyper Voice",
       "ja": "ハイパーボイス",
       "status": "provisional"
     },
     "大聲咆哮": {
-      "en": "大聲咆哮",
-      "ja": "大聲咆哮",
+      "en": "Snarl",
+      "ja": "バークアウト",
       "status": "needs-review"
     },
     "熱水": {
-      "en": "熱水",
+      "en": "Scald",
       "ja": "ねっとう",
       "status": "provisional"
     },
     "瞬間失憶": {
-      "en": "瞬間失憶",
+      "en": "Amnesia",
       "ja": "ドわすれ",
       "status": "provisional"
     },
     "抓狂": {
-      "en": "抓狂",
+      "en": "Thrash",
       "ja": "あばれる",
       "status": "provisional"
     },
     "哈欠": {
-      "en": "哈欠",
+      "en": "Yawn",
       "ja": "あくび",
       "status": "provisional"
     },
     "擋路": {
-      "en": "擋路",
+      "en": "Block",
       "ja": "とおせんぼう",
       "status": "provisional"
     },
     "冥想": {
-      "en": "冥想",
+      "en": "Calm Mind",
       "ja": "めいそう",
       "status": "provisional"
     },
     "飛翔": {
-      "en": "飛翔",
-      "ja": "飛翔",
+      "en": "Fly",
+      "ja": "そらをとぶ",
       "status": "needs-review"
     },
     "勇鳥猛攻": {
-      "en": "勇鳥猛攻",
-      "ja": "勇鳥猛攻",
+      "en": "Brave Bird",
+      "ja": "ブレイブバード",
       "status": "needs-review"
     },
     "燕返": {
-      "en": "燕返",
+      "en": "Aerial Ace",
       "ja": "つばめがえし",
       "status": "provisional"
     },
     "巨力錘": {
-      "en": "巨力錘",
-      "ja": "巨力錘",
+      "en": "Heavy Slam",
+      "ja": "ヘビーボンバー",
       "status": "needs-review"
     },
     "小偷": {
-      "en": "小偷",
+      "en": "Thief",
       "ja": "どろぼう",
       "status": "provisional"
     },
     "冰槌": {
-      "en": "冰槌",
-      "ja": "冰槌",
+      "en": "Ice Hammer",
+      "ja": "アイスハンマー",
       "status": "needs-review"
     },
     "換檔": {
-      "en": "換檔",
-      "ja": "換檔",
+      "en": "Shift Gear",
+      "ja": "ギアチェンジ",
       "status": "needs-review"
     },
     "破音": {
-      "en": "破音",
-      "ja": "破音",
+      "en": "Boomburst",
+      "ja": "ばくおんぱ",
       "status": "needs-review"
     },
     "木槌": {
-      "en": "木槌",
-      "ja": "木槌",
+      "en": "Wood Hammer",
+      "ja": "ウッドハンマー",
       "status": "needs-review"
     },
     "詛咒": {
-      "en": "詛咒",
-      "ja": "詛咒",
+      "en": "Curse",
+      "ja": "のろい",
       "status": "needs-review"
     },
     "分擔痛處": {
-      "en": "分擔痛處",
-      "ja": "分擔痛處",
+      "en": "Pain Split",
+      "ja": "いたみわけ",
       "status": "needs-review"
     },
     "木角": {
-      "en": "木角",
-      "ja": "木角",
+      "en": "Horn Leech",
+      "ja": "ウッドホーン",
       "status": "needs-review"
     },
     "三旋擊": {
-      "en": "三旋擊",
+      "en": "Triple Axel",
       "ja": "トリプルアクセル",
       "status": "provisional"
     },
     "踩踏": {
-      "en": "踩踏",
+      "en": "Stomp",
       "ja": "ふみつけ",
       "status": "provisional"
     },
     "熱帶踢": {
-      "en": "熱帶踢",
+      "en": "Trop Kick",
       "ja": "トロピカルキック",
       "status": "provisional"
     },
     "青草滑梯": {
-      "en": "青草滑梯",
+      "en": "Grassy Glide",
       "ja": "グラススライダー",
       "status": "provisional"
     },
     "噴火": {
-      "en": "噴火",
-      "ja": "噴火",
+      "en": "Eruption",
+      "ja": "ふんか",
       "status": "needs-review"
     },
     "火焰輪": {
-      "en": "火焰輪",
-      "ja": "火焰輪",
+      "en": "Flame Wheel",
+      "ja": "かえんぐるま",
       "status": "needs-review"
     },
     "尖石攻擊": {
-      "en": "尖石攻擊",
-      "ja": "尖石攻擊",
+      "en": "Rock Slide",
+      "ja": "ストーンエッジ",
       "status": "needs-review"
     },
     "流沙地獄": {
-      "en": "流沙地獄",
-      "ja": "流沙地獄",
+      "en": "Sand Tomb",
+      "ja": "すなじごく",
       "status": "needs-review"
     },
     "原始之力": {
-      "en": "原始之力",
-      "ja": "原始之力",
+      "en": "Ancient Power",
+      "ja": "げんしのちから",
       "status": "needs-review"
     },
     "祈願": {
-      "en": "祈願",
-      "ja": "祈願",
+      "en": "Wish",
+      "ja": "ねがいごと",
       "status": "needs-review"
     },
     "黑色目光": {
-      "en": "黑色目光",
-      "ja": "黑色目光",
+      "en": "Mean Look",
+      "ja": "くろいまなざし",
       "status": "needs-review"
     },
     "欺詐": {
-      "en": "欺詐",
-      "ja": "欺詐",
+      "en": "Foul Play",
+      "ja": "イカサマ",
       "status": "needs-review"
     },
     "暗冥強擊＋地獄突刺": {
-      "en": "暗冥強擊＋地獄突刺",
-      "ja": "暗冥強擊＋地獄突刺",
+      "en": "Wicked Blow＋Throat Chop",
+      "ja": "あんこくきょうだ＋じごくづき",
       "status": "needs-review"
     },
     "水流連打＋流水裂破": {
-      "en": "水流連打＋流水裂破",
-      "ja": "水流連打＋流水裂破",
+      "en": "Surging Strikes＋Liquidation",
+      "ja": "すいりゅうれんだ＋アクアブレイク",
       "status": "needs-review"
     },
     "水流環": {
-      "en": "水流環",
-      "ja": "水流環",
+      "en": "Aqua Ring",
+      "ja": "アクアリング",
       "status": "needs-review"
     },
     "快速折返": {
-      "en": "快速折返",
-      "ja": "快速折返",
+      "en": "Flip Turn",
+      "ja": "クイックターン",
       "status": "needs-review"
     },
     "花瓣舞": {
@@ -3154,47 +3149,47 @@
       "status": "provisional"
     },
     "終極吸取": {
-      "en": "終極吸取",
+      "en": "Giga Drain",
       "ja": "ギガドレイン",
       "status": "provisional"
     },
     "唱歌": {
-      "en": "唱歌",
+      "en": "Sing",
       "ja": "うたう",
       "status": "provisional"
     },
     "滾動": {
-      "en": "滾動",
+      "en": "Rollout",
       "ja": "ころがる",
       "status": "provisional"
     },
     "連環巴掌": {
-      "en": "連環巴掌",
+      "en": "Double Slap",
       "ja": "おうふくビンタ",
       "status": "provisional"
     },
     "死亡之翼": {
-      "en": "死亡之翼",
-      "ja": "死亡之翼",
+      "en": "Oblivion Wing",
+      "ja": "デスウイング",
       "status": "needs-review"
     },
     "電磁炮": {
-      "en": "電磁炮",
-      "ja": "電磁炮",
+      "en": "Zap Cannon",
+      "ja": "でんじほう",
       "status": "needs-review"
     },
     "放電": {
-      "en": "放電",
+      "en": "Discharge",
       "ja": "ほうでん",
       "status": "provisional"
     },
     "瘋狂伏特": {
-      "en": "瘋狂伏特",
+      "en": "Wild Charge",
       "ja": "ワイルドボルト",
       "status": "provisional"
     },
     "居合斬": {
-      "en": "居合斬",
+      "en": "Cut",
       "ja": "いあいぎり",
       "status": "provisional"
     },
@@ -3204,6 +3199,6 @@
       "status": "pilot-match"
     }
   },
-  "moveNamesVersion": "37.2",
-  "moveNamesNote": "English/Japanese names are provisional cross-language references. Uncertain entries fall back to Traditional Chinese. Please verify against current in-game terminology."
+  "moveNamesVersion": "V37.3",
+  "moveNamesNote": "V37.3：依使用者修改的技能名稱 CSV 補齊原本以繁體中文代替的英文與日文名稱；既有使用者譯名優先保留，未能可靠對應者仍保留原文並標記 needs-review。"
 }
