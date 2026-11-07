@@ -3197,8 +3197,24 @@
       "en": "Seismic Slam",
       "ja": "アースクラッシャー",
       "status": "pilot-match"
+    },
+    "暗冥強擊": {
+      "ja": "あんこくきょうだ",
+      "status": "needs-review"
+    },
+    "地獄突刺": {
+      "ja": "じごくづき",
+      "status": "needs-review"
+    },
+    "水流連打": {
+      "ja": "すいりゅうれんだ",
+      "status": "needs-review"
+    },
+    "流水裂破": {
+      "ja": "アクアブレイク",
+      "status": "needs-review"
     }
   },
-  "moveNamesVersion": "V37.3",
-  "moveNamesNote": "V37.3：依使用者修改的技能名稱 CSV 補齊原本以繁體中文代替的英文與日文名稱；既有使用者譯名優先保留，未能可靠對應者仍保留原文並標記 needs-review。"
+  "moveNamesVersion": "V37.4",
+  "moveNamesNote": "V37.4：補齊武道熊師四個獨立技能名稱的日文對照，供固定流派技能列逐項顯示；不更動技能組識別碼、勝利紀錄或其他語言對照。"
 }
