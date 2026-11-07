@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><div class="brand-mark">U</div><div><strong>全技能組一勝挑戰</strong><small>POKÉMON UNITE · CHALLENGE TRACKER · V26</small></div></div>
+  <div class="brand"><div class="brand-mark">U</div><div><strong>全技能組一勝挑戰</strong><small>POKÉMON UNITE · MOVESET WIN TRACKER · V16</small></div></div>
   <a class="source-link" href="https://unite-db.com/" target="_blank" rel="noreferrer">UNITE-DB ↗</a>
 </header>
 <main>
@@ -41,19 +41,6 @@
     </button>
     <div class="collapsible-content" id="unfinishedContent"><div id="unfinishedList" class="unfinished-list"></div></div>
   </section>
-  <section class="advanced-panel">
-    <div class="section-head"><div><h2>進階統計中心</h2><p>從新版本開始累積的比賽紀錄與挑戰數據。</p></div></div>
-    <div id="historySummary" class="history-summary"></div>
-  </section>
-  <section class="daily-panel"><div><p class="eyebrow">DAILY MISSION</p><h2>今日挑戰</h2><p id="dailyChallengeText" class="sub">今天的專屬目標尚未抽出。</p></div><button class="primary" id="dailyBtn">🎯 抽取今日挑戰</button></section>
-  <section class="game-panel">
-    <div class="section-head"><div><h2>成就收藏</h2><p>完成挑戰目標，逐步解鎖徽章。</p></div><span id="achievementProgress" class="count-pill">已解鎖 0 / 6 個成就</span></div>
-    <div id="achievementGrid" class="achievement-grid"></div>
-  </section>
-  <section class="history-panel">
-    <div class="section-head"><div><h2>最近挑戰紀錄</h2><p>顯示最近 30 筆勝敗紀錄，完整資料會保存在備份中。</p></div><button class="secondary" id="clearHistory">清除歷史</button></div>
-    <div id="historyList" class="history-list"></div>
-  </section>
   <section class="toolbar">
     <label class="search"><span>⌕</span><input id="search" type="search" placeholder="搜尋寶可夢名稱…"></label>
     <select id="roleFilter" aria-label="依角色定位篩選"><option value="all">全部定位</option><option value="攻擊型">攻擊型</option><option value="防禦型">防禦型</option><option value="敏捷型">敏捷型</option><option value="平衡型">平衡型</option><option value="輔助型">輔助型</option></select>
@@ -64,7 +51,7 @@
     <button class="secondary" id="obsBtn">OBS 實況模式</button>
     <input id="importFile" type="file" accept="application/json" hidden>
   </section>
-  <div class="section-head"><div><h2>寶可夢列表</h2><p>V26：新增比賽歷史、勝敗統計、成就徽章與挑戰里程碑，保留原有技能組、隨機挑戰及 OBS 功能。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
+  <div class="section-head"><div><h2>寶可夢列表</h2><p>V16：技能圖示試行與可收合挑戰總覽、未完成技能組與 OBS 實況模式，支援名稱搜尋、定位篩選與隨機挑戰。</p></div><span id="shownCount" class="count-pill">0 隻</span></div>
   <section id="grid" class="pokemon-grid"></section>
   <footer>紀錄儲存在目前瀏覽器；建議定期使用 JSON 匯出備份。<br>非官方粉絲工具，與 Nintendo、The Pokémon Company 或 TiMi Studio Group 無關。</footer>
 </main>

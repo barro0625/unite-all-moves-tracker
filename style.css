@@ -55,20 +55,3 @@
 .skill-plus{color:#8fa4bf;font-weight:800;margin:0 1px}
 .combo-name{display:flex;align-items:center;min-width:0}
 @media(max-width:560px){.skill-chip{font-size:12px}.skill-icon,.skill-icon-fallback{width:26px;height:26px;flex-basis:26px}}
-
-
-/* V26 challenge history, gamification and analytics */
-.advanced-panel,.game-panel,.history-panel{background:linear-gradient(145deg,#14243a,#101a2b);border:1px solid var(--line);border-radius:18px;padding:20px;margin:12px 0 22px}
-.history-summary{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px}
-.history-stat{background:#1a2b42;border:1px solid #30445f;border-radius:12px;padding:13px;min-width:0}
-.history-stat b{display:block;font-size:25px;color:var(--accent)}.history-stat small{color:var(--muted);font-size:11px}
-.achievement-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.achievement{display:flex;align-items:center;gap:10px;padding:13px;border-radius:12px;border:1px solid #34465f;background:#1a2b42;min-width:0}
-.achievement>span{font-size:25px;filter:grayscale(1);opacity:.55}.achievement.unlocked{border-color:#6a9e8c;background:linear-gradient(135deg,#1d403e,#1a2b42)}.achievement.unlocked>span{filter:none;opacity:1}
-.achievement div{display:flex;flex-direction:column;gap:4px;min-width:0}.achievement b{font-size:12px}.achievement small{font-size:10px;color:var(--muted)}.achievement em{margin-left:auto;font-size:9px;color:#8293aa;font-style:normal;white-space:nowrap}.achievement.unlocked em{color:var(--accent)}
-.history-list{display:flex;flex-direction:column;gap:7px;max-height:430px;overflow:auto}.history-row{display:flex;align-items:center;gap:11px;background:#1a2b42;border:1px solid #30445f;border-radius:10px;padding:10px 12px}.history-result{font-size:10px;font-weight:800;border-radius:7px;padding:5px 8px}.history-result.win{background:#1d5948;color:#a9f5d5}.history-result.loss{background:#60313c;color:#ffc1c9}.history-row>div{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}.history-row b{font-size:12px}.history-row small{font-size:10px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.history-row time{font-size:10px;color:var(--muted);white-space:nowrap}
-.combo-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.loss-toggle{border:1px solid #70424c;background:#38232d;color:#ffc1c9;border-radius:8px;padding:8px 10px;font:inherit;font-size:10px;cursor:pointer}.loss-toggle:hover{border-color:#d97887}
-@media(max-width:800px){.history-summary{grid-template-columns:repeat(3,1fr)}.achievement-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.advanced-panel,.game-panel,.history-panel{padding:14px}.history-summary{grid-template-columns:repeat(2,1fr)}.achievement-grid{grid-template-columns:1fr}.history-row time{font-size:9px}.combo-actions{width:100%}.combo-actions button{flex:1}}
-
-.daily-panel{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;margin:12px 0 22px;border:1px solid #46617c;border-radius:16px;background:linear-gradient(110deg,#1b3448,#18263a)}.daily-panel h2{margin:0;font-size:20px}.daily-panel .eyebrow{margin-bottom:5px}.daily-panel .sub{margin:5px 0 0}.daily-panel button{flex:0 0 auto}@media(max-width:560px){.daily-panel{align-items:flex-start;flex-direction:column}.daily-panel button{width:100%}}
