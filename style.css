@@ -192,3 +192,42 @@ body.light-theme .side-drawer{background:#f6f9fd;border-color:#cbd6e4;color:#172
 .changelog-entry h3{font-size:13px;margin:1px 0 7px;color:#e2edf8}.changelog-entry ul{margin:0;padding-left:17px;color:#a9bad0;font-size:11px;line-height:1.8}
 body.light-theme .drawer-changelog-btn,body.light-theme .help-trigger{background:#fff;border-color:#cbd6e4;color:#172538}body.light-theme .changelog-entry{background:#f5f8fc;border-color:#d5dfeb}body.light-theme .changelog-entry.latest{background:#effaf6;border-color:#7bcdb3}body.light-theme .changelog-entry h3{color:#172538}body.light-theme .changelog-entry ul{color:#52657d}
 @media(max-width:560px){.help-trigger{right:16px;bottom:18px;min-height:40px;padding:0 13px}.changelog-entry{grid-template-columns:1fr;gap:7px}.changelog-version{flex-direction:row;align-items:center}.changelog-list{max-height:66vh}}
+
+/* V32: first-visit onboarding tour */
+.welcome-tour{z-index:40}
+.welcome-tour-dialog{width:min(610px,100%);padding:26px 28px 22px;border-color:#42617e;background:radial-gradient(ellipse at 90% 0%,#23415b 0,transparent 45%),#111d2e}
+.welcome-tour-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.welcome-tour-kicker{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--accent)}
+.welcome-tour-count{font-size:11px;font-weight:700;color:#a9bad0;border:1px solid #344963;border-radius:20px;padding:6px 10px;font-variant-numeric:tabular-nums}
+.welcome-tour-progress{height:5px;margin:14px 0 25px;border-radius:99px;background:#263950;overflow:hidden}
+.welcome-tour-progress span{display:block;width:20%;height:100%;border-radius:99px;background:linear-gradient(90deg,#59d4b4,#91efcf);transition:width .2s ease}
+.welcome-tour-content{min-height:260px}
+.welcome-tour-content .eyebrow{margin-bottom:9px}
+.welcome-tour-content h2{margin:0;color:#eef5ff;font-size:clamp(22px,4vw,29px);line-height:1.35}
+.welcome-tour-description{margin:13px 0 18px;color:#b8c8dc;font-size:13px;line-height:1.9}
+.welcome-tour-visual{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 15px}
+.welcome-tour-chip{display:inline-flex;align-items:center;min-height:35px;padding:7px 11px;border:1px solid #38526e;border-radius:9px;background:#1a2d44;color:#d9e8f8;font-size:11px;font-weight:700}
+.welcome-tour-tip{margin:0;padding:10px 12px;border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:#142a35;color:#a9dccc;font-size:11px;line-height:1.75}
+.welcome-tour-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:17px;border-top:1px solid #2c4058}
+.welcome-tour-skip{color:#a9bad0;margin-right:auto;text-decoration:underline;text-underline-offset:3px}
+.welcome-tour-nav{display:flex;align-items:center;gap:8px}
+.welcome-tour-nav button{min-width:94px}
+.welcome-tour-nav button:disabled{opacity:.4;cursor:not-allowed}
+body.light-theme .welcome-tour-dialog{background:radial-gradient(ellipse at 90% 0%,#e1f2f5 0,transparent 45%),#fff;border-color:#cbd6e4}
+body.light-theme .welcome-tour-count{color:#52657d;border-color:#d5dfeb}
+body.light-theme .welcome-tour-progress{background:#e3eaf2}
+body.light-theme .welcome-tour-content h2{color:#172538}
+body.light-theme .welcome-tour-description{color:#52657d}
+body.light-theme .welcome-tour-chip{background:#f3f7fb;border-color:#d5dfeb;color:#253c56}
+body.light-theme .welcome-tour-tip{background:#eef8f5;color:#287664}
+body.light-theme .welcome-tour-actions{border-color:#d5dfeb}
+body.light-theme .welcome-tour-skip{color:#52657d}
+@media(max-width:560px){
+ .welcome-tour-dialog{padding:21px 18px 17px}
+ .welcome-tour-content{min-height:285px}
+ .welcome-tour-description{font-size:12px;line-height:1.85}
+ .welcome-tour-actions{align-items:stretch;flex-wrap:wrap}
+ .welcome-tour-skip{flex:1 1 100%;text-align:left;padding:5px 0}
+ .welcome-tour-nav{width:100%;justify-content:flex-end}
+ .welcome-tour-nav button{flex:1;min-width:0}
+}

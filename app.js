@@ -417,6 +417,48 @@ function dismissFirstBackupNotice(){
  if(notice)notice.classList.add("hidden");
 }
 
+// V32: first-visit guided tour. This uses its own key and never touches challenge records.
+const WELCOME_TOUR_KEY = `${STORAGE_KEY}-welcome-tour-completed-v1`;
+const WELCOME_TOUR_STEPS = [
+ {eyebrow:"WELCOME",title:"歡迎使用全技能組一勝挑戰",description:"這個網站用來記錄每隻寶可夢不同技能搭配的勝利進度。完成設定、取得勝利，再回來勾選紀錄，就能逐步完成整份挑戰。",visual:["設定技能組","取得對戰勝利","回來記錄進度"],tip:"整個導覽約一分鐘，也可以隨時按「跳過導覽」。"},
+ {eyebrow:"YOUR PROGRESS",title:"先看整體挑戰進度",description:"頁面上方會統計已完成技能組、總技能組、剩餘技能組與已完成寶可夢。下方兩個區塊可以查看定位分布，以及還有哪些技能組尚未完成。",visual:["已完成技能組","總技能組","剩餘技能組","已完成寶可夢"],tip:"點擊「全角色挑戰總覽」或「尚未完成的技能組」標題，可以展開或收起內容。"},
+ {eyebrow:"FIND A POKÉMON",title:"搜尋、篩選並開啟角色卡片",description:"使用搜尋欄查找寶可夢，也能依角色定位、挑戰進度、最愛或收藏狀態篩選。點擊寶可夢卡片，就能設定技能選項及勝利紀錄。",visual:["搜尋寶可夢","依定位與進度篩選","點擊卡片管理技能組"],tip:"星號可加入最愛，收藏按鈕則能標記想追蹤的角色。"},
+ {eyebrow:"CHALLENGE TOOLS",title:"用智慧隨機挑戰決定下一個目標",description:"點擊左上角三條線，打開功能選單並展開「挑戰工具」，即可使用智慧隨機挑戰。你可以選擇定位、抽選數量、策略，或排除指定角色。",visual:["左上角功能選單","挑戰工具","智慧隨機挑戰 2.0"],tip:"想自己安排目標，也可以直接使用主畫面的搜尋與篩選功能。"},
+ {eyebrow:"SETTINGS & BACKUP",title:"設定、備份與直播顯示",description:"功能選單中的「管理與顯示」包含個人化設定、備份與還原，以及 OBS 實況模式。紀錄存在目前瀏覽器，換電腦或清除網站資料前，請先匯出 JSON 備份。",visual:["個人化設定","備份與還原","OBS 實況模式"],tip:"導覽結束後就可以開始挑戰。需要時，也能從右下角「功能說明」重新查看各功能。"}
+];
+let welcomeTourIndex=0;
+function renderWelcomeTourStep(){
+ const step=WELCOME_TOUR_STEPS[welcomeTourIndex];
+ if(!step)return;
+ $("welcomeTourStep").textContent=`${welcomeTourIndex+1} / ${WELCOME_TOUR_STEPS.length}`;
+ $("welcomeTourProgress").style.width=`${((welcomeTourIndex+1)/WELCOME_TOUR_STEPS.length)*100}%`;
+ $("welcomeTourEyebrow").textContent=step.eyebrow;
+ $("welcomeTourTitle").textContent=step.title;
+ $("welcomeTourDescription").textContent=step.description;
+ $("welcomeTourVisual").replaceChildren(...step.visual.map((label,index)=>{const item=document.createElement("span");item.className="welcome-tour-chip";item.textContent=label;return item;}));
+ $("welcomeTourTip").textContent=step.tip;
+ $("welcomeTourPrev").disabled=welcomeTourIndex===0;
+ $("welcomeTourPrev").style.visibility=welcomeTourIndex===0?"hidden":"visible";
+ $("welcomeTourNext").textContent=welcomeTourIndex===WELCOME_TOUR_STEPS.length-1?"開始使用":"下一步";
+}
+function startWelcomeTour(force=false){
+ if(!force){try{if(localStorage.getItem(WELCOME_TOUR_KEY)==="1")return false;}catch{}}
+ welcomeTourIndex=0;
+ renderWelcomeTourStep();
+ $("welcomeTour").classList.remove("hidden");
+ return true;
+}
+function closeWelcomeTour(){
+ try{localStorage.setItem(WELCOME_TOUR_KEY,"1");}catch{}
+ $("welcomeTour").classList.add("hidden");
+ showFirstBackupNotice();
+}
+$("welcomeTourPrev").addEventListener("click",()=>{if(welcomeTourIndex>0){welcomeTourIndex--;renderWelcomeTourStep();}});
+$("welcomeTourNext").addEventListener("click",()=>{if(welcomeTourIndex<WELCOME_TOUR_STEPS.length-1){welcomeTourIndex++;renderWelcomeTourStep();}else closeWelcomeTour();});
+$("welcomeTourSkip").addEventListener("click",closeWelcomeTour);
+$("helpReplayTour").addEventListener("click",()=>{$("helpModal").classList.add("hidden");startWelcomeTour(true);});
+window.startWelcomeTour=startWelcomeTour;
+
 $("search").addEventListener("input",render);$("filter").addEventListener("change",render);$("roleFilter").addEventListener("change",render);$("closeModal").onclick=closeModal;$("cancelModal").onclick=closeModal;$("modal").addEventListener("click",e=>{if(e.target.dataset.close)closeModal();});
 $("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
 $("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
@@ -494,7 +536,7 @@ document.querySelectorAll("[data-panel-toggle]").forEach(button=>{
  });
 });
 
-let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};moveIcons=d.moveIcons||{};load();loadUserData();if(!renderOverlay()){render();renderBackupStatus();showFirstBackupNotice();}}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
+let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};moveIcons=d.moveIcons||{};load();loadUserData();if(!renderOverlay()){render();renderBackupStatus();if(!startWelcomeTour())showFirstBackupNotice();}}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
 
 window.addEventListener("storage",e=>{
  if(e.key===STORAGE_KEY){try{state=JSON.parse(e.newValue||"{}");if(new URLSearchParams(location.search).get("mode")==="overlay")renderOverlay();else render();}catch{}}
