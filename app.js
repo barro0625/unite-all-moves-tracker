@@ -10,6 +10,8 @@ const PREV_V12_KEY = "unite-all-moves-win-tracker-v12";
 const PREVIOUS_STORAGE_KEY = "unite-all-moves-win-tracker-v11";
 const LEGACY_STORAGE_KEY = "unite-all-moves-win-tracker-v10";
 const OLDER_STORAGE_KEY = "unite-all-moves-win-tracker-v9";
+const LAST_BACKUP_KEY = `${STORAGE_KEY}-last-backup-at`;
+const BACKUP_NOTICE_KEY = `${STORAGE_KEY}-backup-notice-dismissed`;
 let roster=[], state={}, activeName=null, draftWins={}, nameMap={}, avatars={}, roles={}, moveIcons={}, draftMove1=[], draftMove2=[];
 const $=id=>document.getElementById(id);
 const clean=s=>(s||"").split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
@@ -146,42 +148,120 @@ function renderCombos(){const cfg=readDraft(),list=combos(cfg);$("comboSummary")
  $("comboList").querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{const id=decodeURIComponent(btn.dataset.id);draftWins[id]=!draftWins[id];renderCombos();}));}
 function saveCurrent(){const cfg=readDraft();if(cfg.mode==="combination"&&(!cfg.move1.length||!cfg.move2.length)){alert("自動組合模式下，技能一與技能二都至少需要一個選項。");return;}if((cfg.mode==="single"||cfg.mode==="paths")&&!cfg.move1.length){alert(cfg.mode==="paths"?"固定流派模式至少需要填寫一套完整技能搭配。":"單一勝利模式至少需要填寫一個技能名稱。");return;}if(cfg.move1.length>8||cfg.move2.length>4){alert("最多可填 8 個技能選項或固定流派。");return;}const valid=new Set(combos(cfg).map(x=>x.id)),wins={};Object.keys(draftWins).forEach(k=>{if(valid.has(k)&&draftWins[k])wins[k]=true;});state[activeName]={...cfg,wins};save();closeModal();render();toast("已儲存 "+activeName+" 的設定");}
 function toast(msg){$("toast").textContent=msg;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1800);}
+function formatBackupDate(value){
+ const date=new Date(value);
+ if(Number.isNaN(date.getTime()))return "日期資料無法辨識";
+ return date.toLocaleString("zh-TW",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
+}
+function renderBackupStatus(){
+ const el=$("lastBackupText");
+ if(!el)return;
+ let last="";
+ try{last=localStorage.getItem(LAST_BACKUP_KEY)||"";}catch{}
+ el.textContent=last?`上次匯出：${formatBackupDate(last)}`:"上次匯出：尚未匯出";
+}
+function downloadBackup(reason="manual"){
+ const now=new Date();
+ const pad=n=>String(n).padStart(2,"0");
+ const stamp=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
+ const prefix=reason==="before-import"?"pokemon-unite-before-import-backup":"pokemon-unite-challenge-backup";
+ const payload={format:"pokemon-unite-challenge-backup",version:23,exportedAt:now.toISOString(),state};
+ let url="";
+ try{
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"});
+  url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download=`${prefix}_${stamp}.json`;
+  a.style.display="none";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+  try{localStorage.setItem(LAST_BACKUP_KEY,now.toISOString());}catch{}
+  renderBackupStatus();
+  return true;
+ }catch(error){
+  if(url)URL.revokeObjectURL(url);
+  console.error("Backup export failed:",error);
+  return false;
+ }
+}
+function validateBackupPayload(obj){
+ if(!obj||typeof obj!=="object"||Array.isArray(obj))throw new Error("備份檔最外層必須是 JSON 物件。");
+ if(!obj.state||typeof obj.state!=="object"||Array.isArray(obj.state))throw new Error("找不到有效的 state 挑戰紀錄資料。");
+ const allowedModes=new Set(["unconfigured","combination","single","paths"]);
+ for(const [name,cfg] of Object.entries(obj.state)){
+  if(typeof name!=="string"||!name.trim()||name.length>100)throw new Error("角色名稱格式不正確。");
+  if(!cfg||typeof cfg!=="object"||Array.isArray(cfg))throw new Error(`「${name}」的紀錄格式不正確。`);
+  if(cfg.mode!==undefined&&!allowedModes.has(cfg.mode))throw new Error(`「${name}」的勝利計算方式無法辨識。`);
+  for(const field of ["move1","move2"]){
+   if(cfg[field]===undefined)continue;
+   if(!Array.isArray(cfg[field]))throw new Error(`「${name}」的 ${field} 必須是陣列。`);
+   const limit=field==="move1"?8:4;
+   if(cfg[field].length>limit)throw new Error(`「${name}」的技能選項超過允許數量。`);
+   if(!cfg[field].every(v=>typeof v==="string"&&v.trim().length>0&&v.length<=150))throw new Error(`「${name}」包含無效的技能名稱。`);
+  }
+  if(cfg.wins!==undefined){
+   if(!cfg.wins||typeof cfg.wins!=="object"||Array.isArray(cfg.wins))throw new Error(`「${name}」的勝利紀錄格式不正確。`);
+   for(const [id,won] of Object.entries(cfg.wins)){
+    if(typeof id!=="string"||id.length>500||typeof won!=="boolean")throw new Error(`「${name}」包含無效的勝利紀錄。`);
+   }
+  }
+ }
+ // JSON.parse creates plain data only. Clone before committing so the validated object is detached.
+ return JSON.parse(JSON.stringify(obj.state));
+}
+function showFirstBackupNotice(){
+ let dismissed=false;
+ try{dismissed=localStorage.getItem(BACKUP_NOTICE_KEY)==="1";}catch{}
+ if(dismissed)return;
+ const notice=$("backupNotice");
+ if(notice)notice.classList.remove("hidden");
+}
+function dismissFirstBackupNotice(){
+ try{localStorage.setItem(BACKUP_NOTICE_KEY,"1");}catch{}
+ const notice=$("backupNotice");
+ if(notice)notice.classList.add("hidden");
+}
+
 $("search").addEventListener("input",render);$("filter").addEventListener("change",render);$("roleFilter").addEventListener("change",render);$("closeModal").onclick=closeModal;$("cancelModal").onclick=closeModal;$("modal").addEventListener("click",e=>{if(e.target.dataset.close)closeModal();});
 $("move1").addEventListener("input",()=>{draftMove1=clean($("move1").value);renderCombos();});$("move2").addEventListener("input",()=>{draftMove2=clean($("move2").value);renderCombos();});
 $("countMode").addEventListener("change",()=>{$("move1").value&&(draftMove1=clean($("move1").value));$("move2").value&&(draftMove2=clean($("move2").value));syncModeUI();renderCombos();});$("saveModal").onclick=saveCurrent;
 $("resetPokemon").onclick=()=>{if(confirm("確定要清除此寶可夢的所有設定與勝利紀錄？")){draftWins={};draftMove1=[];draftMove2=[];$("countMode").value="unconfigured";syncModeUI();renderCombos();}};
-function makeBackupDefaultName(){
- const now=new Date();
- const pad=n=>String(n).padStart(2,"0");
- return `pokemon-unite-challenge-backup_${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}-${pad(now.getMinutes())}`;
-}
-function exportBackup(){
- const defaultName=makeBackupDefaultName();
- const input=prompt("請輸入備份檔名（不需要輸入 .json）",defaultName);
- if(input===null)return;
- // Remove characters that are not allowed in common desktop filenames.
- let filename=input.trim()
-  .replace(/\.json$/i,"")
-  .replace(/[<>:"/\\|?*\u0000-\u001F]/g,"-")
-  .replace(/\s+/g,"-")
-  .replace(/-+/g,"-")
-  .replace(/^\.+|\.+$/g,"");
- if(!filename)filename=defaultName;
- filename += ".json";
- const blob=new Blob([JSON.stringify({version:21,exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});
- const url=URL.createObjectURL(blob);
- const a=document.createElement("a");
- a.href=url;
- a.download=filename;
- document.body.appendChild(a);
- a.click();
- a.remove();
- setTimeout(()=>URL.revokeObjectURL(url),1000);
- toast(`備份已匯出：${filename}`);
-}
-$("exportBtn").onclick=exportBackup;
+$("exportBtn").onclick=()=>{if(downloadBackup())toast("備份已匯出，請妥善保存檔案。");else alert("無法建立備份檔，請檢查瀏覽器下載設定後重試。");};
 $("importBtn").onclick=()=>$("importFile").click();$("obsBtn").onclick=()=>window.open(location.pathname+"?mode=overlay","unite-obs-overlay","width=900,height=500");
-$("importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj.state||typeof obj.state!=="object")throw Error();if(confirm("匯入會覆蓋目前挑戰紀錄，確定繼續？")){state=obj.state;save();render();toast("備份匯入成功");}}catch{alert("檔案格式不正確，無法匯入。");}e.target.value="";};
+$("importFile").onchange=async e=>{
+ const file=e.target.files?.[0];
+ if(!file)return;
+ try{
+  if(file.size>5*1024*1024)throw new Error("備份檔超過 5 MB，已取消匯入。");
+  const parsed=JSON.parse(await file.text());
+  const candidateState=validateBackupPayload(parsed);
+  const proceed=confirm(`備份檔格式驗證通過。
+
+匯入會取代目前瀏覽器中的挑戰紀錄。為保護現有資料，按「確定」會先自動下載一份目前紀錄的備份，再繼續匯入；按「取消」則完全不變更資料。
+
+確定要繼續嗎？`);
+  if(!proceed)return;
+  if(!downloadBackup("before-import"))throw new Error("匯入前備份下載失敗，為避免資料遺失，已取消匯入。原有紀錄沒有變更。");
+  // Atomic commit: persist the fully validated candidate before changing in-memory state.
+  // If localStorage throws (for example, quota/security restrictions), the current state stays intact.
+  let serialized;
+  try{serialized=JSON.stringify(candidateState);localStorage.setItem(STORAGE_KEY,serialized);}
+  catch(storageError){throw new Error("無法儲存匯入資料（可能是瀏覽器儲存空間不足或權限受限）。原有紀錄沒有變更。");}
+  state=candidateState;
+  render();
+  toast("備份匯入成功，原紀錄已先備份。");
+ }catch(error){
+  console.error("Backup import rejected:",error);
+  alert(error.message||"備份檔無法讀取或格式不正確。原有紀錄沒有變更。");
+ }finally{
+  e.target.value="";
+ }
+};
+$("backupNoticeDismiss").onclick=dismissFirstBackupNotice;
+$("backupNoticeExport").onclick=()=>{if(downloadBackup()){dismissFirstBackupNotice();toast("備份已匯出，請妥善保存檔案。");}else alert("無法建立備份檔，請稍後再試。");};
 
 // V11 隨機挑戰：從所有尚未取得勝利的技能組中抽選。
 $("randomBtn").onclick=()=>{
@@ -205,7 +285,7 @@ document.querySelectorAll("[data-panel-toggle]").forEach(button=>{
  });
 });
 
-let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};moveIcons=d.moveIcons||{};load();if(!renderOverlay())render();}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
+let data={};fetch("pokemon.json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{data=d;roster=d.pokemon;nameMap=d.nameMap||{};avatars=d.avatars||{};roles=d.roles||{};moveIcons=d.moveIcons||{};load();if(!renderOverlay()){render();renderBackupStatus();showFirstBackupNotice();}}).catch(()=>$ ("grid").innerHTML='<p class="sub">無法載入 pokemon.json，請確認專案檔案都已上傳。</p>');
 
 window.addEventListener("storage",e=>{if(e.key===STORAGE_KEY){try{state=JSON.parse(e.newValue||"{}");if(new URLSearchParams(location.search).get("mode")==="overlay")renderOverlay();else render();}catch{}}});
 

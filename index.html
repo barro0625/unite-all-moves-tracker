@@ -46,8 +46,9 @@
     <select id="roleFilter" aria-label="依角色定位篩選"><option value="all">全部定位</option><option value="攻擊型">攻擊型</option><option value="防禦型">防禦型</option><option value="敏捷型">敏捷型</option><option value="平衡型">平衡型</option><option value="輔助型">輔助型</option></select>
     <select id="filter" aria-label="依挑戰進度篩選"><option value="all">全部進度</option><option value="progress">進行中</option><option value="done">已全數完成</option><option value="not">尚未開始／未設定</option><option value="unconfigured">待設定</option></select>
     <button class="primary" id="randomBtn">🎲 隨機挑戰</button>
-    <button class="secondary" id="exportBtn">匯出備份</button>
+    <button class="secondary" id="exportBtn">一鍵匯出備份</button>
     <button class="secondary" id="importBtn">匯入備份</button>
+    <span class="backup-status" id="lastBackupText" role="status" aria-live="polite">上次匯出：尚未匯出</span>
     <button class="secondary" id="obsBtn">OBS 實況模式</button>
     <input id="importFile" type="file" accept="application/json" hidden>
   </section>
@@ -76,6 +77,19 @@
   <div id="comboList" class="combo-list"></div>
   <div class="dialog-actions"><button class="secondary" id="cancelModal">取消</button><button class="primary" id="saveModal">儲存設定</button></div>
  </div>
+</div>
+<div id="backupNotice" class="backup-notice hidden" role="dialog" aria-modal="true" aria-labelledby="backupNoticeTitle">
+ <div class="backup-notice-backdrop"></div>
+ <section class="backup-notice-card">
+  <div class="backup-notice-icon" aria-hidden="true">↗</div>
+  <p class="eyebrow">KEEP YOUR PROGRESS SAFE</p>
+  <h2 id="backupNoticeTitle">先幫挑戰紀錄留一份備份</h2>
+  <p>你的紀錄目前只儲存在這個瀏覽器。清除網站資料、換電腦或更換瀏覽器，都可能讓紀錄無法取回。建議定期匯出 JSON 備份，並把檔案保存到安全的位置。</p>
+  <div class="backup-notice-actions">
+   <button type="button" class="secondary" id="backupNoticeDismiss">我知道了</button>
+   <button type="button" class="primary" id="backupNoticeExport">立即匯出備份</button>
+  </div>
+ </section>
 </div>
 <div id="toast" class="toast"></div>
 <script src="app.js"></script>

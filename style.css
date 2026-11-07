@@ -55,3 +55,16 @@
 .skill-plus{color:#8fa4bf;font-weight:800;margin:0 1px}
 .combo-name{display:flex;align-items:center;min-width:0}
 @media(max-width:560px){.skill-chip{font-size:12px}.skill-icon,.skill-icon-fallback{width:26px;height:26px;flex-basis:26px}}
+
+
+/* Backup safety update */
+.backup-status{display:inline-flex;align-items:center;min-height:36px;padding:0 10px;border:1px solid #30445e;border-radius:9px;background:#0f1a2a;color:#a9bad0;font-size:10px;line-height:1.5;}
+.backup-notice{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:18px;}
+.backup-notice.hidden{display:none;}
+.backup-notice-backdrop{position:absolute;inset:0;background:#030812d9;backdrop-filter:blur(7px);}
+.backup-notice-card{position:relative;width:min(480px,100%);padding:26px;background:linear-gradient(145deg,#1a2b43,#101b2d);border:1px solid #3a5472;border-radius:20px;box-shadow:0 28px 90px #000b;}
+.backup-notice-icon{width:42px;height:42px;display:grid;place-items:center;margin-bottom:18px;border-radius:13px;background:#173b36;color:#79edc6;font-size:25px;font-weight:800;}
+.backup-notice-card h2{margin:0 0 12px;color:#edf4ff;font-size:22px;line-height:1.35;}
+.backup-notice-card>p:not(.eyebrow){margin:0;color:#aabbd1;font-size:13px;line-height:1.85;}
+.backup-notice-actions{display:flex;justify-content:flex-end;gap:9px;flex-wrap:wrap;margin-top:22px;}
+@media(max-width:700px){.backup-status{flex:1 1 100%;justify-content:center;min-height:34px}.backup-notice-card{padding:22px 18px}.backup-notice-card h2{font-size:19px}.backup-notice-actions button{flex:1 1 100%;}}
