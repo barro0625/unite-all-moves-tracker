@@ -1,7 +1,7 @@
 {
   "title": "Pokémon UNITE 全技能組一勝挑戰",
   "source": "https://unite-db.com/",
-  "note": "V23：依使用者提供的更正，更新閃電鳥及其後 15 隻角色的兩個技能名稱；維持單一勝利計算及 V22 其他功能。 V37：新增獨立多語言技能名稱登錄表，不更動技能組 ID、技能原文、勝場或備份結構；未核實項目保留繁體中文。",
+  "note": "V23：依使用者提供的更正，更新閃電鳥及其後 15 隻角色的兩個技能名稱；維持單一勝利計算及 V22 其他功能。",
   "pokemon": [
     "阿勃梭魯",
     "堅盾劍怪",
@@ -1945,1510 +1945,1265 @@
   "moveNames": {
     "暗襲要害": {
       "en": "Night Slash",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "つじぎり",
+      "status": "provisional"
     },
     "追打": {
       "en": "Pursuit",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "おいうち",
+      "status": "provisional"
     },
     "精神利刃": {
       "en": "Psycho Cut",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "サイコカッター",
+      "status": "provisional"
     },
     "突襲": {
       "en": "Sucker Punch",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ふいうち",
+      "status": "provisional"
     },
     "聖劍": {
       "en": "Sacred Sword",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "せいなるつるぎ",
+      "status": "provisional"
     },
     "暗影爪": {
       "en": "Shadow Claw",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "シャドークロー",
+      "status": "provisional"
     },
     "鐵頭": {
       "en": "Iron Head",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "アイアンヘッド",
+      "status": "provisional"
     },
     "廣域防守": {
       "en": "Wide Guard",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ワイドガード",
+      "status": "provisional"
     },
     "自我再生": {
       "en": "Recover",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "じこさいせい",
+      "status": "provisional"
     },
     "裝飾": {
       "en": "Decorate",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "デコレーション",
+      "status": "provisional"
     },
     "魔法閃耀": {
       "en": "Dazzling Gleam",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "マジカルシャイン",
+      "status": "provisional"
     },
     "甜甜香氣": {
       "en": "Sweet Scent",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "あまいかおり",
+      "status": "provisional"
     },
     "火焰旋渦": {
       "en": "Fire Spin",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ほのおのうず",
+      "status": "pilot-match"
     },
     "鎧農炮": {
       "en": "Armor Cannon",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "アーマーキャノン",
+      "status": "provisional"
     },
     "蓄能焰襲": {
       "en": "Flame Charge",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ニトロチャージ",
+      "status": "provisional"
     },
     "精神強念": {
       "en": "Psychic",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "サイコキネシス",
+      "status": "provisional"
     },
     "冰凍光束": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "冰凍光束",
+      "ja": "れいとうビーム",
+      "status": "provisional"
     },
     "暴風雪": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "暴風雪",
+      "ja": "ふぶき",
+      "status": "provisional"
     },
     "潮旋": {
       "en": "Whirlpool",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "うずしお",
+      "status": "provisional"
     },
     "水流尾": {
       "en": "Aqua Tail",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "アクアテール",
+      "status": "provisional"
     },
     "嬉鬧": {
       "en": "Play Rough",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "じゃれつく",
+      "status": "provisional"
     },
     "水之波動": {
       "en": "Water Pulse",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "みずのはどう",
+      "status": "provisional"
     },
     "噴水": {
       "en": "Water Spout",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "しおふき",
+      "status": "provisional"
     },
     "水炮": {
       "en": "Hydro Pump",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ハイドロポンプ",
+      "status": "provisional"
     },
     "高速旋轉": {
       "en": "Rapid Spin",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "こうそくスピン",
+      "status": "provisional"
     },
     "衝浪": {
       "en": "Surf",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "なみのり",
+      "status": "provisional"
     },
     "火焰踢": {
       "en": "Blaze Kick",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ブレイズキック",
+      "status": "provisional"
     },
     "過熱": {
       "en": "Overheat",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "オーバーヒート",
+      "status": "provisional"
     },
     "火焰拳": {
       "en": "Fire Punch",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ほのおのパンチ",
+      "status": "pilot-match"
     },
     "真氣彈": {
       "en": "Focus Blast",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "きあいだま",
+      "status": "provisional"
     },
     "幫助": {
       "en": "Helping Hand",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "てだすけ",
+      "status": "provisional"
     },
     "炸蛋": {
       "en": "Egg Bomb",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "タマゴばくだん",
+      "status": "provisional"
     },
     "神秘守護": {
       "en": "Safeguard",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "しんぴのまもり",
+      "status": "provisional"
     },
     "生蛋": {
       "en": "Soft-Boiled",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "タマゴうみ",
+      "status": "provisional"
     },
     "吸血": {
       "en": "Leech Life",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "きゅうけつ",
+      "status": "provisional"
     },
     "蠻力": {
       "en": "Superpower",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ばかぢから",
+      "status": "provisional"
     },
     "猛撲": {
       "en": "Lunge",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "とびかかる",
+      "status": "provisional"
     },
     "擊落": {
       "en": "Smack Down",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "うちおとす",
+      "status": "provisional"
     },
     "潛靈奇襲": {
       "en": "Phantom Force",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ゴーストダイブ",
+      "status": "provisional"
     },
     "悔念劍": {
       "en": "Bitter Blade",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "むねんのつるぎ",
+      "status": "provisional"
     },
     "噴射火焰": {
       "en": "Flamethrower",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "かえんほうしゃ",
+      "status": "pilot-match"
     },
     "封印": {
       "en": "Imprison",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ふういん",
+      "status": "provisional"
     },
     "靈騷": {
       "en": "Poltergeist",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ポルターガイスト",
+      "status": "provisional"
     },
     "閃焰衝鋒": {
       "en": "Flare Blitz",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "フレアドライブ",
+      "status": "pilot-match"
     },
     "大字爆炎": {
       "en": "Fire Blast",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "だいもんじ",
+      "status": "pilot-match"
     },
     "火焰拳＋閃焰衝鋒": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "火焰拳＋閃焰衝鋒",
+      "ja": "火焰拳＋閃焰衝鋒",
+      "status": "needs-review"
     },
     "噴射火焰＋大字爆炎": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "噴射火焰＋大字爆炎",
+      "ja": "噴射火焰＋大字爆炎",
+      "status": "needs-review"
     },
     "火焰球": {
       "en": "Pyro Ball",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "かえんボール",
+      "status": "provisional"
     },
     "佯攻": {
       "en": "Feint",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "フェイント",
+      "status": "provisional"
     },
     "月光": {
       "en": "Moonlight",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "つきのひかり",
+      "status": "provisional"
     },
     "吸取之吻": {
       "en": "Draining Kiss",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ドレインキッス",
+      "status": "provisional"
     },
     "看我嘛": {
       "en": "Follow Me",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "このゆびとまれ",
+      "status": "provisional"
     },
     "重力": {
       "en": "Gravity",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "重力",
+      "status": "provisional"
     },
     "花療": {
       "en": "Floral Healing",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "フラワーヒール",
+      "status": "provisional"
     },
     "天使之吻": {
       "en": "Sweet Kiss",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "天使之吻",
+      "status": "provisional"
     },
     "魔法葉": {
       "en": "Magical Leaf",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "マジカルリーフ",
+      "status": "provisional"
     },
     "打草結": {
       "en": "Grass Knot",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "くさむすび",
+      "status": "provisional"
     },
     "潛水": {
       "en": "Dive",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "潛水",
+      "status": "provisional"
     },
     "空氣斬": {
       "en": "Air Slash",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "エアスラッシュ",
+      "status": "provisional"
     },
     "暴風": {
       "en": "Hurricane",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ぼうふう",
+      "status": "provisional"
     },
     "破殼": {
       "en": "Shell Smash",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "からをやぶる",
+      "status": "provisional"
     },
     "岩石封鎖": {
       "en": "Rock Tomb",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "がんせきふうじ",
+      "status": "provisional"
     },
     "十字剪": {
       "en": "X-Scissor",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "シザークロス",
+      "status": "provisional"
     },
     "隱形岩": {
       "en": "Stealth Rock",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ステルスロック",
+      "status": "provisional"
     },
     "詭計": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "詭計",
+      "ja": "わるだくみ",
+      "status": "provisional"
     },
     "惡之波動": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "惡之波動",
+      "ja": "あくのはどう",
+      "status": "provisional"
     },
     "暗黑洞": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "暗黑洞",
+      "ja": "ダークホール",
+      "status": "provisional"
     },
     "縫影": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "縫影",
+      "ja": "縫影",
+      "status": "needs-review"
     },
     "飛葉快刀": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "飛葉快刀",
+      "ja": "はっぱカッター",
+      "status": "provisional"
     },
     "飛葉風暴": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "飛葉風暴",
+      "ja": "飛葉風暴",
+      "status": "needs-review"
     },
     "影子偷襲": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "影子偷襲",
+      "ja": "かげうち",
+      "status": "provisional"
     },
     "魔法火焰": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "魔法火焰",
+      "ja": "マジカルフレイム",
+      "status": "provisional"
     },
     "強力鞭打": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "強力鞭打",
+      "ja": "強力鞭打",
+      "status": "needs-review"
     },
     "擲矛": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "擲矛",
+      "ja": "擲矛",
+      "status": "needs-review"
     },
     "重磅衝撞": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "重磅衝撞",
+      "ja": "ヘビーボンバー",
+      "status": "provisional"
     },
     "三重攻擊": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "三重攻擊",
+      "ja": "トライアタック",
+      "status": "provisional"
     },
     "啄鑽": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "啄鑽",
+      "ja": "ドリルくちばし",
+      "status": "provisional"
     },
     "高速移動": {
       "en": "Agility",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "こうそくいどう",
+      "status": "provisional"
     },
     "飛踢": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "飛踢",
+      "ja": "とびげり",
+      "status": "provisional"
     },
     "龍之舞": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "龍之舞",
+      "ja": "りゅうのまい",
+      "status": "provisional"
     },
     "龍息": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "龍息",
+      "ja": "りゅうのいぶき",
+      "status": "provisional"
     },
     "暗影球": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "暗影球",
+      "ja": "シャドーボール",
+      "status": "provisional"
     },
     "神速": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "神速",
+      "ja": "しんそく",
+      "status": "provisional"
     },
     "破壞光線": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "破壞光線",
+      "ja": "はかいこうせん",
+      "status": "provisional"
     },
     "逆鱗": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "逆鱗",
+      "ja": "げきりん",
+      "status": "provisional"
     },
     "加農光炮": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "加農光炮",
+      "ja": "加農光炮",
+      "status": "needs-review"
     },
     "龍之波動": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "龍之波動",
+      "ja": "りゅうのはどう",
+      "status": "provisional"
     },
     "龍尾": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "龍尾",
+      "ja": "ドラゴンテール",
+      "status": "provisional"
     },
     "花粉團": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "花粉團",
+      "ja": "花粉團",
+      "status": "needs-review"
     },
     "青草攪拌器": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "青草攪拌器",
+      "ja": "青草攪拌器",
+      "status": "needs-review"
     },
     "棉花防守": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "棉花防守",
+      "ja": "わたほうし",
+      "status": "provisional"
     },
     "棉孢子": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "棉孢子",
+      "ja": "わたほうし",
+      "status": "provisional"
     },
     "金屬爪": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "金屬爪",
+      "ja": "メタルクロー",
+      "status": "provisional"
     },
     "水流噴射": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "水流噴射",
+      "ja": "水流噴射",
+      "status": "needs-review"
     },
     "幻象光線": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "幻象光線",
+      "ja": "幻象光線",
+      "status": "needs-review"
     },
     "預知未來": {
       "en": "Future Sight",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "みらいよち",
+      "status": "provisional"
     },
     "輔助力量": {
       "en": "Stored Power",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "輔助力量",
+      "status": "provisional"
     },
     "精神衝擊": {
       "en": "Psyshock",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "サイコショック",
+      "status": "provisional"
     },
     "超級角擊": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "超級角擊",
+      "ja": "超級角擊",
+      "status": "needs-review"
     },
     "背水一戰": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "背水一戰",
+      "ja": "背水一戰",
+      "status": "needs-review"
     },
     "圍攻": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "圍攻",
+      "ja": "圍攻",
+      "status": "needs-review"
     },
     "咬碎": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "咬碎",
+      "ja": "咬碎",
+      "status": "needs-review"
     },
     "攀瀑": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "攀瀑",
+      "ja": "攀瀑",
+      "status": "needs-review"
     },
     "大字爆焰": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "大字爆焰",
+      "ja": "大字爆焰",
+      "status": "needs-review"
     },
     "挖洞": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "挖洞",
+      "ja": "挖洞",
+      "status": "needs-review"
     },
     "龍之俯衝": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "龍之俯衝",
+      "ja": "龍之俯衝",
+      "status": "needs-review"
     },
     "地震": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "地震",
+      "ja": "じしん",
+      "status": "provisional"
     },
     "龍爪": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "龍爪",
+      "ja": "ドラゴンクロー",
+      "status": "provisional"
     },
     "月亮之力": {
       "en": "Moonblast",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ムーンフォース",
+      "status": "provisional"
     },
     "污泥炸彈": {
       "en": "Sludge Bomb",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ヘドロばくだん",
+      "status": "provisional"
     },
     "禍不單行": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "禍不單行",
+      "ja": "禍不單行",
+      "status": "needs-review"
     },
     "食夢": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "食夢",
+      "ja": "ゆめくい",
+      "status": "provisional"
     },
     "冰凍之風": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "冰凍之風",
+      "ja": "こごえるかぜ",
+      "status": "provisional"
     },
     "冰錐": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "冰錐",
+      "ja": "冰錐",
+      "status": "needs-review"
     },
     "冰礫": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "冰礫",
+      "ja": "こおりのつぶて",
+      "status": "provisional"
     },
     "冷凍乾燥": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "冷凍乾燥",
+      "ja": "フリーズドライ",
+      "status": "provisional"
     },
     "濁流": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "濁流",
+      "ja": "濁流",
+      "status": "needs-review"
     },
     "酸液炸彈": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "酸液炸彈",
+      "ja": "酸液炸彈",
+      "status": "needs-review"
     },
     "種子機關槍": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "種子機關槍",
+      "ja": "種子機關槍",
+      "status": "needs-review"
     },
     "打嗝": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "打嗝",
+      "ja": "打嗝",
+      "status": "needs-review"
     },
     "渴望": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "渴望",
+      "ja": "渴望",
+      "status": "needs-review"
     },
     "大快朵頤": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "大快朵頤",
+      "ja": "大快朵頤",
+      "status": "needs-review"
     },
     "飛水手裡劍": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "飛水手裡劍",
+      "ja": "飛水手裡劍",
+      "status": "needs-review"
     },
     "影子分身": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "影子分身",
+      "ja": "影子分身",
+      "status": "needs-review"
     },
     "煙幕": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "煙幕",
+      "ja": "煙幕",
+      "status": "needs-review"
     },
     "彈跳": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "彈跳",
+      "ja": "彈跳",
+      "status": "needs-review"
     },
     "龍息＋攀瀑": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "龍息＋攀瀑",
+      "ja": "龍息＋攀瀑",
+      "status": "needs-review"
     },
     "神聖之火": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "神聖之火",
+      "ja": "神聖之火",
+      "status": "needs-review"
     },
     "神鳥猛擊": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "神鳥猛擊",
+      "ja": "ブレイブバード",
+      "status": "provisional"
     },
     "戲法": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "戲法",
+      "ja": "トリック",
+      "status": "provisional"
     },
     "異次元洞": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "異次元洞",
+      "ja": "異次元洞",
+      "status": "needs-review"
     },
     "狙擊": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "狙擊",
+      "ja": "狙擊",
+      "status": "needs-review"
     },
     "致命針刺": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "致命針刺",
+      "ja": "致命針刺",
+      "status": "needs-review"
     },
     "雜技": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "雜技",
+      "ja": "雜技",
+      "status": "needs-review"
     },
     "飛彈針": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "飛彈針",
+      "ja": "飛彈針",
+      "status": "needs-review"
     },
     "伏特替換": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "伏特替換",
+      "ja": "ボルトチェンジ",
+      "status": "provisional"
     },
     "泡沫光線": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "泡沫光線",
+      "ja": "泡沫光線",
+      "status": "needs-review"
     },
     "滅亡之歌": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "滅亡之歌",
+      "ja": "滅亡之歌",
+      "status": "needs-review"
     },
     "薄霧球": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "薄霧球",
+      "ja": "薄霧球",
+      "status": "needs-review"
     },
     "龍聲鼓舞": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "龍聲鼓舞",
+      "ja": "龍聲鼓舞",
+      "status": "needs-review"
     },
     "流星群": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "流星群",
+      "ja": "流星群",
+      "status": "needs-review"
     },
     "意念移物": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "意念移物",
+      "ja": "テレキネシス",
+      "status": "provisional"
     },
     "潔淨光芒": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "潔淨光芒",
+      "ja": "潔淨光芒",
+      "status": "needs-review"
     },
     "日光刃": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "日光刃",
+      "ja": "日光刃",
+      "status": "needs-review"
     },
     "葉刃": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "葉刃",
+      "ja": "葉刃",
+      "status": "needs-review"
     },
     "增強拳": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "增強拳",
+      "ja": "增強拳",
+      "status": "needs-review"
     },
     "骨棒亂打": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "骨棒亂打",
+      "ja": "骨棒亂打",
+      "status": "needs-review"
     },
     "近身戰": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "近身戰",
+      "ja": "インファイト",
+      "status": "provisional"
     },
     "近身戰＋增強拳": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "近身戰＋增強拳",
+      "ja": "近身戰＋增強拳",
+      "status": "needs-review"
     },
     "十字劈": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "十字劈",
+      "ja": "クロスチョップ",
+      "status": "provisional"
     },
     "爆裂拳": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "爆裂拳",
+      "ja": "ばくれつパンチ",
+      "status": "provisional"
     },
     "地獄翻滾": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "地獄翻滾",
+      "ja": "じごくぐるま",
+      "status": "provisional"
     },
     "冰凍牙": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "冰凍牙",
+      "ja": "こおりのキバ",
+      "status": "provisional"
     },
     "冰柱墜擊": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "冰柱墜擊",
+      "ja": "つららおとし",
+      "status": "provisional"
     },
     "十萬馬力": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "十萬馬力",
+      "ja": "十萬馬力",
+      "status": "needs-review"
     },
     "落英繽紛": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "落英繽紛",
+      "ja": "落英繽紛",
+      "status": "needs-review"
     },
     "千變萬花": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "千變萬花",
+      "ja": "千變萬花",
+      "status": "needs-review"
     },
     "起草": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "起草",
+      "ja": "起草",
+      "status": "needs-review"
     },
     "聚寶功": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "聚寶功",
+      "ja": "聚寶功",
+      "status": "needs-review"
     },
     "亂抓": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "亂抓",
+      "ja": "みだれひっかき",
+      "status": "provisional"
     },
     "出奇一擊": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "出奇一擊",
+      "ja": "だましうち",
+      "status": "provisional"
     },
     "惡意追擊": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "惡意追擊",
+      "ja": "惡意追擊",
+      "status": "needs-review"
     },
     "彗星拳": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "彗星拳",
+      "ja": "コメットパンチ",
+      "status": "provisional"
     },
     "陀螺球": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "陀螺球",
+      "ja": "ジャイロボール",
+      "status": "provisional"
     },
     "意念頭槌": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "意念頭槌",
+      "ja": "意念頭槌",
+      "status": "needs-review"
     },
     "電磁漂浮": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "電磁漂浮",
+      "ja": "電磁漂浮",
+      "status": "needs-review"
     },
     "電球": {
       "en": "Electro Ball",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "エレキボール",
+      "status": "provisional"
     },
     "日光束": {
       "en": "Solar Beam",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ソーラービーム",
+      "status": "provisional"
     },
     "指導": {
       "en": "Coaching",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "指導",
+      "status": "provisional"
     },
     "光牆": {
       "en": "Light Screen",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ひかりのかべ",
+      "status": "provisional"
     },
     "精神擊破": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "精神擊破",
+      "ja": "精神擊破",
+      "status": "needs-review"
     },
     "瞬間移動": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "瞬間移動",
+      "ja": "テレポート",
+      "status": "provisional"
     },
     "戲法空間": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "戲法空間",
+      "ja": "トリックルーム",
+      "status": "provisional"
     },
     "充電光束": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "充電光束",
+      "ja": "充電光束",
+      "status": "needs-review"
     },
     "閃電猛衝": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "閃電猛衝",
+      "ja": "閃電猛衝",
+      "status": "needs-review"
     },
     "拋物面充電": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "拋物面充電",
+      "ja": "拋物面充電",
+      "status": "needs-review"
     },
     "打雷": {
       "en": "Thunder",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "かみなり",
+      "status": "provisional"
     },
     "熱風": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "熱風",
+      "ja": "熱風",
+      "status": "needs-review"
     },
     "電光": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "電光",
+      "ja": "スパーク",
+      "status": "provisional"
     },
     "念力": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "念力",
+      "ja": "ねんりき",
+      "status": "provisional"
     },
     "屏障": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "屏障",
+      "ja": "バリアー",
+      "status": "provisional"
     },
     "力量互換": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "力量互換",
+      "ja": "力量互換",
+      "status": "needs-review"
     },
     "雪崩": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "雪崩",
+      "ja": "ゆきなだれ",
+      "status": "provisional"
     },
     "極光幕": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "極光幕",
+      "ja": "極光幕",
+      "status": "needs-review"
     },
     "波導彈": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "波導彈",
+      "ja": "波導彈",
+      "status": "needs-review"
     },
     "音速拳": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "音速拳",
+      "ja": "音速拳",
+      "status": "needs-review"
     },
     "閃電強襲": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "閃電強襲",
+      "ja": "閃電強襲",
+      "status": "needs-review"
     },
     "雷電拳": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "雷電拳",
+      "ja": "雷電拳",
+      "status": "needs-review"
     },
     "伏特攻擊": {
       "en": "Volt Tackle",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "ボルテッカー",
+      "status": "provisional"
     },
     "十萬伏特": {
       "en": "Thunderbolt",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "１０まんボルト",
+      "status": "provisional"
     },
     "定身法": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "定身法",
+      "ja": "定身法",
+      "status": "needs-review"
     },
     "下盤踢": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "下盤踢",
+      "ja": "下盤踢",
+      "status": "needs-review"
     },
     "水流裂破": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "水流裂破",
+      "ja": "アクアブレイク",
+      "status": "provisional"
     },
     "妖精之風": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "妖精之風",
+      "ja": "ようせいのかぜ",
+      "status": "provisional"
     },
     "修長之角": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "修長之角",
+      "ja": "修長之角",
+      "status": "needs-review"
     },
     "青焰": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "青焰",
+      "ja": "青焰",
+      "status": "needs-review"
     },
     "拍落": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "拍落",
+      "ja": "はたきおとす",
+      "status": "provisional"
     },
     "奇異之光": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "奇異之光",
+      "ja": "あやしいひかり",
+      "status": "provisional"
     },
     "雙翼": {
       "en": "Dual Wingbeat",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "雙翼",
+      "status": "provisional"
     },
     "子彈拳": {
       "en": "Bullet Punch",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "子彈拳",
+      "status": "provisional"
     },
     "劍舞": {
       "en": "Swords Dance",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "劍舞",
+      "status": "provisional"
     },
     "二連擊": {
       "en": "Double Hit",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "二連擊",
+      "status": "provisional"
     },
     "連斬": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "連斬",
+      "ja": "れんぞくぎり",
+      "status": "provisional"
     },
     "狂舞揮打": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "狂舞揮打",
+      "ja": "狂舞揮打",
+      "status": "needs-review"
     },
     "看穿": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "看穿",
+      "ja": "看穿",
+      "status": "needs-review"
     },
     "巨聲": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "巨聲",
+      "ja": "ハイパーボイス",
+      "status": "provisional"
     },
     "大聲咆哮": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "大聲咆哮",
+      "ja": "大聲咆哮",
+      "status": "needs-review"
     },
     "熱水": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "熱水",
+      "ja": "ねっとう",
+      "status": "provisional"
     },
     "瞬間失憶": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "瞬間失憶",
+      "ja": "ドわすれ",
+      "status": "provisional"
     },
     "抓狂": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "抓狂",
+      "ja": "あばれる",
+      "status": "provisional"
     },
     "哈欠": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "哈欠",
+      "ja": "あくび",
+      "status": "provisional"
     },
     "擋路": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "擋路",
+      "ja": "とおせんぼう",
+      "status": "provisional"
     },
     "冥想": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "冥想",
+      "ja": "めいそう",
+      "status": "provisional"
     },
     "飛翔": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "飛翔",
+      "ja": "飛翔",
+      "status": "needs-review"
     },
     "勇鳥猛攻": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "勇鳥猛攻",
+      "ja": "勇鳥猛攻",
+      "status": "needs-review"
     },
     "燕返": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "燕返",
+      "ja": "つばめがえし",
+      "status": "provisional"
     },
     "巨力錘": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "巨力錘",
+      "ja": "巨力錘",
+      "status": "needs-review"
     },
     "小偷": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "小偷",
+      "ja": "どろぼう",
+      "status": "provisional"
     },
     "冰槌": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "冰槌",
+      "ja": "冰槌",
+      "status": "needs-review"
     },
     "換檔": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "換檔",
+      "ja": "換檔",
+      "status": "needs-review"
     },
     "破音": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "破音",
+      "ja": "破音",
+      "status": "needs-review"
     },
     "木槌": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "木槌",
+      "ja": "木槌",
+      "status": "needs-review"
     },
     "詛咒": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "詛咒",
+      "ja": "詛咒",
+      "status": "needs-review"
     },
     "分擔痛處": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "分擔痛處",
+      "ja": "分擔痛處",
+      "status": "needs-review"
     },
     "木角": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "木角",
+      "ja": "木角",
+      "status": "needs-review"
     },
     "三旋擊": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "三旋擊",
+      "ja": "トリプルアクセル",
+      "status": "provisional"
     },
     "踩踏": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "踩踏",
+      "ja": "ふみつけ",
+      "status": "provisional"
     },
     "熱帶踢": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "熱帶踢",
+      "ja": "トロピカルキック",
+      "status": "provisional"
     },
     "青草滑梯": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "青草滑梯",
+      "ja": "グラススライダー",
+      "status": "provisional"
     },
     "噴火": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "噴火",
+      "ja": "噴火",
+      "status": "needs-review"
     },
     "火焰輪": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "火焰輪",
+      "ja": "火焰輪",
+      "status": "needs-review"
     },
     "尖石攻擊": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "尖石攻擊",
+      "ja": "尖石攻擊",
+      "status": "needs-review"
     },
     "流沙地獄": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "流沙地獄",
+      "ja": "流沙地獄",
+      "status": "needs-review"
     },
     "原始之力": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "原始之力",
+      "ja": "原始之力",
+      "status": "needs-review"
     },
     "祈願": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "祈願",
+      "ja": "祈願",
+      "status": "needs-review"
     },
     "黑色目光": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "黑色目光",
+      "ja": "黑色目光",
+      "status": "needs-review"
     },
     "欺詐": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "欺詐",
+      "ja": "欺詐",
+      "status": "needs-review"
     },
     "暗冥強擊＋地獄突刺": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "暗冥強擊＋地獄突刺",
+      "ja": "暗冥強擊＋地獄突刺",
+      "status": "needs-review"
     },
     "水流連打＋流水裂破": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "水流連打＋流水裂破",
+      "ja": "水流連打＋流水裂破",
+      "status": "needs-review"
     },
     "水流環": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "水流環",
+      "ja": "水流環",
+      "status": "needs-review"
     },
     "快速折返": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "快速折返",
+      "ja": "快速折返",
+      "status": "needs-review"
     },
     "花瓣舞": {
       "en": "Petal Dance",
-      "ja": null,
-      "status": "legacy-unverified",
-      "note": "沿用既有英文圖示對照，尚未逐項核對官方遊戲名稱。"
+      "ja": "はなびらのまい",
+      "status": "provisional"
     },
     "終極吸取": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "終極吸取",
+      "ja": "ギガドレイン",
+      "status": "provisional"
     },
     "唱歌": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "唱歌",
+      "ja": "うたう",
+      "status": "provisional"
     },
     "滾動": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "滾動",
+      "ja": "ころがる",
+      "status": "provisional"
     },
     "連環巴掌": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "連環巴掌",
+      "ja": "おうふくビンタ",
+      "status": "provisional"
     },
     "死亡之翼": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "死亡之翼",
+      "ja": "死亡之翼",
+      "status": "needs-review"
     },
     "電磁炮": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "電磁炮",
+      "ja": "電磁炮",
+      "status": "needs-review"
     },
     "放電": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "放電",
+      "ja": "ほうでん",
+      "status": "provisional"
     },
     "瘋狂伏特": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "瘋狂伏特",
+      "ja": "ワイルドボルト",
+      "status": "provisional"
     },
     "居合斬": {
-      "en": null,
-      "ja": null,
-      "status": "pending-verification",
-      "note": "尚未找到可確認的官方英文／日文名稱；保留繁體中文。"
+      "en": "居合斬",
+      "ja": "いあいぎり",
+      "status": "provisional"
+    },
+    "大地粉碎擊": {
+      "en": "Seismic Slam",
+      "ja": "アースクラッシャー",
+      "status": "pilot-match"
     }
   },
-  "moveNamesVersion": "1.0"
+  "moveNamesVersion": "37.2",
+  "moveNamesNote": "English/Japanese names are provisional cross-language references. Uncertain entries fall back to Traditional Chinese. Please verify against current in-game terminology."
 }

@@ -22,14 +22,7 @@ const $=id=>document.getElementById(id);
 const clean=s=>(s||"").split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
 function tr(value){return window.__i18n?.t(value)||value;}
 function displayPokemonName(name){return window.__i18n?.displayPokemonName(name)||name;}
-function displayMoveName(name,move){
- const lang=window.__i18n?.lang||"zh";
- if(lang==="zh")return move;
- const verified=data?.moveNames?.[move];
- if(verified&&verified.status==="verified"&&verified[lang])return verified[lang];
- if(lang==="en")return moveIcons[name]?.[move]||move;
- return move;
-}
+function displayMoveName(name,move){const lang=window.__i18n?.lang||"zh";if(lang==="zh")return move;const entry=data?.moveNames?.[move];if(entry&&entry[lang])return entry[lang];if(lang==="en")return moveIcons[name]?.[move]||move;return move;}
 function defaults(){return {mode:"unconfigured",move1:[],move2:[],wins:{}};}
 function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
 function load(){
