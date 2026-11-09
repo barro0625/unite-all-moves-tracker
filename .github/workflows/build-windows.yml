@@ -12,6 +12,10 @@ permissions:
 jobs:
   build-windows:
     runs-on: windows-latest
+    timeout-minutes: 35
+    env:
+      ELECTRON_BUILDER_CACHE: ${{ runner.temp }}/electron-builder-cache
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,8 +25,94 @@ jobs:
         with:
           node-version: 22
 
+      - name: Restore electron-builder tool cache
+        id: builder-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/electron-builder-cache
+          key: windows-electron-builder-nsis-resources-3.4.1-v1
+
       - name: Install dependencies
         run: npm install
+
+      - name: Download and verify NSIS resources from mirror
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $cacheRoot = $env:ELECTRON_BUILDER_CACHE
+          $resourceDir = Join-Path $cacheRoot 'nsis\nsis-resources-3.4.1'
+          $archive = Join-Path $env:RUNNER_TEMP 'nsis-resources-3.4.1.7z'
+          New-Item -ItemType Directory -Force -Path $resourceDir | Out-Null
+
+          $existingItems = @(Get-ChildItem -LiteralPath $resourceDir -Force -ErrorAction SilentlyContinue)
+          if ($existingItems.Count -gt 0) {
+            Write-Host "NSIS resources already exist in cache: $resourceDir"
+            exit 0
+          }
+
+          # SHA-512 published by electron-builder for nsis-resources-3.4.1.
+          # The digest check ensures the mirror serves the exact expected archive.
+          $expectedSha512 = 'Dqd6g+2buwwvoG1Vyf6BHR1b+25QMmPcwZx40atOT57gH27rkjOei1L0JTldxZu4NFoEmW4kJgZ3DlSWVON3+Q=='
+          $urls = @(
+            'https://mirrors.huaweicloud.com/electron-builder-binaries/nsis-resources-3.4.1/nsis-resources-3.4.1.7z',
+            'https://mirrors.huaweicloud.com/repository/toolkit/electron-builder-binaries/nsis-resources-3.4.1/nsis-resources-3.4.1.7z',
+            'https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z'
+          )
+
+          $verified = $false
+          foreach ($url in $urls) {
+            Remove-Item -LiteralPath $archive -Force -ErrorAction SilentlyContinue
+            Write-Host "Trying NSIS resource source: $url"
+            & curl.exe --fail --location --retry 4 --retry-all-errors --retry-delay 5 --connect-timeout 30 --max-time 240 --output $archive $url
+            if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $archive)) {
+              Write-Warning "Download failed from $url; trying the next source."
+              continue
+            }
+
+            $sha = [System.Security.Cryptography.SHA512]::Create()
+            try {
+              $actualSha512 = [Convert]::ToBase64String($sha.ComputeHash([System.IO.File]::ReadAllBytes($archive)))
+            }
+            finally {
+              $sha.Dispose()
+            }
+
+            if ($actualSha512 -eq $expectedSha512) {
+              Write-Host 'NSIS resource archive SHA-512 verified.'
+              $verified = $true
+              break
+            }
+
+            Write-Warning "SHA-512 mismatch from $url; refusing this file and trying the next source."
+          }
+
+          if (-not $verified) {
+            throw 'Could not download a verified nsis-resources-3.4.1.7z archive from any configured source.'
+          }
+
+          # Use the 7za executable installed as an npm dependency of electron-builder.
+          $sevenZip = (& node -p "require('7zip-bin').path7za").Trim()
+          if (-not $sevenZip -or -not (Test-Path -LiteralPath $sevenZip)) {
+            throw "Could not locate 7zip-bin's 7za executable. Resolved path: $sevenZip"
+          }
+
+          & $sevenZip x $archive "-o$resourceDir" -y
+          if ($LASTEXITCODE -ne 0) {
+            throw "7za extraction failed with exit code $LASTEXITCODE."
+          }
+
+          $extractedItems = @(Get-ChildItem -LiteralPath $resourceDir -Force -ErrorAction SilentlyContinue)
+          if ($extractedItems.Count -eq 0) {
+            throw 'NSIS resource extraction produced an empty cache directory.'
+          }
+          Write-Host "NSIS resources are ready in cache: $resourceDir"
+
+      - name: Save electron-builder tool cache
+        if: success() && steps.builder-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/electron-builder-cache
+          key: windows-electron-builder-nsis-resources-3.4.1-v1
 
       - name: Build Windows installer
         run: npx electron-builder --win nsis --publish never
