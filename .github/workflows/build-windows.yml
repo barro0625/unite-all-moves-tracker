@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 35
     env:
-      ELECTRON_BUILDER_CACHE: ${{ runner.temp }}/electron-builder-cache
+      ELECTRON_BUILDER_CACHE: ${{ github.workspace }}/.electron-builder-cache
 
     steps:
       - name: Checkout
@@ -29,7 +29,7 @@ jobs:
         id: builder-cache
         uses: actions/cache/restore@v4
         with:
-          path: ${{ runner.temp }}/electron-builder-cache
+          path: ${{ github.workspace }}/.electron-builder-cache
           key: windows-electron-builder-nsis-resources-3.4.1-v1
 
       - name: Install dependencies
@@ -111,7 +111,7 @@ jobs:
         if: success() && steps.builder-cache.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
-          path: ${{ runner.temp }}/electron-builder-cache
+          path: ${{ github.workspace }}/.electron-builder-cache
           key: windows-electron-builder-nsis-resources-3.4.1-v1
 
       - name: Build Windows installer
